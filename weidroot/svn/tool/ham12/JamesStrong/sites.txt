@@ -1,0 +1,12 @@
+https://en.wikipedia.org/wiki/Strong%27s_Concordance
+
+
+https://raw.githubusercontent.com/morphgnt/strongs-dictionary-xml/master/strongsgreek.xml
+
+
+https://raw.githubusercontent.com/openscriptures/HebrewLexicon/master/HebrewStrong.xml
+
+
+
+
+http://codebeautify.org/xmltojson#

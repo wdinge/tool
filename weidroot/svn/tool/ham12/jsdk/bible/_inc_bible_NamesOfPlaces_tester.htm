@@ -1,0 +1,35 @@
+<html>
+
+<header>
+
+<script language="javascript" src="_inc_bible_NamesOfPlaces.js"></script>
+
+<script type="text/javascript">
+
+function getall(){
+    var str="";
+    var i=0;
+    var LongestVers="";
+    var ShortestVers="----------------------------------------------------";
+    
+    var Tmp = new Object();
+    var iDup=0;
+    for (i=0; i<NamesOfPlaces.length; i++ ) {
+        var s = NamesOfPlaces[i];
+       
+        str+=i + " : "+ s +"<br>"    ;
+
+    }
+    //alert();
+    document.getElementById("test").innerHTML +="tot:"+i+"<br>";
+    document.getElementById("test").innerHTML += str;
+    alert(iDup);
+}
+</script>
+</header>
+<body>
+
+<a id="test"/>
+<button onclick="getall()">getall</button><button onclick="getallkeys()">getallkeys</button>
+</body>
+</html>

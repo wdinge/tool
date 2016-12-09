@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Strongifyer</title>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="en-us" http-equiv="Content-Language" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        
+		<script src="StrongsHebrew.json"></script>
+        <script src="StrongsGreek.json"></script>
+        
+        <script language="javascript" src="./StrongsHebrewUti.js"></script>
+        <script language="javascript" src="./StrongsGreekUti.js"></script>
+        
+        <script language="javascript" src="../WordsFreq.js"></script>
+        
+        <style>
+        
+        #tables_container{
+            height:600px;
+            width:100%;
+            background-color:#eeeeee;
+            border-style: solid;
+            border-width: 2px;
+            overflow:scroll;
+        }
+        
+        .tdclked{
+           background-color:#cccccc;
+        }
+        table:nth-child(1){
+            background-color:#ffeedd;
+        }
+        table:nth-child(2){
+            background-color:#eeeeff;
+        }
+        textarea{
+            width:100%;
+            background-color:#ffaaff;
+        }
+        </style>
+        
+        <script>
+  
+  $(document).ready(function(){ 
+  
+    $("#Next1").click(function(){
+        var stab=StrongsHebrewUti.get_table();
+        $("#tables_container").append(stab);
+    });
+    
+    
+    $("#Next2").click(function(){
+         var stab=StrongsGreekUti.get_table();
+        $("#tables_container").append(stab);
+    });
+    
+    
+     $("#Clear").click(function(){
+        $("#tables_container").empty();
+     });
+ 
+
+     $("#FreqHebrew").click(function(){
+        var t=$("#contextstr").text();
+        var wfq = new WordsFreq();
+        wfq.uniqObjFreq.collect_Hebrew_Individual_Words(t);
+        $("#out").html(wfq.getSortTable("Freq"));
+
+     });
+     
+     $("#SplitHebrew").click(function(){
+        var t=$("#contextstr").text();
+        var arr=t.split(" ");
+        var th='', t2='', ids='', uls='';
+        for(var i=arr.length-1;i>=0;i--){
+            th+="<th>"+i+"</th>";
+            var word=arr[i];
+            t2+="<td>"+ word +"</td>";
+            var objArr=StrongsHebrewUti.findObjs(word);
+            
+            ids+="<td>"+ StrongsHebrewUti.get_Ids(objArr) +"</td>";
+            uls+="<td>"+ StrongsHebrewUti.get_uls(objArr) +"</td>";
+        }
+        var tab="<tr>"+th+"</tr><tr>"+t2+"</tr><tr>"+ids+"</tr>";
+        tab +="<tr>"+uls+"</tr>";
+        tab ="<table border='1'>"+tab+"</table>";
+        
+        $("#out2").html( tab );
+ 
+     });
+     
+     $("#greeksample").click(function(){
+        var t=$("#contextstr").attr('greek');
+        $("#contextstr").html( t );
+     });
+     $("#SplitGreek").click(function(){
+        var t=$("#contextstr").text();
+        var arr=t.split(" ");
+        var th='', t2='', ids='', uls='';
+        for(var i=0;i<arr.length;i++){
+            th+="<th>"+i+"</th>";
+            var word=arr[i];
+            t2+="<td>"+ word +"</td>";
+            var objArr=StrongsGreekUti.findObjs(word);
+            
+            ids+="<td>"+ StrongsGreekUti.get_Ids(objArr) +"</td>";
+            //uls+="<td>"+ StrongsGreekUti.get_uls(objArr) +"</td>";
+        }
+        var tab="<tr>"+th+"</tr><tr>"+t2+"</tr><tr>"+ids+"</tr>";
+        tab +="<tr>"+uls+"</tr>";
+        tab ="<table border='1'>"+tab+"</table>";
+        
+        $("#out2").html( tab );
+ 
+     });
+     
+     
+  });
+  
+  
+  
+  
+  
+        </script>
+	</head>
+	<body>
+        <a href='http://biblehub.com/text/genesis/1-2.htm'>http://biblehub.com/text/genesis/1-2.htm</a><br/>
+		<textarea id="contextstr" value='' greek='βίβλος γενέσεως ἰησοῦ χριστοῦ υἱοῦ δαυὶδ υἱοῦ ἀβραάμ.'>בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ
+
+		</textarea>
+        </hr> 
+        <button id="SplitHebrew">SplitHebrew</button>
+        <button id="SplitGreek">SplitGreek</button>
+        <button id="greeksample">greeksample</button>
+        <div id='out2'></div>
+        
+        </hr> 
+        <button id="FreqHebrew">FreqHebrew</button>
+        <button id="FreqGreek">FreqGreek</button>
+        <button id="Clear">Clear</button>
+        <div id='out'></div>
+
+        </hr>    
+        <button id="Next1">StrongHebrew</button>
+        <button id="Next2">StrongGreek</button>
+        <button id="Clear">StrongClear</button>
+        <div id="tables_container">
+		</div>  
+        </hr> 	
+	</body>
+</html>

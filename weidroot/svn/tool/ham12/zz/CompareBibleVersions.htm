@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>biblePad2015</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+    <link rel="stylesheet" type="text/css" href="./css/Default_pad.css">
+
+    <script language="javascript" src="./jq/jquery.js"></script>
+    
+    <script language="javascript" src="./jq/MyCookies.js"></script>
+    
+    <script language="javascript" src="./jsdk/bible/_inc_bibleChinese.js" __onload="inc_bibleChinese('./jsdb/bible/bbc/','xxasync')">
+    </script>
+	<script> 
+    </script>
+    
+
+
+    
+    <script  nnasync language="javascript" src="./jsdk/bible/_inc_bibleNiv.js" __onload="inc_bibleNiv('./jsdb/bible/niv/js/', 142, 'xasync')">
+    </script>
+
+    <script  nnasync language="javascript" src="./jsdk/bible/_inc_bibleKjv.js"    __onload="inc_bibleKjv('./jsdb/bible/kjv/','xasync')">
+    </script>
+
+
+    <script nnasync language="javascript" src="./jsdk/bible/_inc_bibleBasicEnglish.js" __onload="inc_bibleBasicEnglish('./jsdb/bible/bbe/','xasync')">
+    </script>
+
+
+    <script nnasync language="javascript" src="./jsdk/bible/_inc_biblePinyin_improved.js" __onload="inc_biblePinyin('./jsdb/bible/pinyin/CUV_chars/splitter/2015/',171,'xasync')"></script>
+
+
+
+    <script xasync language="javascript" src="./jsdb/bible/bbcSayings/SayingsIdArr.js" __onload="">
+    </script>
+    
+    <script xasync language="javascript" src="./jsdk/bible/_inc_bible_NamesOfPersons.js">
+    </script>
+    
+    <script xasync language="javascript" src="./jsdk/bible/_inc_bible_NamesOfPlaces.js">
+    </script>
+
+    
+    
+        
+    <script xasync language="javascript" src="./jsdb/cc/z2g/jianfan/Traditional2Simplified.js">
+    </script>
+
+
+    <script nnasync language="javascript" src="./jsdk/cc/z2g/_inc_z2g.js" __onload="inc_z2g('./jsdb/', 'async')">
+    </script>
+
+
+
+    
+    
+    <script language="javascript" src="BiblePad-2015.js"  type="text/javascript"></script>
+    <script language="javascript" src="BiblePadUtils-2015.js"  type="text/javascript">
+    </script>
+   
+    
+<script language="javascript">
+    
+$(document).ready(function(){
+inc_bibleChinese('./jsdb/bible/bbc/','');
+inc_bibleNiv('./jsdb/bible/niv/js/', 142, '');
+inc_bibleKjv('./jsdb/bible/kjv/','');
+inc_bibleBasicEnglish('./jsdb/bible/bbe/','');
+//inc_biblePinyin('./jsdb/bible/pinyin/CUV_chars/splitter/2015/',171,'');
+//inc_z2g('./jsdb/', '');
+
+   $("#sel").change(function(){
+		var sel=$(this).val();
+		switch(sel){
+			case "INKB":
+			gen_pcb([I,N,K,B]);
+			break;
+			case "NIKB":
+			gen_pcb([N,I,K,B]);
+			break;
+			
+			case "KINB":
+			gen_pcb([K,I,N,B]);
+			break;
+			case "BNIK":
+			gen_pcb([B,N,I,K]);
+			break;
+	    }
+   });
+
+});
+function gen_pcb(bibleArr){
+   var tb1="<table border='1'>";
+   var tb2="<table border='1'><caption>mismatch</caption>";
+   var idx1=0,idx2=0;
+   $.each(bibleArr[0], function(k,v){
+	   idx1++;
+       tb1+="<tr><td>"+idx1+"</td><td>"+k+"</td><td>"+v;
+	   for(var i=1;i<bibleArr.length;i++){
+	        if(undefined === bibleArr[i][k] ){
+				idx2++;
+				tb2+="<tr><td>"+idx2+"</td><td>"+k+"</td></tr>";
+			}
+			tb1+="<hr/>"+bibleArr[i][k];
+	   }
+	   tb1+="</td></tr>";
+   });
+   tb1+="</table>";
+   tb2+="</table>";
+   $("#out1").empty().append(tb1);
+   $("#out2").empty().append(tb2);
+}
+
+</script>
+
+</HEAD>
+<BODY >
+<select id="sel">
+<option value=""></option>
+<option value="INKB">INKB</option>
+<option value="NIKB">NIKB</option>
+<option value="KINB">KINB</option>
+<option value="BNIK">BNIK</option>
+</select>
+<a>I:CUV, N:NIV, K:KJV, B:BasicEnglish</a>
+
+<div id="out2">...</div>
+<div id="out1">...</div>
+
+
+</BODY>
+<script language="javascript">
+$(document).ready(function(){
+
+});
+</script>
+
+</HTML>

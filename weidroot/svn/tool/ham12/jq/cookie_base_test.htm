@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="./jquery.js"></script>
+<script>
+
+var MyCookie=function(){
+    this.cooKeyVal=new Object();
+    this.loadall();
+    this.showall();
+    }
+    
+MyCookie.prototype.Select_InitOptions=function (selId) {
+    this.loadall();
+    for( k in this.cooKeyVal ){
+        var v =  this.cooKeyVal[k];
+        console.log( "cooKeyVal["+k+"]=" + v );        
+        var pos = k.indexOf(selId);
+        if(0===pos){
+            this.Select_AddOption(selId, v);
+        }
+    }     
+}    
+MyCookie.prototype.Select_AddOption=function (selId, sTxt) {
+    //alert(sTxt.length);
+    //alert(sTxt);
+    if (  $("#"+selId+" option[value='"+sTxt+"']").length > 0 ) {//remove exisit ont.
+        //$("#selHistory").append("<option value='"+sTxt+"' >"+sTxt+"</option>");        
+        $( "#"+selId+" option" ).remove( ":contains('"+sTxt+"')" );
+    }
+    
+    //add most recent at front.
+    var newOption = $("<option value='" + sTxt + "'>" + sTxt + "</option>");
+    newOption.insertAfter("#"+selId+" option:first");
+    
+    //this.Select_SaveOptions(selId);
+}
+MyCookie.prototype.Select_SaveOptions=function (selId) {  
+    var dat=new Object();
+    $("#"+selId).find("option").each(function(i){
+        var key=selId+i;
+        var val = $(this).val();
+        dat[key]=val;
+    });
+    for(k in dat){
+        this.set(k, dat[k]);
+    }
+}
+
+
+MyCookie.prototype.loadall=function(){
+    var str = "" + document.cookie;
+    var arr = str.split(/; /g);
+    for(i in arr){
+        var kev = arr[i];
+        var arr2= kev.split("=");
+        var key=arr2[0];
+        var val=arr2[1];
+        this.cooKeyVal[key]=val;
+    }
+    
+};
+MyCookie.prototype.set=function(key,val){
+    this.cooKeyVal[key]=val ;
+    this.setCookie(key,val,100);
+    for(var i=0;i<100;i++){
+        var v = this.getCookie(key);
+        if(v === val){
+            console.log("!!!!!!!!!!!try set "+i);
+            break;
+        }
+    }
+};
+MyCookie.prototype.get=function(key){
+    if(undefined === this.cooKeyVal[key] ){
+        console.log("undefined key:"+key);
+    };
+    return this.cooKeyVal[key];
+};
+MyCookie.prototype.showall=function(){
+    for( k in this.cooKeyVal ){
+        console.log( "cooKeyVal["+k+"]=" + this.cooKeyVal[k] );
+    }    
+};
+
+MyCookie.prototype.setCookie=function (cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (100*24*60*60*10000));
+    var expires = "; expires=" + d.toGMTString() + "; path=/";  
+    
+    var str = document.cookie;
+    if(str.length>0){
+        //expires="";
+    }
+    
+    var scook=cname+"="+cvalue+"; ";
+    var reg=new RegExp("[\s|;]*"+cname+"=([^;.]*)[;]*", "g");    
+    var mat = reg.exec(str);
+    if( null===mat ){
+        if( cvalue.length >0 ){
+            str=scook+str;
+        }else{
+            console.log("no key to remove.");
+            return;
+        }
+    }
+    else{
+        if( cvalue.length >0 ){
+            str=str.replace(mat[0], scook);
+        }
+        else{
+            str=str.replace(mat[0], scook);
+        }
+    }
+    if(str.length===0) str="a=a;";
+    str+=expires;
+    console.log("set cookie="+str);
+    document.cookie = str;
+    str = document.cookie;
+    console.log("get cookie="+str);
+    document.cookie = str + expires;
+}
+
+MyCookie.prototype.getCookie=function (cname) {
+    var reg=new RegExp("[\s|;|^]*"+cname+"=([^;.]*)[;]*", "g");
+    console.log(reg);
+    var str = document.cookie;
+    console.log("get cookie:"+str);
+    var mat=reg.exec(str);
+    console.log("reg[] "+mat);
+    if(mat && mat.length>1){
+        console.log("ret="+mat[1]);
+        return mat[1];
+    }
+    return "";
+}
+
+MyCookie.prototype.create=function(){
+    if(document.cookie.length>=0){
+        console.log("cookie alredy exist\n"+document.cookie);
+    }
+    
+    var str="";
+    for( k in this.cooKeyVal ){
+        str+=k+"="+this.cooKeyVal[k] + "; ";
+    }    
+    var d = new Date();
+    d.setTime(d.getTime() + (100*24*60*60*10000));
+    var expires = " expires=" + d.toGMTString() + "; path=/";     
+    str+=expires;
+    document.cookie=str;
+    console.log("created cookie=:"+document.cookie);
+};
+MyCookie.prototype.save=function(){
+    if(document.cookie.length>=0){
+        console.log("cookie alredy exist\n"+document.cookie);
+    }
+    
+    var str="";
+    for( k in this.cooKeyVal ){
+        str+=k+"="+this.cooKeyVal[k] + "; ";
+    }    
+    var d = new Date();
+    d.setTime(d.getTime() + (100*24*60*60*10000));
+    var expires = " expires=" + d.toGMTString() + "; path=/";  
+    str+=expires;
+    document.cookie=str;
+    console.log("save str=:"+str);
+    console.log("saved cookie=:"+document.cookie);
+};
+
+var oMyCookie = new MyCookie ();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function checkCookie() {
+    return;
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+$(function(){
+    
+    $("#set1").click(function(){
+        var user = $("#v1").val();
+        //setCookie("username1", user, 30);
+        console.log(user);
+        oMyCookie.set("username1",user);
+        oMyCookie.Select_AddOption("sel",user);
+    });
+    $("#set2").click(function(){
+        var user = $("#v2").val();
+        //setCookie("username2", user, 30);
+        console.log(user);
+        oMyCookie.set("username2",user);
+        oMyCookie.Select_AddOption("sel",user);
+    });
+    $("#set3").click(function(){
+        var user = $("#v3").val();
+        //setCookie("username3", user, 30);
+        console.log(user);
+        oMyCookie.set("username3",user);
+        oMyCookie.Select_AddOption("sel",user);
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $("#get1").click(function(){
+        var user = oMyCookie.getCookie("username1");
+        $("#out").text(user);
+    });
+    $("#get2").click(function(){
+        var user = oMyCookie.getCookie("username2");
+        $("#out").text(user);
+    });
+    $("#get3").click(function(){
+        var user = oMyCookie.getCookie("username3");
+        $("#out").text(user);
+    });
+    
+    
+    $("#clear").click(function(){
+        document.cookie+="x=x; expires=Fri, 01 Jan 2000 18:17:17 GMT";
+    });
+    
+    $("#save").click(function(){
+        oMyCookie.save();
+    });
+    $("#showall").click(function(){
+        oMyCookie.showall();
+    });
+    
+    
+    
+    
+    $("#initSel").click(function(){
+        oMyCookie.Select_InitOptions("sel");
+    });
+    $("#savSel").click(function(){
+        oMyCookie.Select_SaveOptions("sel");
+    });
+    
+});
+
+</script>
+</head>
+<body>
+<input id='v1' value='w1'></input><button id="set1">set</button>
+<input value='w'></input><button id="get1">get 1</button>
+<hr/>
+<input id='v2' value='w222'></input><button id="set2">set2</button>
+<input value='w'></input><button id="get2">get 2</button>
+<hr/>
+<input id='v3' value='w333'></input><button id="set3">set3</button>
+<input value='w'></input><button id="get3">get 3</button>
+
+<hr/>
+<select id="sel">
+<option></option>
+<option value="a">a</option>
+</select>
+<button id="initSel">init</button>
+<button id="savSel">save</button>
+<hr/>
+
+
+
+<button id="showall">showall</button>
+<button id="save">save</button>
+
+
+
+<div id='out'></div>
+<button id="clear">clear</button>
+</body>
+</html>

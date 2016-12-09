@@ -1,0 +1,114 @@
+<html>
+<head>
+    <meta name="generator" content="HTML Tidy for Windows (vers 15 August 2007), see www.w3.org">
+    <title>7kPy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+
+    <link rel="stylesheet" type="text/css" href="../../css/Default.css">
+    
+    
+    
+    <script language="javascript" src="_inc_Chineses7kPyXI.js" type="text/javascript"></script>
+    <script language="javascript">    inc_Chinese7kPyXI("../../jsdb/");    </script>
+    
+    <script language="javascript" src="7kPyXl_Textarea.js"  type="text/javascript">
+    </script>
+    <script type="text/javascript">
+
+
+
+    function tst(){
+        //document.getElementById("pinyininput").IShow("ayyya");
+        getEl();
+    }
+    </script>
+</head>
+    <body onresize="doResize('edit_area')" onload="" onclick="getEl();">
+
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><a id="demo" class="tone">-</a></td>
+                    </tr>
+                    <tr>
+                        <td><a type="text" id="pinyininput" name="pinyininput" class="pinyin"></a></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+
+                <table id="tb" name="tb" border="1">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>                            
+                    </tr>
+                </table>
+            </td>
+            
+            <td>
+                <button type="button" onclick="cookieSave('edit_area'); ">Save</button>
+                <button type="button" onclick="cookieRead('edit_area'); ">Read</button> 
+                <button type="button" onclick="cookieUndo('edit_area'); ">Undo</button> 
+            </td>
+        </tr>
+    </table>
+    <textarea id="edit_area" name="edit_area"
+    onkeydown="return TextareaKeyDwn(this,'pinyininput','tb','demo');"
+    onclick="TextareaOnClick(this);"
+    rows="10"
+    cols="85" wrap="virtual"
+    class="edit2">
+    +++++++++++++++++++++++++++++++++++++++++++++++++
+    +++       7k Chinese Pinyin Input Method.     +++
+    +++++++++++++++++++++++++++++++++++++++++++++++++
+    Usage: 
+     1) Hit Ctrl to switch input mode between English and Chinese.
+     2) Hit SPACE if more chinese words available. 
+     3) Hit last character of pinyin to change tone(1~5). 
+
+
+    </textarea> <br>
+    <button type="button" onclick="displayDate('showoff'); ">Display</button> 
+    <button type="button" onclick="cookieSave('edit_area'); ">Save</button>
+    <button type="button" onclick="cookieRead('edit_area'); ">Read</button> 
+    <a id="showoff"/>
+    </body>
+</html>

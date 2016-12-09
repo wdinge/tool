@@ -1,0 +1,80 @@
+
+
+<HTML>
+<HEAD>
+    <TITLE>Simplified Chinese Bible (Union Version)</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+    <link rel="stylesheet" type="text/css" href="../css/Default.css">
+
+<script language="javascript" src="./chinesecookie.js">
+    </script>
+    
+    <script>
+    function BibleExplore(id){
+        cookieSaveIdx(id,0);
+        return;
+        var i=0;
+        var elm = document.getElementById( id );
+        ////////search history
+        elm.m_iHistSize=32;
+        if ( null == elm.m_sHist)  elm.m_sHist=[];
+        if (null ==elm.m_iIndxWr) elm.m_iIndxWr=0;
+        //alert( elm.m_sHist.join(" ").search(elm.innerHTML)  );
+        if ( elm.m_sHist.join(" ").search(elm.innerHTML) ==-1) {
+            elm.m_sHist[elm.m_iIndxWr] =  elm.innerHTML;
+            elm.m_iIndxRd = elm.m_iIndxWr;
+            elm.m_iIndxWr++;
+            if (elm.m_iIndxWr>=elm.m_iHistSize) elm.m_iIndxWr=0;
+        }
+
+    }
+    function LoadHistory(id){
+
+
+        cookieRead(id);
+        var elm = document.getElementById( id );
+        if ( null == elm.m_sHist) return;
+
+        elm.innerHTML =  elm.m_sHist[elm.m_iIndxRd] ;         
+        for ( var i=0;i<elm.m_iHistSize; i++) {
+            elm.m_iIndxRd--;
+            if ( elm.m_iIndxRd<0 )  elm.m_iIndxRd =  elm.m_sHist.length-1;
+            if ( null == elm.m_sHist[elm.m_iIndxRd] ) continue;
+            break;
+        }
+    }
+    
+    </script>
+
+
+</HEAD>
+    <BODY>
+
+    <button type="button" onclick="alert('a'); cookieSave('key','0a'); ">save key</button> 
+    <button type="button" onclick="cookieRead('key'); ">read key</button> 
+        
+    <button type="button" onclick="cookieSaveIndx('edit_area',0); ">save 0</button> 
+    <button type="button" onclick="cookieSaveIndx('edit_area',1); ">save 1</button> 
+    
+    
+    <button type="button" onclick="cookieReadIndx('edit_area', 0); ">load 0 </button>
+    <button type="button" onclick="cookieReadIndx('edit_area', 1); ">load 1</button>
+
+   
+    <button type="button" onclick="cookieSetMaxIndex(3); cookieSaveNextById('edit_area'); ">SaveNext</button>
+    <button type="button" onclick="cookieReadNextById('edit_area'); ">LoadNext</button>
+
+    <textarea id="edit_area" name="edit_area" onclick="alert(this.value);"
+    rows="1"
+    cols="85" wrap="virtual"
+    class="edit2"></textarea> <br>
+
+
+
+
+    <a id="a1" name="a1" style="position:absolute;"></a><br>
+    <a id="astyle" name="astyle" style="position:absolute;"></a>
+
+    </BODY>
+</HTML>

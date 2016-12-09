@@ -1,0 +1,112 @@
+
+/*VoiceTone*/
+a.vt
+{
+}
+a.hz 
+{
+	table-layout:fixed;
+
+
+	text-align:center;
+	
+	margin-right:0.1cm;
+	margin-left:0.05cm;
+}
+
+/*XuHao*/
+a.xu 
+{   
+	table-layout:fixed;
+
+	text-align:right;
+	margin-right:0.1cm;
+	margin-left:0.05cm;
+	
+}
+/*style="FONT-SIZE: 12pt; LINE-HEIGHT: 20px; FONT-FAMILY: simsun,mssong,mingliu,arial; BACKGROUND-COLOR: #f0f8ff" */
+/*
+style="overflow: scroll; 
+overflow-y: scroll; 
+overflow-x: hidden; 
+overflow:-moz-scrollbars-vertical; "
+*/
+a.pinyin
+ {
+ height:12px;
+ width:50px;
+ } 
+ a.tone
+ {
+ height:12px;
+ width:50px;
+ } 
+ 
+textarea.edit
+{
+FONT-SIZE: 12pt; 
+LINE-HEIGHT: 20px; 
+FONT-FAMILY: simsun,mssong,mingliu,arial; 
+BACKGROUND-COLOR: #f0f8ff;
+
+
+overflow: scroll; 
+overflow-y: scroll; 
+overflow-x: hidden; 
+overflow:-moz-scrollbars-vertical;
+}
+
+textarea.edit2
+{
+FONT-SIZE: 12pt; 
+LINE-HEIGHT: 20px; 
+FONT-FAMILY: simsun,mssong,mingliu,arial; 
+BACKGROUND-COLOR: #ffff99;
+
+
+overflow: scroll; 
+overflow-y: scroll; 
+overflow-x: hidden; 
+overflow:-moz-scrollbars-vertical;
+}
+
+textarea#styled {
+	width: 2400px;
+	height: 480px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+}
+
+input{
+opacity:1.0;
+background-color:#cccccc;
+}
+td.charlist{
+text-align:center; 
+}
+
+div.d0{
+}
+div.d1{
+}
+div.contrast1{
+   background-color:#cccccc;
+   position:absolute;
+}
+
+div.cntrlpanel2{
+   position:fixed;
+   background-color:#cc0000;
+   visibility: visible;
+   top:10px;
+   right:0px;
+   height:48px;
+   width: 960px;
+}
+
+/*
+	//background-image: url(bg.gif);
+	//background-position: bottom right;
+	//background-repeat: no-repeat;
+*/

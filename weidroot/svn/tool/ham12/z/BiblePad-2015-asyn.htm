@@ -1,0 +1,1163 @@
+﻿<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>biblePad2015</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+    <link rel="stylesheet" type="text/css" href="./css/Default_pad.css">
+
+    <script language="javascript" src="./jq/jquery.js"></script>
+    
+    <script language="javascript" src="./jq/MyCookies.js"></script>
+    
+    <script language="javascript" src="./jsdk/bible/_inc_bibleChinese.js" onload="CUVs.Set('./jsdb/bible/bbc/','xxasync')">
+    </script>
+    
+
+
+    
+    <script  nnasync language="javascript" src="./jsdk/bible/_inc_bibleNiv.js" onload="NIV.Set('./jsdb/bible/niv/js/', 'xasync')">
+    </script>
+
+    <script  nnasync language="javascript" src="./jsdk/bible/_inc_bibleKjv.js" onload="KJV.Set('./jsdb/bible/kjv/','xasync')">
+    </script>
+
+
+    <script nnasync language="javascript" src="./jsdk/bible/_inc_bibleBasicEnglish.js" onload="BBE.Set('./jsdb/bible/bbe/','xasync')">
+    </script>
+
+
+    <script nnasync language="javascript" src="./jsdk/bible/_inc_biblePinyin_improved.js" onload="CUVpy.Set('./jsdb/bible/pinyin/CUV_chars/splitter/2015/','xasync')"></script>
+
+
+
+    <script xasync language="javascript" src="./jsdb/bible/bbcSayings/SayingsIdArr.js" onload="">
+    </script>
+    
+    <script xasync language="javascript" src="./jsdk/bible/_inc_bible_NamesOfPersons.js">
+    </script>
+    
+    <script xasync language="javascript" src="./jsdk/bible/_inc_bible_NamesOfPlaces.js">
+    </script>
+
+    
+    
+        
+    <script xasync language="javascript" src="./jsdb/cc/z2g/jianfan/Traditional2Simplified.js">
+    </script>
+
+
+    <script nnasync language="javascript" src="./jsdk/cc/z2g/_inc_z2g.js" xxxonload="inc_z2g('./jsdb/', 'async')">
+    </script>
+
+
+
+    
+    
+    <script language="javascript" src="BiblePad-2015.js"  type="text/javascript"></script>
+    <script language="javascript" src="BiblePadUtils-2015.js"  type="text/javascript">
+    </script>
+<style>
+body {
+    background-color: black;
+    color: white;
+    width:100%;
+}
+
+
+capital {
+    font-size: 200%;
+}
+
+input{
+    font-size:60px;
+    height:92px;
+}
+button{
+    font-size:52px;
+    height:100px;
+    padding:0 0 0 0px;
+    margin:0 0 0 0px;
+}
+select{
+    font-size:52px;
+    //width:100%;
+    height:100px;
+}
+
+span{
+
+}
+
+#uictrl {
+   position:fixed;
+   bottom: 5px;
+   right: -8%;
+   width: 100%;
+   
+   overflow: hidden;
+
+   align: right;
+    
+   background-color:#b0e0e6;
+   layer-background-color:#00ff00;
+   border:110px;
+   margin:0px 0px 0px 0px;
+   padding:0px 0px 0px 0px;
+   visibility: visible;
+   
+   
+   z-index: 50;
+
+   opacity : 1;
+   font-size:0px;
+}
+#selbook{
+   width:40%;
+   height:81px;
+   margin:0px 1px 0px 0px;
+   padding:15px 0px 0px 0px;
+
+   font-size:52px;
+   color:#000000;
+   word-wrap:no;
+   text-overflow: clip;
+   text-align: left;
+   overflow:hidden;
+   white-space: nowrap; 
+   background-color:#cccccc;
+   float:left;
+   border:2px solid #666666;
+}
+#selMainBible{
+   width:30%;
+   height:100px;
+   
+   font-size:52px;
+   color:#000000;
+}
+#selFontsize{
+   position:relative;
+   width:20%;
+   height:100px;
+   align: right;
+   right:0px;
+   
+   font-size:52px;
+   color:#000000;
+}
+
+#edit_area{
+   width:75%;
+   padding: 0px 0px 0px 0px;
+   margin:  0px 0px 0px 0px;
+   position:relative;
+    top:1px;
+}
+#btnSearch{
+    position:relative;
+    top:25px;
+
+   width:15%;
+   height:90px;
+   padding: 0px 0px 0px 0px;
+   margin:  5px 0px 0px 0px;
+}
+#PinYinInputPickMethod{
+   width:8%;
+}
+
+#selHistory{
+   width:96%;
+}
+#btnMin{
+   position:fixed;
+   bottom: 5px;
+   right: 5px;
+
+   width:100px;
+    
+   overflow: hidden;
+
+    
+   background-color:#777777;
+   layer-background-color:#00ff00;
+   border:11px solid;
+   visibility: visible;
+   
+   
+   z-index: 50;
+
+   opacity : 1;
+   
+   margin-left:0cm;
+   margin-right:0cm;
+}
+
+div.mainmenulayer, .mainmenulayer2{
+   padding: 0px 0px 0px 0px;
+   margin:  0px 0px 0px 0px;
+}
+
+#construedCtrl {
+   position:absolute;
+   bottom: 5px;
+   left: 25px;
+   width: 90%;
+   
+   overflow: hidden;
+
+
+    
+   background-color:#1777ff;
+   layer-background-color:#00ff00;
+   border:10px solid #cccccc;
+   visibility: hidden;
+   
+   padding: 0px 0px 0px 0px;
+   margin:  0px 0px 0px 20px;
+   z-index: 50;
+}
+#selConstrued{
+   //font-size: 0px;
+   width:100%;
+}
+input.construedLangSelxxxxxxx{
+    width:100%;
+    text-align: left;
+}
+
+#VerseMyNotesDiv{
+   width: 99%;
+   display: none;/*block*/
+   padding: 0 0 0 0px;
+   font-size: 0px;
+}
+
+
+input{
+    opacity:1.0;
+    background-color:#cccccc;
+}
+
+div.construed{
+   background-color:#000077;
+   color:#ffffff;   
+   position:static;
+   font-size:60px;
+}
+.construeBar{ 
+width: 100%;
+
+}
+.construeItem{
+
+}
+.versn, .notes, .constrastLabel{
+    border: 2px solid #00ff00;
+    padding: 0px 0px; 
+    width: 300px;
+    border-radius: 25px;
+}
+.construe0{
+  background-color:#cccccc;//title;
+}
+.construe1{
+  background-color:#0c0c0c;//reload;
+  color:#ffffff;
+}
+.construe2{
+  background-color:#123456;//KJV;
+  color:#eeeeee;
+}
+.construe3{
+  background-color:#000080;//BBE;
+  color:#eeeeee;
+}
+.construe4{
+  background-color:#555444;//CUVs;
+  color:#eeeeee;
+}
+.construe5{
+  background-color:#555444;/*CUVt*/
+  color:#eeeeee;
+}
+.construe6{
+  background-color:#555444;//CUVpy;
+  color:#eeeeee;
+}
+.construe7{
+  background-color:#fffffe;//TBI EDB10C;
+  color:#000001;
+}
+.construe8{ 
+background-color:#5A5A01;//note;
+}
+
+
+a.versKey{
+  background-color:#777777;
+  font-size:90px;
+  color: #000000;
+  border-radius: 15px;
+}
+.versTxt{
+  ////background-color:#370000;
+  font-size:90px;
+}
+.versHisSaying{
+  background-color:#510000;
+}
+
+div.cntrlpanel{
+   position:static;
+   background-color:#ffff99;
+   layer-background-color:#00ff00;
+   border:1px;
+   visibility: visible;
+   top:0px;
+   left:0px;
+   height:68px;
+   width: 960px;
+   
+}
+
+
+table{
+    width:100%;
+    table-layout:fixed ;
+    margin-right:0.0cm;
+    margin-left:0.0cm;
+}
+/*XuHao*/
+
+/*style="FONT-SIZE: 12pt; LINE-HEIGHT: 20px; FONT-FAMILY: simsun,mssong,mingliu,arial; BACKGROUND-COLOR: #f0f8ff" */
+/*
+style="overflow: scroll; 
+overflow-y: scroll; 
+overflow-x: hidden; 
+overflow:-moz-scrollbars-vertical; "
+*/
+
+ 
+
+
+
+
+
+td.charlist{
+text-align:center; 
+}
+
+
+
+
+
+#fixed1x {
+   position:static;
+   background-color:#00ff11;
+   layer-background-color:#00ff00;
+   border:1px;
+   visibility: visible;
+   top:0px;
+   left:0px;
+   height:68px;
+   width: 960px;
+   z-index: 50;
+}
+tr.raw0zzz {
+   background-color:#ffffbb;
+}
+tr.raw1zzz {
+   background-color:#bbffff;
+}
+tr.raw0 {
+   background-color:#003300;
+}
+tr.raw1 {
+   background-color:#000000;
+}
+
+
+#verse_note_editor_save{
+	 position:fixed;
+	 right: 5px;
+	 top: 5px;
+}
+#zz{
+sel;	 
+font-size:20px;
+}
+</style>    
+    
+    <script language="javascript">
+    if (navigator.cookieEnabled){
+       console.log("document.cookie:"+document.cookie);
+    }else{
+       alert("cookieEnabled OFF");
+    }
+$(document).ready(function(){
+//body_onload();
+    $("#verse_note_editor_save").hide();
+    //$("#uictrl").toggle();
+    
+    $("body").click(function(){
+        console.log("body");
+        var sstr = $("#edit_area").val();
+        if(sstr.indexOf("~")===0){
+            $("#edit_area").val("");
+        }
+    }).unload(function(e){
+        alert();
+    });
+    
+    gBookChapterVerse.Init();
+    minimizeMainMenuControl();
+    
+    //oMyCookie.Select_InitOptions("selHistory");
+
+    
+    
+
+
+
+
+
+
+        
+        $("#selbook").change(function(){  
+             var sbook=  $(this).val() ;
+             AppendNumbers2History();
+             var sstr = $("#edit_area").val();
+             var bcv=new BookChapterVerse();
+             if(bcv.ParseAsFormat_BookidChapter_Ver(sstr)){
+                 if(sbook.length===0){                    
+                      if(0===sstr.indexOf("_")){
+                          if(confirm("No chapter verse for this book.\nEmpty Input?")){
+                            $("#edit_area").val("");
+                          }
+                      }
+                 }else{
+                     if(sbook != bcv.m_sBookId){
+                         if(confirm("Book name mismatch.\nEmpty Input?")){
+                            $("#edit_area").val("");
+                          }
+                     }
+                     
+                 }
+             }
+        });
+        
+        $("#selMainBible").change(function(){
+			var bibleVerson= $(this).val();
+			MyCookies.set("selMainBible",bibleVerson,77);
+            StartToGo(true); //
+        });    
+        
+        $("#selFontsize").change(function(){
+            var fontsize = $(this).val();
+            
+            if(fontsize.length>0){
+                updateFontSize();
+				MyCookies.set("fontsize",fontsize,77);
+
+                var serchVal = $("#edit_area").val();
+                if("_"===serchVal[0]){
+                    document.getElementById(serchVal).scrollIntoView();
+                }
+                
+                //        
+            }
+			minimizeMainMenuControl();
+        });
+         
+
+                 
+        $("#selHistory").change(function(){
+            var serchVal = $(this).val();
+            $("#selHistory").val("");
+            
+            if("[Help]"===serchVal){
+                HelpDlg();
+                $(this).val("");
+                return;
+            }
+            
+            if("[History.Save]"===serchVal){
+                var historyData=GetHistoryData();           
+                $.ajax({
+                  url: AjxUrl.HistorySave, 
+                  data: historyData,
+                  type: 'post',
+                  success: function(ret) {
+                    console.log(ret);
+                    //$("#edit_area").val("~"+ret);
+                    
+                    if(CatchInvalidLoginDlg(ret,true)){
+                    }else{
+                        alert(ret);
+                    };
+                  },
+                  complete:function(ret,err){
+                      console.log("complete Save:"+err);
+                      $("#edit_area").val("~ Save:"+err);
+                      if(CatchInvalidLoginDlg(err,true)){
+                        };
+                  }
+                });
+                return;
+            }
+            
+            if("[History.Load]"===serchVal){
+                console.log("History.Load");            
+                $.ajax({
+                  url: AjxUrl.HistoryRead, 
+                  data: "History_Load=History_Load",
+                  type: 'post',
+                  dataType: "json",
+                  success: function(ret) {
+                    console.log("success:"+ret);
+                    if(CatchInvalidLoginDlg(ret,true)){
+                    }else{
+                        alert("~load:"+ret.result);
+                    };
+                    
+                    //console.log(
+                    //var obj = JSON.parse(ret);
+                    $.each(ret,function(k,v){
+                        console.log(k+":"+v);
+                        if( k != "result"){
+                            AddIntoHistory(k);
+                        }
+                    });
+                  },
+                  complete:function(ret,err){
+                      console.log("complete load:"+err);
+                      $("#edit_area").val("~ load:"+err);
+                      if(CatchInvalidLoginDlg(err,true)){
+                      }
+                  }
+                });
+                return;
+            }
+            if("[History.Clear]"===serchVal){
+                if( !confirm("Clear History?") ){
+                    return;
+                }
+                console.log("History.Clear");           
+                $.ajax({
+                  url: AjxUrl.HistoryClear, 
+                  data: "History_Clear=History_Clear",
+                  type: 'post',
+                  success: function(ret) {
+                    console.log("success:"+ret);
+                    if(CatchInvalidLoginDlg(ret,true)){
+                        }else{
+                            alert("~clear:"+ret);
+                        };
+                  },
+                  complete:function(ret,err){
+                      console.log("complete  Clear:"+err);
+                      $("#edit_area").val("~ Clear:"+err);
+                      if(CatchInvalidLoginDlg(err,true)){
+                      };
+                  }
+                });
+                return;
+            }
+            
+            if("[References]"===serchVal){
+                window.open("./iesus.bible.cuv/index.htm");
+                $(this).val("");
+                return;
+            }
+
+            
+            
+            
+            
+            
+            $("#edit_area").val(serchVal);
+            if("_"===serchVal[0]){
+                var book = serchVal.substr(0,4);
+                var curbook=$("#selbook").attr("value");
+                if(curbook!=book){
+                  if(confirm("Change to book:"+book)){
+                     $("#selbook").attr("value",book).text(BookJsONT[book][1]);
+                  }
+                }
+            }
+            $(this).val(" ");
+            console.log("{selHistory change}"+serchVal);
+        });
+
+        $("#btnSearch").click(function(){//Start GO...
+            StartToGo(false);
+        });
+
+                
+                
+
+  
+  $("#btnMin").click(function(){
+        var stat=$(this).text();
+
+        if(stat.indexOf("-")>0){
+            minimizeMainMenuControl();
+        }
+        else{
+            $("#uictrl").css({width:"97%", height:""});
+            $(this).text("[-]").css({width:"110px",height:"100px"});
+        }    
+  });
+
+  //$("#VerseMyNoteSaveBtn").click(function(){
+  //    var obj=$(this).parentsUntil("td").find("#VerseMyNoteWriteArea");
+	//  var BCVid = $(obj).attr("_BCVid"); //_BokChp_Vers verskey
+  //    var txt = $(obj).text();
+  //    console.log("VerseMyNoteSaveBtn="+txt+",BCVid="+BCVid);
+  //    VerseMyNotesWrite(BCVid,txt,true);
+  //});
+
+
+
+  $("#verse_note_editor_save").change(function(){
+      var sel=$(this).val();
+	  console.log(sel);
+	  Note_Operation(sel,this);
+	  $(this).val("");
+  });
+
+
+    AppendNumbers2History();
+
+});
+
+function Note_Operation(cmd,elm){
+	var bcv=$(elm).attr("bcv");
+	var editID=$(elm).attr("editID");
+	var div_edit="#"+editID;
+	var construteLableID=$(elm).attr("construteLableID");	
+	switch(cmd){
+		case "SaveNote":
+			//alert(editID);
+			$("#"+construteLableID).trigger("click");
+		break;
+		case "clear":
+		if(confirm("Clear edit text?!")){
+			$(div_edit).empty();
+		}
+		break;	
+		case "ul_list":
+		   var ht=$(div_edit).html();
+		   ht+="<ul><li>aaa</li><li>bbb</li></ul><br/>";
+		   $(div_edit).html(ht);
+		break;
+		case "ol_list":
+		   var ht=$(div_edit).html();
+		   ht+="<ol><li>aaa</li><li>bbb</li></ol><br/>";
+		   $(div_edit).html(ht);
+		break;
+		case "viewCode":
+		   var mode = $(div_edit).attr("mode");
+		   if(mode==="code"){
+		      var ht=$(div_edit).text();
+			  $(div_edit).html(ht).attr("mode","");
+		   }else{
+			  var ht=$(div_edit).html();
+			  $(div_edit).text(ht).attr("mode","code");
+		   }
+		break;
+		case "ViewText":
+		   var ht=$(div_edit).text();
+		   $(div_edit).html(ht);
+		break;
+		case "htm_BR":
+		   var ht=$(div_edit).html();
+		   ht+="<br/>";
+		   $(div_edit).html(ht);
+		break;
+		case "htm_HR":
+		   var ht=$(div_edit).html();
+		   ht+="<hr/><br/>";
+		   $(div_edit).html(ht);
+		break;
+		case "htm_test":
+				//test();
+		break;
+			
+	}
+}
+    </script>
+
+</HEAD>
+    <BODY xxxonload="body_onload();">
+
+
+    <div id="uictrl">
+        <div class="mainmenulayer">
+
+
+        
+        <div id="selbook" value="_Gen">Genesis</div>
+        <select  id="selMainBible" title="bible version or language">
+		    <option value="NIV">NIV &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (NewInternational)</option> 
+            <option value="KJV">KJV &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (KingJamesVersion)</option> 
+            <option value="BBE">BBE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (BasicEnglish)</option>
+            <option value="CUVs" selected="selected">CUVs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font size='1px'>(ChineseUnionSimplified)</font></option> 
+            <option value="CUVpy" >CUVpy &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (ChineseUnionPinyin)</option> 
+ 
+        </select>
+        
+        <select  id="selFontsize" title="font size">
+                <option value="10px">10px</option> 
+                <option value="20px">20px</option>
+                <option value="30px">30px</option>
+                <option value="60px" >60px</option>
+                <option value="75px">75px</option> 
+                <option value="90px" selected="selected">90px</option>
+                <option value="100px">100px</option> 
+                <option value="130px">130px</option> 
+                <option value="150px">150px</option> 
+                <option value="200px">200px</option> 
+          </select>
+        </div>
+
+        <hr/>
+        <div class="mainmenulayer2">
+        <input id="edit_area"  class="edit2" value="" title="chapter number and verse number must be delimited by :-, or space etc."> <img id="btnSearch" src='img/Go.png'></img></input>
+        
+        
+
+
+        </div>
+        <hr/>
+        <div id="divPinyinInput">
+        <select id="selHistory" title="History for search strings">
+            <option> </option>
+            <option> </option>
+
+            <option value="[Help]">&lt; Help &gt;</option> 
+            <option value="[History.Save]">&lt; History.Save &gt;</option> 
+            <option value="[History.Load]">&lt; History.Load &gt;</option> 
+            <option value="[History.Clear]">&lt; History.Clear &gt;</option> 
+            <option value="[References]">&lt; References &gt;</option>                        
+        </select> 
+        </div>
+        
+        
+
+
+       
+    </div>
+
+    <button align="right" id="btnMin" >[-]</button>
+
+	
+	
+	
+	
+    <div id="construedCtrl" size='10'>
+        <div  id="selConstrued" title="construe verse language">        </div>
+            <div class='construeBar construe0'><a class='construeItem title' value="" >select</a><a></a></div>		
+			                                                         
+			<div class='construeBar construe2'><a class='construeItem versn' value="NIV">NIV(NewInternationalVer)</a><a>...</a></div>   
+            <div class='construeBar construe2'><a class='construeItem versn' value="KJV">KJV(KingJamesVer)</a><a>...</a></div>           
+            <div class='construeBar construe3'><a class='construeItem versn' value="BBE">BBE(BasicEnglish)</a><a>...</a></div>           
+            <div class='construeBar construe4'><a class='construeItem versn' value="CUVs">CUVs(ChineseUnionVer)</a><a>...</a></div>              
+            <div class='construeBar construe5'><a class='construeItem versn' value="CUVt" >CUVt(CUV tradition)</a><a>...</a></div>           
+            <div class='construeBar construe6'><a class='construeItem versn' value="CUVpy" >CUVpy(CUV pinyin)</a><a>...</a></div>               
+            <div class='construeBar construe7'><a class='construeItem versn' value="TBI" >TBI(TurtleBoneInscripts)</a><a>...</a></div>
+			                                                         
+            <div class='construeBar construe8'><a class='construeItem notes' value="MyNotes" >Verse.MyNotes</a><a id='nodeinfo'>.</a></div>  
+       
+            <div class='construeBar construe1'><a class='construeItem reload' value="LoadBook"><<< load book (reload) >>></a><a></a></div>   
+        
+    </div>
+	<select id='verse_note_editor_save'>
+	    <option value=''>Note</option>
+	    <option value='SaveNote'>save</option>
+		<option value="viewCode">viewCode</option>
+        <option value="clear">clear</option>
+		<option value="ul_list">ul list</option>
+		<option value="ol_list">ol list</option>
+		<option value="htm_BR">break(br)</option>
+		<option value="htm_HR">horiz(hr)</option>
+		<option value="htm_test">test</option>
+	</select>
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+    
+    
+    
+<style> 
+#BibleBookSelMenu, #BibleBookChapterNumberMenu{
+ position:fixed;
+ top:0px;
+ width:  100%;
+ height: 100%;
+ background-color:black;
+ //font-size:0px;
+ padding:0 0 0 0px;
+ margin:0 0 0 0px;
+    
+ z-index: -1;
+ visibility:hidden;
+ display:none;
+ overflow:scroll;
+}
+#BooksListCap{
+//position:fixed;
+}
+#booksboard{
+ //position:fixed;
+ top:90px;
+ float:left;
+ width:  100%;
+ height: 100%;
+ //background-color:red;
+ //font-size:0px;
+ overflow:scroll;
+}
+td.bookname{
+ position:static;
+ width: 100%;
+ text-align: left;
+ margin: 0 0 1px 0; 
+ font-size:67px;
+}
+#BookListTable {
+ width:100%;
+}
+.tidx {
+   width:20px;
+}
+#TabClose, #TabOK{
+
+    margin-right: 20px;
+	
+	 width:210px;
+	 height:69px;
+	 background-color:#cccccc;
+	 float:right;
+	 color:#000000;
+	 font-size:43px;
+	 margin:0px 2px 0px 0px;
+	 padding:10px 0px 0px 0px;
+	   text-align: center;
+}
+#TabOT{
+    margin-left:0px;
+}
+#TabBack{
+	 width:210px;
+	 height:69px;
+	 background-color:#cccccc;
+	 float:left;
+	 color:#000000;
+	 font-size:43px;
+	 margin:0px 2px 0px 0px;
+	 padding:10px 0px 0px 0px;
+	   text-align: center;
+}
+
+.bookgroups{
+ width:200px;
+ height:69px;
+ background-color:#cccccc;
+ float:left;
+ color:#000000;
+ font-size:43px;
+ margin:0px 2px 0px 0px;
+ padding:10px 0px 0px 0px;
+ 
+
+  text-align: center;
+}
+</style> 
+<div id="BibleBookSelMenu">
+<span id='BooksListCap'><div id='TabOT' class='bookgroups'> O.T.旧约 </div> <div id='TabNT' class='bookgroups'> N.T.新约 </div> <div id='TabFlavor' class='bookgroups'> Classified</div> <a class='MenuLable'>books</a><div id='TabClose'> Close </div></span>
+<div id='booksboard'>
+</div>
+</div>
+<script language="javascript">
+
+$(document).ready(function(){
+  genBookList(BookJsOT);
+  $("#BibleBookSelMenu").hide();
+  $("#TabOT").css('background-color','#777777');
+  $("#booksboard").height( $("#BibleBookSelMenu").height()-100);
+  
+  
+  $("#TabOT").click(function(){
+    $(".bookgroups").css('background-color','');
+    $(this).css('background-color','#777777');
+    genBookList(BookJsOT);
+  });
+  
+  $("#TabNT").click(function(){
+    $(".bookgroups").css('background-color','');
+    $(this).css('background-color','#777777');
+     genBookList(BookJsNT);
+  });
+  $("#TabFlavor").click(function(){
+    $(".bookgroups").css('background-color','');
+    $(this).css('background-color','#777777');
+     genBookList(BookJsFlavor);
+  });
+  
+  $("#selbook").click(function(){
+      $("#BibleBookSelMenu").show().css("z-index",100).css({visibility:"visible",display:"block"});
+	  var book=$(this).attr("value");
+	  //$("#BibleBookSelMenu").find("."+book).css("
+	  $("#BookListTable td").css("border","");
+	  $("#BookListTable td[value='"+book+"']").css("border","10px solid #777777")[0].scrollIntoView();	 
+  });
+  
+  $("#TabClose").click(function(){
+    $("#BibleBookSelMenu").hide();
+    var jsn="";
+    $("#selbook option").each(function(i,o){
+        var v=$(this).attr("value");
+        var t=$(this).text();
+        console.log(i+",v="+v+",t="+t);
+        jsn+=v+":'"+t+"',";
+    });
+    console.log(jsn);
+    
+  });
+  
+
+});
+function genBookList(jsn){
+     $("#BibleBookSelMenu").show();
+     $("#booksboard").empty();
+     //for(var i=1;i<=39;i++){
+     var i=1;
+     var stab="<table id='BookListTable' border='1'>";
+     $.each(jsn,function(k,v){
+        var clr=v[0];
+        var eng=v[1];
+        var chz=v[2];
+        var tdx="<td class='tidx'>"+i+"</td>";
+        var btn="<td bgcolor='"+clr+"' class='bookname' onclick='clickbook(this)' value='"+k+"'>";
+        var btnEn =btn+eng+"</td>";
+        var btnCh =btn+chz+"</td>";
+        var tr="<tr>";
+        
+        stab+=tr+tdx+btnEn+btnCh+"</tr>";
+        i+=1;
+     });
+     stab+="</table>";
+     $("#booksboard").append(stab).focus();
+};   
+
+function clickbook(me){
+    //console.log("");
+    $("#BibleBookSelMenu").hide();
+    var bkid=$(me).attr("value");
+
+    $("#BookListTable td").css("border","");
+    $(me).css("border","10px solid #777777");
+
+    var bkt=$(me).text();
+    $("#selbook").attr("value",bkid).text(bkt);
+    //setCookie("selbook",bkid,90);
+    
+    if(!TotChapterOfBook[bkid]){
+		console.log("no tot chapters number for books:"+bkid);
+        return;
+    }   
+    //chapter page
+    $("#BibleBookChapterNumberMenu").show().focus().css("z-index",100).css({visibility:"visible",display:"block"});
+    $("#TabOK").text(bkt);
+    genChapterNumerList(bkid);
+    console.log(""+bkid);
+};   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style> 
+#BibleBookChapterNumberMenuxxx{
+ position:fixed;
+ top:0px;
+ width:  100%;
+ height: 100%;
+ background-color:black;
+ //font-size:0px;
+ z-index:-1;
+ visibility:hidden;
+ display:none;
+}
+#ChapterNumberDiv{
+  float:left;
+ //position:fixed;
+ //top:90px;
+ width:  100%;
+ height: 100%;
+ //background-color:red;
+ //font-size:0px;
+ overflow:scroll;
+}
+#MenuLableNum{
+ position:relative;
+ left:100px;
+}
+</style> 
+<div id="BibleBookChapterNumberMenu">
+<span id='ChapterNumberaCap'><div id='TabBack'> back </div> <a id='MenuLableNum' class='MenuLable'>Available Chapter Numbers </a> <div id='TabOK'> Close </div></span>
+<div id='ChapterNumberDiv'>
+</div>
+</div>
+<script language="javascript">
+$(document).ready(function(){
+  $("#BibleBookChapterNumberMenu").hide();
+  $("#ChapterNumberDiv").height( $("#BibleBookChapterNumberMenu").height()-100);
+  
+  $("#BibleBookChapterNumberMenu").click(function(){
+    $("#ChapterNumberDiv").focus();
+  });
+  
+  $("#TabBack").click(function(){
+    $("#BibleBookSelMenu").show();
+    $("#BibleBookChapterNumberMenu").hide();
+    
+  });
+  
+  $("#TabOK").click(function(){
+    $("#BibleBookChapterNumberMenu").hide();
+  });
+});
+function genChapterNumerList(bkId){
+     $("#BibleBookSelMenu").hide();
+     $("#ChapterNumberDiv").empty();
+     //for(var i=1;i<=39;i++){
+     var i=1;
+     var stab="<table id='BookListTable' border='1'>";
+     var count=1,
+     clr="#cccccc",
+     clrChange=0;
+     var iMaxChapter=0+TotChapterOfBook[bkId];
+     for(i=1;i<=iMaxChapter;i+=10){
+        clrChange++;
+        var mod=(clrChange%2);
+        //console.log(mod);
+        if( 0===mod){
+             clr="#77aa77"
+        }
+        else{
+            clr="#888888"
+        }
+        
+        var tr="";
+        for(var j=0;j<2;j+=1){
+            tr+="<tr>";
+            for(var k=0;k<5;k+=1){
+                var td="<td bgcolor='"+clr+"' class='bookname' onclick='clickChapter(this)'>"+count+"</td>";
+                if(count<=iMaxChapter){
+                   tr+=td;
+                }
+                count+=1;
+            }
+            tr+="</tr>";
+        }
+        stab+=tr;
+        
+     };
+     stab+="</table>";
+     $("#ChapterNumberDiv").append(stab).focus();
+};   
+function clickChapter(me){
+    var sChapNum=$(me).text();
+    $("#BibleBookChapterNumberMenu").hide();
+    var bookid=$("#selbook").attr("value");
+    
+    var sBCVid=bookid+sChapNum+"_1";
+    console.log(sBCVid);
+    $("#edit_area").val(sChapNum);
+    
+    MyCookies.set("sBKeyId",sBCVid,77);
+    
+    LoadBookByFormat_CsV(sChapNum,bookid);
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div id="vbibtxt">
+    </div>
+    <br><br>
+    <hr/><p>Bible Pad</p> <p>copyright&copy;2015</p><hr/>
+    <a id="astyle"></a>
+
+    </BODY>
+<script language="javascript">
+$(document).ready(function(){
+ body_onload();
+});
+</script>
+
+</HTML>

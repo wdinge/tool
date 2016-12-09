@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>audioBible</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0"></META>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="./jq/moment.js"></script>
+    <script src="BookChapterVerseMax.js"></script>
+    <script src="BookChapterVerseUti.js"></script>        
+
+    
+    
+    
+    <script language="javascript">
+        
+        
+     var gvObj=null;
+
+function momnent_millisecond_to_hhmmss(vtime){
+        var tms2=parseFloat(vtime)*1000.0;
+                    function paddingInt(val){
+                        val=""+val;
+                        while(val.length<2) val="0"+val;
+                        return val;
+                    }
+                    function paddingFloat(val){
+                        val=""+val;
+                        while(val.indexOf(".")<2) val="0"+val;
+                        return val;
+                    }     
+                    var hhmmss2=moment.duration(tms2,0);
+                    var ms=(""+(hhmmss2._data.milliseconds)*1000.0).substr(0,3);
+                    var ss=hhmmss2._data.seconds;
+                    var mm=hhmmss2._data.minutes;
+                    var hh=hhmmss2._data.hours; 
+                    return paddingInt(hh)+":"+paddingInt(mm)+":"+paddingInt(ss)+"."+ms;                    
+}; 
+ 
+function GetAudioSrc(pAudio)  {
+
+    function padding(chap){
+        chap=""+chap;
+        while(chap.length<3) chap="0"+chap;
+        return chap;
+    };
+    
+    var sChap=""+pAudio.m_iChap;
+    if ( pAudio.m_iChapDigitSpeakIndx>=0 && pAudio.m_iChapDigitSpeakIndx < sChap.length){
+        if( (pAudio.m_iChap) > pAudio.m_iTotChapters){
+            return "";
+        }    
+    
+        var cha=sChap[pAudio.m_iChapDigitSpeakIndx];
+        var src="../../../___bigdata/___solid/audio_numbers_letters/numbers_sounds/"+cha+".mp3";
+        return src;
+    }
+    
+    var chap=padding(pAudio.m_iChap-1);
+    var src="../../../___bigdata/___solid/audiobible/Bbb"+pAudio.m_Bbb+"_"+chap+"_"+pAudio.m_eng+".m4a";
+    return src;
+}
+function NextAudio(pAudio)  {
+    if( pAudio.m_iChap >= pAudio.m_iTotChapters){
+        //pAudio.m_iChap=1;
+        //return;
+    }
+    var sChap=""+pAudio.m_iChap;
+    pAudio.m_iChapDigitSpeakIndx++;
+    if ( pAudio.m_iChapDigitSpeakIndx>=0 && pAudio.m_iChapDigitSpeakIndx < sChap.length){
+        return;
+    }
+    pAudio.m_iChapDigitSpeakIndx=-1;    
+    pAudio.m_iChap++; 
+}
+function audio_sel(_this){
+        var chap=$(_this).val();
+        var iChap=parseInt(chap);
+        var Bbb=$(_this).attr("Bbb");
+        var eng=$(_this).attr("eng");
+        var iTotChapters=parseInt($(_this).attr("TotChapters"));
+        
+        
+        var iDigitIndx=0;
+        gvObj.m_iChapDigitSpeakIndx=iDigitIndx;
+       
+        gvObj.m_Bbb=Bbb;
+        gvObj.m_eng=eng;
+        gvObj.m_iChap=iChap;
+        gvObj.m_iTotChapters=iTotChapters;
+
+        gvObj.pause();
+        var src=GetAudioSrc(gvObj);
+        gvObj.src=src;
+        gvObj.playbackRate=parseFloat($("#speedrate").text());
+        gvObj.play();
+
+        $("#fname").text(eng+" "+chap).attr("href",src);
+        $("#timelen").text("00:00:00.000");
+  
+};
+function GenSelectEle(iTotChapters, bookindx, bookname){
+        while(bookindx.length<2)bookindx="0"+bookindx;
+        var attr="BBb='"+bookindx+"' eng='"+bookname+"' TotChapters='"+iTotChapters +"' ";
+        var s="<select onchange='audio_sel(this)' class='audioChapSel' "+attr+"><option value=''></option>";
+        for(var i=1;i<=iTotChapters;i++){
+            s+="<option value='"+i+"'>"+i+"</option>";
+        }
+        s+="</select>";
+        return s;
+};
+function GenAuddioTable(){
+    var Txt="<table border='1'>";
+    Txt+="<caption><h1/><h1/><h1/><h1/><h1/><h1/><h1/><br/><br/><br/></caption>";
+    Txt+="<tr><td>#</td><td>En</td><td>Zh</td><td>Chapter</td></tr>\r\n";
+    var i=0;
+    for ( key in AudioBibleBooksNameChinese) {
+        i++;
+        var nameEn=AudioBibleBooksNameChinese[key][1];
+        var nameZh=AudioBibleBooksNameChinese[key][2];
+        var totChapters=TotChapterOfBook[key];
+        bookid=""+i;
+        while(bookid.length<2) bookid="0"+bookid;
+        var ss=GenSelectEle(parseInt(totChapters), bookid, nameEn);
+        var rc='ot';
+        if(i>=40)rc='nt';
+        Txt+="<tr class='"+rc+"'><td>"+i+"</td><td>"+nameEn+"</td><td>"+nameZh+"</td><td>"+ss+"</td></tr>\r\n";
+    }
+
+    Txt +="</table>";
+    return( Txt ) ;
+};
+
+
+
+
+    
+$(function () {
+    gvObj = document.getElementById('audioCtrl');     
+    gvObj.addEventListener('ended',function(){
+            NextAudio(gvObj);
+            var srcNext=GetAudioSrc(gvObj);
+            if(srcNext.length>0){
+                gvObj.src=srcNext;
+                gvObj.playbackRate=parseFloat($("#speedrate").text());
+                gvObj.play();
+            }
+            else{
+                alert("End of Audio Bible Book:\n"+gvObj.m_eng);
+            }
+    });
+    gvObj.addEventListener('canplaythrough',function(){
+        var timelen=gvObj.duration;
+        var hhmmss=momnent_millisecond_to_hhmmss(timelen);
+        $("#timelen").text(hhmmss);
+
+        var eng=gvObj.m_eng;
+        var chap=gvObj.m_iChap-1;
+
+        if (gvObj.src.indexOf("/numbers_sounds/") > 0 ){
+            return;
+        }
+        $("#fname").hide("slow");
+        $("#fname").text(eng+" "+chap).attr("href",gvObj.src).show("slow");
+     });   
+        
+        
+    $("#main_menu").html("").append(GenAuddioTable());
+
+     
+    $("#Back0").click(function(){
+        gvObj.pause();
+        gvObj.currentTime -= 5.0;
+        $("#currTime").text(gvObj.currentTime);
+        if(gvObj.currentTime<0) gvObj.currentTime=0;
+        gvObj.play();
+     });
+    $("#stop").click(function(){
+        var tt=$(this).text();
+        if("||"==tt){
+            $(this).text(">");
+            gvObj.pause();
+            var curTime = gvObj.currentTime;
+            var hhmmss=momnent_millisecond_to_hhmmss(curTime);
+            $("#currTime").text(hhmmss);        
+        }
+        else{
+            $(this).text("||");
+            gvObj.play(); 
+            $("#currTime").text(gvObj.currentTime);                 
+        }
+
+     });
+
+     
+
+
+        
+
+
+    $("#speedup").click(function(){
+        gvObj.playbackRate+=0.25;
+        $("#speedrate").text(gvObj.playbackRate);
+     });
+    $("#speeddn").click(function(){
+        gvObj.playbackRate-=0.25;
+        $("#speedrate").text(gvObj.playbackRate);
+     });
+     
+     
+    $('.vArea').click(function(){
+                //v.play();
+                var curTime = gvObj.currentTime;
+                console.log(curTime);
+                var hhmmss2=moment.duration(curTime,0); 
+                var hhmmss=momnent_millisecond_to_hhmmss(curTime);
+                
+                $("#currTime").text(curTime+"="+hhmmss);
+                
+                //$("body").toggleClass("highlight");
+    });
+
+});////////////////////////////////
+     
+    
+ 
+
+  
+</script>
+<style type="text/css">
+body {
+        height: 100%;
+        width: 100%;
+        background-color:#000000;
+        color:#ffffff;
+        /* to centre page on screen*/
+        margin-left: auto;
+        margin-right: auto;
+        
+        font-size: 15px;
+
+        border: 1px solid #eeeeff;
+    }   
+table{
+   width:100%;
+}
+select{
+    font-size: 15px;
+    height:30px;
+    width:100%;    
+}    
+.ctrpad{  
+    position:fixed;
+    top:0px;
+    left:0px;
+    height:130px;
+    width:100%;
+    border-style: solid;
+    border-width: 2px;
+    background-color:#555555;
+}  
+
+#main_menu{
+    margin-top:100px;
+}
+.ot{
+    background-color:#333333;
+}
+.r40,.r41,.r42,.r43,.r44,.r45,.r46,.r47,.r48,.r48,.r49,.r50,.r51,.r52,.r53,.r54{
+
+}
+
+button{
+    font-size: 15px;
+    height:50px;
+        padding-top:10px;
+    padding-bottom:10px;
+}
+.vArea {
+    height:50px;
+    border-style: solid;
+    border-width: 2px;
+}
+#fname{
+    margin-bottom:0cm;
+    background-color:#ffffff;
+    padding-left:10px;
+    padding-right:10px;
+}
+      
+.highlight {
+        background: black;
+    }
+    .timestarts .timestop{
+        position: float;
+        left:1000px;
+       size:4px;
+    }   
+    #speedrate{
+        background-color:#666666;
+        display:inline-block;
+        width:40px;
+        font-size:15px;
+        margin-left:10px;
+    }
+    #speedstr{
+        font-size:15px;
+    }
+    #currTime,#timelen{
+        background-color:#666666;
+        display:inline-block;
+        width:110px;
+        font-size:15px;
+    }
+   
+    .tmspan{
+      display: inline-block;
+      width:30px;
+      border-style: solid;
+      border-width: 1px 1px 1px 1px;
+
+    }
+    span{
+        display:block;
+    }   
+#myVideoCtrls{
+    margin-top:11px;
+}   
+    
+</style>
+</head>
+<body>
+
+
+<div class="ctrpad">
+<center><div class="vArea" id="videoArea0">    
+        
+        <audio id="audioCtrl" xautoplay controls="controls" height='30px' width='100%'>
+        <source type="audio/mpeg" />
+        </audio>
+</div></center>
+        <span id="info"><a id="timelen">00:00:00.000</a> <a id='fname'>....</a>  
+        </span>
+        
+        <span id="myVideoCtrls">
+        <a id="currTime">0.0</a><button id="Back0">|<</button><button id="stop">&gt;</button>
+        <button id="speedup">+</button><button id="speeddn">-</button><a id='speedstr'></a><a id="speedrate">1.0</a>
+        
+        </span>
+</div>
+
+
+
+         <!---video clips tables-->
+
+         <div id="main_menu"></div>
+         <button id="change">change</button>
+          <button id="change2">change2</button>
+</body>
+</html>

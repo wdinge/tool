@@ -1,0 +1,43 @@
+CACHE MANIFEST
+# 2012-02-21 v1.0.0
+./css/Default_pad.css
+./jq/jquery.js
+./jq/MyCookies.js
+./jsdk/bible/BookLoader.js
+../../../___expand/rel/ham12/jsdb/bible/niv/js/*
+
+
+
+
+../../../___expand/rel/ham12/jsdb/bible/bbcSayings/SayingsIdArr.js
+./jsdk/bible/_inc_bible_NamesOfPersons.js
+./jsdk/bible/_inc_bible_NamesOfPlaces.js
+../../../___expand/rel/ham12/jsdb/cc/z2g/jianfan/Traditional2Simplified.js
+
+./BookChapterVerseMax.js
+./BookChapterVerseUti.js
+./BiblePad-2015-meta.js
+./BiblePadUtils-2015.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/logo.gif
+/main.js
+
+NETWORK:
+login.asp
+
+FALLBACK:
+/html/ /offline.html
+

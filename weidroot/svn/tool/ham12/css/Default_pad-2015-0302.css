@@ -1,0 +1,257 @@
+
+/*VoiceTone*/
+a.singleword
+{
+    margin-right:0;
+	margin-left:0;
+    padding: 0px 0px 0px 0px;
+    width:30px;
+}
+a.hz 
+{
+	table-layout:fixed;
+
+
+	text-align:center;
+	
+	margin-right:0.1cm;
+	margin-left:0.05cm;
+}
+table{
+    width:100%;
+    table-layout:fixed ;
+    margin-right:0.0cm;
+	margin-left:0.0cm;
+}
+/*XuHao*/
+a.xu 
+{   
+	table-layout:fixed;
+
+	text-align:right;
+	margin-right:0.1cm;
+	margin-left:0.05cm;
+	
+}
+/*style="FONT-SIZE: 12pt; LINE-HEIGHT: 20px; FONT-FAMILY: simsun,mssong,mingliu,arial; BACKGROUND-COLOR: #f0f8ff" */
+/*
+style="overflow: scroll; 
+overflow-y: scroll; 
+overflow-x: hidden; 
+overflow:-moz-scrollbars-vertical; "
+*/
+a.pinyin
+ {
+ height:12px;
+ width:50px;
+ } 
+ a.tone
+ {
+ height:12px;
+ width:50px;
+ } 
+ 
+textarea.edit
+{
+FONT-SIZE: 12pt; 
+LINE-HEIGHT: 20px; 
+FONT-FAMILY: simsun,mssong,mingliu,arial; 
+BACKGROUND-COLOR: #f0f8ff;
+
+
+overflow: scroll; 
+overflow-y: scroll; 
+overflow-x: hidden; 
+overflow:-moz-scrollbars-vertical;
+}
+
+textarea.edit2
+{
+    FONT-SIZE: 22pt; 
+    LINE-HEIGHT: 20px; 
+    FONT-FAMILY: simsun,mssong,mingliu,arial; 
+    BACKGROUND-COLOR: #ffff99;
+
+
+    overflow: scroll; 
+    overflow-y: scroll; 
+    overflow-x: hidden; 
+    overflow:-moz-scrollbars-vertical;
+}
+
+textarea#styled {
+	width: 2400px;
+	height: 480px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+}
+
+input{
+opacity:1.0;
+background-color:#cccccc;
+}
+td.charlist{
+text-align:center; 
+}
+
+
+div.construed{
+   background-color:#000077;
+   color:#ffffff;   
+   position:static;
+   font-size:60px;
+}
+a.versKey{
+  background-color:#000077;
+  font-size:90px;
+}
+.versTxt{
+  ////background-color:#370000;
+  font-size:90px;
+}
+.versTxt2{
+  background-color:#510000;
+}
+
+div.cntrlpanel{
+   position:static;
+   background-color:#ffff99;
+   layer-background-color:#00ff00;
+   border:1px;
+   visibility: visible;
+   top:0px;
+   left:0px;
+   height:68px;
+   width: 960px;
+   
+}
+#uictrl {
+   position:fixed;
+   bottom: 5px;
+   right: -8%;
+   width: 100%;
+   
+   overflow: hidden;
+
+   align: right;
+    
+   background-color:#b0e0e6;
+   layer-background-color:#00ff00;
+   border:110px;
+   margin:0px 0px 0px 0px;
+   padding:0px 0px 0px 0px;
+   visibility: visible;
+   
+   
+   z-index: 50;
+
+   opacity : 1;
+}
+#selbook{
+   width:40%;
+}
+#selMainBible{
+   width:30%;
+}
+#selFontsize{
+   position:relative;
+   width:20%;
+   align: right;
+   right:0px;
+}
+
+#edit_area{
+   width:70%;
+}
+#btnSearch{
+   width:12%;
+}
+#PinYinInputPickMethod{
+   width:8%;
+}
+
+#selHistory{
+   width:96%;
+}
+#btnMin{
+   position:fixed;
+   bottom: 5px;
+   right: 5px;
+
+   width:100px;
+    
+   overflow: hidden;
+
+    
+   background-color:#777777;
+   layer-background-color:#00ff00;
+   border:11px solid;
+   visibility: visible;
+   
+   
+   z-index: 50;
+
+   opacity : 1;
+}
+
+div.mainmenulayer{
+
+}
+
+#construedCtrl {
+   position:absolute;
+   bottom: 5px;
+   left: 5px;
+   width: 99%;
+   
+   overflow: hidden;
+
+
+    
+   background-color:#1777ff;
+   layer-background-color:#00ff00;
+   border:1px;
+   visibility: hidden;
+   
+   
+   z-index: 50;
+}
+input.construedLangSel{
+    width:100%;
+    text-align: left;
+}
+
+
+
+
+#fixed1x {
+   position:static;
+   background-color:#00ff11;
+   layer-background-color:#00ff00;
+   border:1px;
+   visibility: visible;
+   top:0px;
+   left:0px;
+   height:68px;
+   width: 960px;
+   z-index: 50;
+}
+tr.raw0zzz {
+   background-color:#ffffbb;
+}
+tr.raw1zzz {
+   background-color:#bbffff;
+}
+tr.raw0 {
+   background-color:#003300;
+}
+tr.raw1 {
+   background-color:#000000;
+}
+
+/*
+	//background-image: url(bg.gif);
+	//background-position: bottom right;
+	//background-repeat: no-repeat;
+*/

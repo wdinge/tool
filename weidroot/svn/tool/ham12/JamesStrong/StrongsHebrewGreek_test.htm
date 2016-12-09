@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="en-us" http-equiv="Content-Language" />
+		<title>ChinaArchMap</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="StrongsHebrew.json"></script>
+        <script src="StrongsGreek.json"></script>
+        
+        
+        <style>
+        
+        #tables_container{
+            height:600px;
+            width:100%;
+            background-color:#eeeeee;
+            border-style: solid;
+            border-width: 2px;
+            overflow:scroll;
+        }
+        
+        .tdclked{
+           background-color:#cccccc;
+        }
+        table:nth-child(1){
+            background-color:#ffeedd;
+        }
+        table:nth-child(2){
+            background-color:#eeeeff;
+        }
+        </style>
+        
+        <script>
+  
+  $(document).ready(function(){ 
+  
+    $("#Next1").click(function(){
+        var stab="<table border='1'>";
+        $.each(StrongsHebrew.lexicon.entry,function(i,obj){
+           var lang=obj.w["_xml:lang"];
+           stab += "<tr><td>"+obj._id +"</td><td>"+obj.w.__text+"</td><td>"+obj.w._pron+"</td>";
+           
+           stab += "<td>"+lang +"</td>";
+           var meaning='';
+           if( obj.meaning ){
+              meaning=obj.meaning.def;
+           }
+           stab += "<td>"+meaning +"</td>";
+           
+           var source='';
+           if( obj.source ){
+              source=JSON.stringify(obj.source);
+           }
+           stab += "<td>"+source +"</td>";
+           
+           var usage='';
+           if( obj.usage ){
+              usage=obj.usage;
+           }
+           stab += "<td>"+usage +"</td>";
+           
+           
+           stab +="</tr>";
+        });
+        stab +="</table>";
+        
+        $("#tables_container").append(stab);
+    });
+    
+    
+    $("#Next2").click(function(){
+        var stab="<table border='1'>";
+        $.each(StrongsGreek.strongsdictionary.entries.entry,function(i,obj){
+           stab += "<tr><td>"+obj.strongs +"</td>";
+            
+           var pronunciation='';
+           if(obj.pronunciation){
+             pronunciation=obj.pronunciation._strongs;
+           }
+           var strongs_def='';
+           if(obj.strongs_def){
+             strongs_def=obj.strongs_def;
+           }
+           
+           
+           var greek='';
+           if(typeof obj.greek === "object" ){
+                if(Array.isArray(obj.greek)){
+                }
+                else{
+                    greek=obj.greek._unicode;
+               }
+           }
+           stab += "<td>"+greek+"</td>";
+           
+           
+           stab += "<td>"+pronunciation+"</td><td>"+strongs_def+"</td>";
+           
+           /*var lang='';
+           if(obj.w){
+               lang=obj.w["_xml:lang"];
+           }
+           stab += "<td>"+lang +"</td>";
+           var meaning='';
+           if( obj.meaning ){
+              meaning=obj.meaning.def;
+           }
+           stab += "<td>"+meaning +"</td>";
+           
+           var source='';
+           if( obj.source ){
+              source=JSON.stringify(obj.source);
+           }
+           stab += "<td>"+source +"</td>";
+           
+           var usage='';
+           if( obj.usage ){
+              usage=obj.usage;
+           }
+           stab += "<td>"+usage +"</td>";*/
+           
+           
+           stab +="</tr>";
+        });
+        stab +="</table>";
+        
+        $("#tables_container").append(stab);
+    });
+    
+    
+     $("#Clear").click(function(){
+        $("#tables_container").empty();
+     });
+    
+  });
+  
+        </script>
+	</head>
+	<body>
+
+        <button id="Next1">Hebrew</button>
+        <button id="Next2">Greek</button>
+        <button id="Clear">Clear</button>
+        
+		<div id="tables_container">
+
+		</div>
+	
+	</body>
+</html>

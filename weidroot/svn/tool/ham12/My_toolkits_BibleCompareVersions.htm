@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE>VerionCompare</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0"></META>
+
+
+    <script>    
+    var gStartDate = new Date();
+    console.log(  gStartDate.toString() +" ------ start load");//
+    </script>   
+
+    <link rel="stylesheet" type="text/css" href="./css/Default_pad.css">
+
+    <script language="javascript" src="./jq/jquery.js"></script>
+    
+    <script language="javascript" src="./jq/MyCookies.js"></script>
+    
+
+    
+
+
+     <script  language="javascript" src="./jsdk/bible/BookLoader.js"></script> 
+     <script>
+     
+     
+     NIV.Set('./jsdb/bible/niv/js/','');
+     KJV.Set('./jsdb/bible/kjv/','');
+     HGR.Set('./jsdb/bible/hgr/','');
+     BBE.Set('./jsdb/bible/bbe/','');
+     CUVpy.Set('./jsdb/bible/pinyin/CUV_chars/splitter/2015/','');
+     CUVs.Set('./jsdb/bible/bbc/','');
+     
+     NIV.DynamicLoadVerse("all");
+     KJV.DynamicLoadVerse("all");
+     HGR.DynamicLoadVerse("all");
+     BBE.DynamicLoadVerse("all");
+     CUVs.WriteJs_CUVs();
+    </script>
+
+
+
+
+  
+
+
+
+    <script  language="javascript" src="./jsdb/bible/bbcSayings/SayingsIdArr.js" >
+    </script>
+    
+    <script  language="javascript" src="./jsdk/bible/_inc_bible_NamesOfPersons.js">
+    </script>
+    
+    <script  language="javascript" src="./jsdk/bible/_inc_bible_NamesOfPlaces.js">
+    </script>
+
+    
+    
+        
+    <script language="javascript" src="./jsdb/cc/z2g/jianfan/Traditional2Simplified.js">
+    </script>
+
+
+    <script language="javascript" src="./jsdk/cc/z2g/_inc_z2g.js" _onload="Z2G.Set('./jsdb/', 'async')">
+    </script>
+    <script>inc_z2g_write('./jsdb/');
+    //alert("6. last end inc_z2g_write.")
+    </script>
+
+
+    
+    <script language="javascript" src="BookChapterVerseMax.js"  type="text/javascript"></script>
+	<script language="javascript" src="BookChapterVerseUti.js"  type="text/javascript"></script>
+    <script language="javascript" src="BiblePad-2015-meta.js"  type="text/javascript"></script>
+    <script language="javascript" src="BiblePadUtils-2015.js"  type="text/javascript">
+    </script>
+   
+    
+<script language="javascript">
+    
+$(document).ready(function(){
+
+
+   $("#sel").change(function(){
+		var sel=$(this).val();
+		switch(sel){
+			case "INKBH":
+			gen_bible_all_in_one_table({I:I,N:N,K:K,B:B,H:H});
+			break;
+			case "NIKBH":
+			gen_bible_all_in_one_table({N:N,I:I,K:K,B:B,H:H});
+			break;			
+			case "KINBH":
+			gen_bible_all_in_one_table({K:K,I:I,N:N,B:B,H:H});
+			break;
+			case "BNIKH":
+			gen_bible_all_in_one_table({B:B,N:N,I:I,K:K,H:H});
+			break;
+            case "HBNIK":
+			gen_bible_all_in_one_table({H:H,B:B,N:N,I:I,K:K});
+			break;
+            
+            case "MismatchAll":
+            gen_Mismatch_Table({I:I,N:N,K:K,B:B});
+            gen_Mismatch_Table({N:N,I:I,K:K,B:B});
+            gen_Mismatch_Table({K:K,I:I,N:N,B:B});
+            gen_Mismatch_Table({B:B,N:N,I:I,K:K});
+            break;
+	    }
+   });
+
+});
+
+
+
+function gen_mismatch(bibleArrData){
+   
+   var tb2="<table border='1'><caption>mismatch</caption><tr><td>#</td><td>key</td><td>verse</td></tr>";
+   
+   var idx1=0,idx2=0;
+   $.each(bibleArrData.bibleArr[0], function(k,v){
+	   idx1++;
+       var tds='', hr='', foundMissing=false;
+       for(var i=0;i<bibleArrData.bibleArr.length;i++){
+            var txt=bibleArrData.bibleArr[i][k];
+	        if(undefined === txt ){
+				txt="<font color='red'>VerseMissing</font>";
+                foundMissing=true;
+			}
+            if(i>0) hr="<hr/>";
+            var name="<a class='vb'>"+bibleArrData.namesArr[i]+": </a>";
+			tds+=hr+name+txt;
+	   }
+       if(foundMissing){
+            idx2++;
+            tb2 += "<tr><td>"+idx2+"</td><td>"+k+"</td><td>"+tds+"</td></tr>";
+       }
+   });
+   tb2+="</table>";
+   return tb2; 
+}
+function gen_Mismatch_Table(bibleOrder){
+    var bibleArrData=get_bibleArr(bibleOrder);
+   var tb2=gen_mismatch(bibleArrData);
+   $("#out2").append(tb2);   
+}
+
+
+
+function gen_bible_all_in_one_table(bibleOrder){
+    var bibleArrData=get_bibleArr(bibleOrder);
+    gen_bible_all_in_one(bibleArrData);
+}
+function get_bibleArr(bibleOrder){
+   var bibleArr=[];
+   var namesArr=[];
+   
+   $.each(bibleOrder, function(k,v){
+        namesArr.push(k);
+        bibleArr.push(v);
+        console.log(k);
+   });
+   return {namesArr:namesArr,bibleArr:bibleArr};
+}
+function gen_bible_all_in_one(bibleArrData){
+   var tb1="<table border='1'><caption>all_in_one</caption><tr><td>#</td><td>key</td><td>verse</td></tr>";
+   var idx1=0,idx2=0;
+   $.each(bibleArrData.bibleArr[0], function(k,v){
+	   idx1++;
+       var tds='', hr='', foundMissing=false;
+       for(var i=0;i<bibleArrData.bibleArr.length;i++){
+            var txt=bibleArrData.bibleArr[i][k];
+	        if(undefined === txt ){
+				txt="<font color='red'>VerseMissing</font>";
+                foundMissing=true;
+			}
+            if(i>0) hr="<hr/>";
+            var name="<a class='vb'>"+bibleArrData.namesArr[i]+": </a>";
+			tds+=hr+name+txt;
+	   }
+       tb1+="<tr><td>"+idx1+"</td><td>"+k+"</td><td>"+tds;
+	   tb1+="</td></tr>";
+       
+       if(foundMissing)idx2++;
+   });
+   tb1+="</table>";
+   var VerseMissing="Total VerseMissing:"+idx2;
+   $("#out1").empty().append(VerseMissing+tb1);
+}
+
+
+function gen_pcbxxx(bibleArr){
+   var tb1="<table border='1'>";
+   var tb2="<table border='1'><caption>mismatch</caption>";
+   var idx1=0,idx2=0;
+   $.each(bibleArr[0], function(k,v){
+	   idx1++;
+       tb1+="<tr><td>"+idx1+"</td><td>"+k+"</td><td>"+v;
+       var mismatchTDs='';
+	   for(var i=1;i<bibleArr.length;i++){
+            var key=bibleArr[i][k];
+	        if(undefined === key ){
+				//tb2+="<tr><td>"+idx2+"</td><td>"+k+"</td></tr>";
+                mismatchTDs+="<td>miss:"+k+"</td>";
+			}
+			tb1+="<hr/>"+key;
+	   }
+       if(mismatchTDs.length>0){
+            idx2++;
+            tb2+="<tr><td>"+idx2+"</td>"+mismatchTDs+"</tr>";
+       }
+	   tb1+="</td></tr>";
+   });
+   tb1+="</table>";
+   tb2+="</table>";
+   $("#out1").empty().append(tb1);
+   $("#out2").empty().append(tb2);
+}
+</script>
+<style>
+.vb{
+background-color:#cccccc;
+border:1px 1px 1px 1px solid #111111;
+}
+</style>
+</HEAD>
+<BODY >
+<select id="sel">
+<option value=""></option>
+<option value="MismatchAll">MismatchAll</option>
+<option value="INKBH">I.N.K.B.H</option>
+<option value="NIKBH">N.I.K.B.H</option>
+<option value="KINBH">K.I.N.B.H</option>
+<option value="HBNIK">H.B.N.I.K</option>
+</select>
+<a>I:CUV, N:NIV, K:KJV, B:BasicEnglish, H:HebrewGreek</a>
+
+<div id="out2">...</div>
+<hr/>
+<div id="out1">...</div>
+
+
+</BODY>
+<script language="javascript">
+$(document).ready(function(){
+
+});
+</script>
+
+</HTML>

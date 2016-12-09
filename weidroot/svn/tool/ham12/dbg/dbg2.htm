@@ -1,0 +1,33 @@
+<script language="JavaScript" src="dbg.js">
+
+</script>
+
+<html>
+
+
+<body>
+<script>
+//SWindow = window.open(<page with form2>)
+//SWindow.document.form2.realName.value = document.form1.your_name.value
+
+
+
+function cleartext()
+{
+    document.f2.id2.value = "";
+}
+function setCaretToEnd(){
+    //alert(0);
+    //var i = document.f2.id2.value.length;
+    //document.f2.id2.setSelectionRange(i,i);
+
+    document.f2.id2.scrollTop = document.f2.id2.scrollHeight; 
+}
+</script>
+
+<form id="f2" name="f2">
+    <input type="button" onclick="cleartext()" value="clear"></input><br>
+    <textarea id="id2" name="id2" type="text" rows="30" cols="100" style="FONT-SIZE: 10pt; LINE-HEIGHT: 16px; FONT-FAMILY: simsun,mssong,mingliu,arial; BACKGROUND-COLOR: #f0f8ff"></textarea>
+</form>
+</body>
+</html>
