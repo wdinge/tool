@@ -443,7 +443,7 @@ $(document).ready(function(){
         $("#selBookId").click(function(e){
             e.stopPropagation();
             $("#BibleBookSelMenu").slideToggle();
-            $("#vbibtxt").hide();
+            
             console.log("toggle BibleBookSelMenu");
         });
              
@@ -610,6 +610,665 @@ function SetFontSize(){
 
 </HEAD>
     <BODY xxxonload="body_onload();">
+    
+<div id="ntHolder" class="booksTableHolder">
+      <table border="1" class="booksListTable">       
+      <tbody>
+        <tr>
+          <td class="tidx">
+            &nbsp;</td>
+          <td align="center" colspan="2" onclick="ClickBook(this)" value="NT">
+            New Testament</td>
+          <td class="tidx">
+            &nbsp;</td>
+        </tr>
+        <tr bgcolor="#510000">
+          <td class="tidx">
+            1</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Mat">
+            Matthew</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Mat">
+            马太福音</td>
+          <td class="tdat booknameBtn" colspan="1" onclick="ClickBook(this)"  value="Gospels" rowspan="4" title="Gospels">
+            28<br /><br /><br />
+            16<br /><br /><br />
+            24<br /><br /><br />
+            21</td>
+        </tr>
+        <tr bgcolor="#510000">
+          <td class="tidx">
+            2</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Mak">
+            Mark</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Mak">
+            马可福音</td>
+        </tr>
+        <tr bgcolor="#510000">
+          <td class="tidx">
+            3</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Luk">
+            Luke</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Luk">
+            路加福音</td>
+        </tr>
+        <tr bgcolor="#510000">
+          <td class="tidx">
+            4</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Jhn">
+            John</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Jhn">
+            约翰福音</td>
+        </tr>
+        <tr bgcolor="#523030">
+          <td class="tidx">
+            5</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Act">
+            Acts</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Act">
+            使徒行传</td>
+          <td class="tdat booknameBtn" onclick="ClickBook(this)" value="HisSayings" title="HisSayings">
+            28</td>
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            6</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Rom">
+            Romans</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Rom">
+            罗马书</td>
+          <td rowspan="13" class="tdat booknameBtn" onclick="ClickBook(this)" value="Pauls" title="Pauls">
+              16<br /><br /><br />
+              16<br /><br /><br />
+              13<br /><br /><br />
+              6 <br /><br /><br />
+              6 <br /><br /><br />
+              4 <br /><br /><br />
+              4 <br /><br /><br />
+              5 <br /><br /><br />
+              3 <br /><br /><br />
+              6 <br /><br /><br />
+              4 <br /><br /><br />
+              3 <br /><br /><br />
+              1</td>
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            7</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_1Co">
+            1_Corinthians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_1Co">
+            哥林多前书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            8</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_2Co">
+            2_Corinthians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_2Co">
+            哥林多后书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            9</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Gal">
+            Galatians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Gal">
+            加拉太书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            10</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Eph">
+            Ephesians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Eph">
+            以弗所书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            11</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Phl">
+            Philippians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Phl">
+            腓立比书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            12</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Col">
+            Colossians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Col">
+            歌罗西书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            13</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ts">
+            1_Thessalonians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ts">
+            帖撒罗尼迦前书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            14</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ts">
+            2_Thessalonians</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ts">
+            帖撒罗尼迦后书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            15</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ti">
+            1_Timothy</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ti">
+            提摩太前书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            16</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ti">
+            2_Timothy</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ti">
+            提摩太后书</td>
+          
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            17</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Tit">
+            Titus</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Tit">
+            提多书</td>
+        
+        </tr>
+        <tr bgcolor="#002E63">
+          <td class="tidx">
+            18</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Phm">
+            Philemon</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Phm">
+            腓利门书</td>
+          
+        </tr>
+        <tr bgcolor="#003399">
+            <td class="tidx">
+              19</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Heb">
+              Hebrews</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Heb">
+              希伯来书</td>
+            <td class="tdat  booknameBtn" onclick="ClickBook(this)" value="Other_Epistles" title="Other Epistles" colspan="1" rowspan="8">
+              13<br /><br /><br />
+              5 <br /><br /><br />
+              5 <br /><br /><br />
+              3 <br /><br /><br />
+              5 <br /><br /><br />
+              1 <br /><br /><br />
+              1 <br /><br /><br />
+              1</td>
+          </tr>
+          <tr bgcolor="#003399">
+            <td class="tidx">
+              20</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jas">
+              James</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jas">
+              雅各书</td>
+          </tr>
+          <tr bgcolor="#003399">
+            <td class="tidx">
+              21</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Pe">
+              1_Peter</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Pe">
+              彼得前书</td>
+          </tr>
+          <tr bgcolor="#003399">
+            <td class="tidx">
+              22</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Pe">
+              2_Peter</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Pe">
+              彼得后书</td>
+          </tr>
+          <tr bgcolor="#003399">
+            <td class="tidx">
+              23</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Jn">
+              1_John</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Jn">
+              约翰一书</td>
+          </tr>
+          <tr bgcolor="#003399">
+            <td class="tidx">
+              24</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Jn">
+              2_John</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Jn">
+              约翰二书</td>
+          </tr>
+          <tr bgcolor="#003399">
+            <td class="tidx">
+              25</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_3Jn">
+              3_John</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_3Jn">
+              约翰三书</td>
+          </tr>
+          <tr bgcolor="#003399">
+            <td class="tidx">
+              26</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jud">
+              Jude</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jud">
+              犹大书</td>
+          </tr>
+        <tr bgcolor="#8B0000">
+          <td class="tidx">
+            27</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Rev">
+            Revelation</td>
+          <td class="booknameBtn" onclick="ClickBook(this)" value="_Rev">
+            启示录</td>
+          <td class="tdat">
+            22</td>
+        </tr>
+        <tr>
+          <td class="tidx" colspan="3" onclick="ClickBook(this)" value="ONT" title="WholeBible">
+            WholeBible</td>
+          <td class="tdat">
+            260</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+    <hr><hr>
+<div id='otHolder' class='booksTableHolder'>
+  <table border="1" class="booksListTable">
+        <tbody>
+          <tr>
+            <td class="tidx">
+              &nbsp;</td>
+            <td align="center" colspan="2" onclick="ClickBook(this)" value="OT">
+              Old Testament</td>
+            <td class="tidx">
+              &nbsp;</td>
+          </tr>
+          <tr bgcolor="#7F7700">
+            <td class="tidx">
+              1</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Gen">
+              Genesis</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Gen">
+              创世纪</td>
+            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="Moses" title="Moses" colspan="1" rowspan="5">
+              50<br /><br /><br />
+              40<br /><br /><br />
+              27<br /><br /><br />
+              36<br /><br /><br />
+              34</td>
+          </tr>
+          <tr bgcolor="#7F7700">
+            <td class="tidx">
+              2</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Exo">
+              Exodus</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Exo">
+              出埃及记</td>
+          </tr>
+          <tr bgcolor="#7F7700">
+            <td class="tidx">
+              3</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Lev">
+              Leviticus</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Lev">
+              利未记</td>
+          </tr>
+          <tr bgcolor="#7F7700">
+            <td class="tidx">
+              4</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Num">
+              Numbers</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Num">
+              民数记</td>
+          </tr>
+          <tr bgcolor="#7F7700">
+            <td class="tidx">
+              5</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Deu">
+              Deuteronomy</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Deu">
+              申命记</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              6</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jos">
+              Joshua</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jos">
+              约书亚记</td>
+            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="History" title="History" colspan="1" rowspan="12">
+              24<br /><br /><br />
+              21<br /><br /><br />
+              4 <br /><br /><br />
+              31<br /><br /><br />
+              24<br /><br /><br />
+              22<br /><br /><br />
+              25<br /><br /><br />
+              29<br /><br /><br />
+              36<br /><br /><br />
+              10<br /><br /><br />
+              13<br /><br /><br />
+              10</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              7</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jug">
+              Judges</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jug">
+              士师记</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              8</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Rut">
+              Ruth</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Rut">
+              路得记</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              9</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Sa">
+              1_Samuel</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Sa">
+              撒母耳记上</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              10</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Sa">
+              2_Samuel</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Sa">
+              撒母耳记下</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              11</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ki">
+              1_Kings</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ki">
+              列王记上</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              12</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ki">
+              2_Kings</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ki">
+              列王记下</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              13</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ch">
+              1_Chronicles</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_1Ch">
+              历代志上</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              14</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ch">
+              2_Chronicles</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_2Ch">
+              历代志下</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              15</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Ezr">
+              Ezra</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Ezr">
+              以斯拉记</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              16</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Neh">
+              Nehemiah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Neh">
+              尼希米记</td>
+          </tr>
+          <tr bgcolor="#2F4F4F">
+            <td class="tidx">
+              17</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Est">
+              Esther</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Est">
+              以斯帖记</td>
+          </tr>
+          <tr bgcolor="#102131">
+            <td class="tidx">
+              18</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Job">
+              Job</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Job">
+              约伯记</td>
+            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="Literature" title="Literature" colspan="1" rowspan="5">
+              42 <br /><br /><br />
+              150<br /><br /><br />
+              31 <br /><br /><br />
+              12 <br /><br /><br />
+              8</td>
+          </tr>
+          <tr bgcolor="#102131">
+            <td class="tidx">
+              19</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Psm">
+              Psalm</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Psm">
+              诗篇</td>
+          </tr>
+          <tr bgcolor="#102131">
+            <td class="tidx">
+              20</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Pro">
+              Proverbs</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Pro">
+              箴言</td>
+          </tr>
+          <tr bgcolor="#102131">
+            <td class="tidx">
+              21</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Ecc">
+              Ecclesiastes</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Ecc">
+              传道书</td>
+          </tr>
+          <tr bgcolor="#102131">
+            <td class="tidx">
+              22</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Son">
+              Song of Solomon</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Son">
+              雅歌</td>
+          </tr>
+          <tr bgcolor="#654321">
+            <td class="tidx">
+              23</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Isa">
+              Isaiah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Isa">
+              以赛亚书</td>
+            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="Major_Prophets" title="MajorProphets" olspan="1" rowspan="5">
+              66<br /><br /><br />
+              52<br /><br /><br />
+              5 <br /><br /><br />
+              48<br /><br /><br />
+              12</td>
+          </tr>
+          <tr bgcolor="#654321">
+            <td class="tidx">
+              24</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jer">
+              Jeremiah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jer">
+              耶利米书</td>
+          </tr>
+          <tr bgcolor="#654321">
+            <td class="tidx">
+              25</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Lam">
+              Lamentations</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Lam">
+              耶利米哀歌</td>
+          </tr>
+          <tr bgcolor="#654321">
+            <td class="tidx">
+              26</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Eze">
+              Ezekiel</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Eze">
+              以西结书</td>
+          </tr>
+          <tr bgcolor="#654321">
+            <td class="tidx">
+              27</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Dan">
+              Daniel</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Dan">
+              但以理书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              28</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Hos">
+              Hosea</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Hos">
+              何西阿书</td>
+            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="Minor_Prophets" title="MinorProphets" colspan="1" rowspan="12">
+              14<br /><br /><br />
+              3 <br /><br /><br />
+              9 <br /><br /><br />
+              1 <br /><br /><br />
+              4 <br /><br /><br />
+              7 <br /><br /><br />
+              3 <br /><br /><br />
+              3 <br /><br /><br />
+              3 <br /><br /><br />
+              2 <br /><br /><br />
+              14<br /><br /><br />
+              4 </td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              29</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Joe">
+              Joel</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Joe">
+              约珥书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              30</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Amo">
+              Amos</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Amo">
+              阿摩司书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              31</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Oba">
+              Obadiah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Oba">
+              俄巴底亚书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              32</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jon">
+              Jonah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Jon">
+              约拿书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              33</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Mic">
+              Micah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Mic">
+              弥迦书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              34</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Nah">
+              Nahum</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Nah">
+              那鸿书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              35</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Hab">
+              Habakkuk</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Hab">
+              哈巴谷书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              36</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Zep">
+              Zephaniah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Zep">
+              西番雅书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              37</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Hag">
+              Haggai</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Hag">
+              哈该书</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              38</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Zec">
+              Zechariah</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Zec">
+              撒迦利亚</td>
+          </tr>
+          <tr bgcolor="#88654E">
+            <td class="tidx">
+              39</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Mal">
+              Malachi</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="_Mal">
+              玛拉基书</td>
+          </tr>
+          <tr>
+            <td class="tidx" colspan="3">
+              &nbsp;</td>
+            <td class="tdat">
+              929</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
 
     <p id="timespan"></p>
 
@@ -772,12 +1431,12 @@ opacity: 1;
 }
 
 .booksTableHolder{
- position:absolute;
- top:0px;
+ #position:absolute;
+ #top:0px;
  float:left;
  width:  100%;
  
- height: 90%;
+ #height: 90%;
  background-color:#777778;
  //font-size:0px;
  overflow-y:scroll;
@@ -836,671 +1495,19 @@ td.tdat {
   text-align: center;
 }
 </style> 
+
+
+
 <div id="BibleBookSelMenu" tabindex="1">
 <div>
-<div class="booksTableHolder" id="ntHolder">
-			<table border="1" class="booksListTable">				
-			<tbody>
-				<tr>
-					<td class="tidx">
-						&nbsp;</td>
-					<td align="center" colspan="2" onclick="ClickBook(this)" value="NT">
-						New Testament</td>
-					<td class="tidx">
-						&nbsp;</td>
-				</tr>
-				<tr bgcolor="#510000">
-					<td class="tidx">
-						1</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Mat">
-						Matthew</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Mat">
-						马太福音</td>
-					<td class="tdat booknameBtn" colspan="1" onclick="ClickBook(this)"  value="Gospels" rowspan="4" title="Gospels">
-						28<br /><br /><br />
-						16<br /><br /><br />
-						24<br /><br /><br />
-						21</td>
-				</tr>
-				<tr bgcolor="#510000">
-					<td class="tidx">
-						2</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Mak">
-						Mark</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Mak">
-						马可福音</td>
-				</tr>
-				<tr bgcolor="#510000">
-					<td class="tidx">
-						3</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Luk">
-						Luke</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Luk">
-						路加福音</td>
-				</tr>
-				<tr bgcolor="#510000">
-					<td class="tidx">
-						4</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Jhn">
-						John</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Jhn">
-						约翰福音</td>
-				</tr>
-				<tr bgcolor="#523030">
-					<td class="tidx">
-						5</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Act">
-						Acts</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Act">
-						使徒行传</td>
-					<td class="tdat booknameBtn" onclick="ClickBook(this)" value="HisSayings" title="HisSayings">
-						28</td>
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						6</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Rom">
-						Romans</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Rom">
-						罗马书</td>
-					<td rowspan="13" class="tdat booknameBtn" onclick="ClickBook(this)" value="Pauls" title="Pauls">
-							16<br /><br /><br />
-							16<br /><br /><br />
-							13<br /><br /><br />
-							6 <br /><br /><br />
-							6 <br /><br /><br />
-							4 <br /><br /><br />
-							4 <br /><br /><br />
-							5 <br /><br /><br />
-							3 <br /><br /><br />
-							6 <br /><br /><br />
-							4 <br /><br /><br />
-							3 <br /><br /><br />
-							1</td>
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						7</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_1Co">
-						1_Corinthians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_1Co">
-						哥林多前书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						8</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_2Co">
-						2_Corinthians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_2Co">
-						哥林多后书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						9</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Gal">
-						Galatians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Gal">
-						加拉太书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						10</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Eph">
-						Ephesians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Eph">
-						以弗所书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						11</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Phl">
-						Philippians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Phl">
-						腓立比书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						12</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Col">
-						Colossians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Col">
-						歌罗西书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						13</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ts">
-						1_Thessalonians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ts">
-						帖撒罗尼迦前书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						14</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ts">
-						2_Thessalonians</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ts">
-						帖撒罗尼迦后书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						15</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ti">
-						1_Timothy</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ti">
-						提摩太前书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						16</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ti">
-						2_Timothy</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ti">
-						提摩太后书</td>
-					
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						17</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Tit">
-						Titus</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Tit">
-						提多书</td>
-				
-				</tr>
-				<tr bgcolor="#002E63">
-					<td class="tidx">
-						18</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Phm">
-						Philemon</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Phm">
-						腓利门书</td>
-					
-				</tr>
-				<tr bgcolor="#003399">
-						<td class="tidx">
-							19</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Heb">
-							Hebrews</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Heb">
-							希伯来书</td>
-						<td class="tdat  booknameBtn" onclick="ClickBook(this)" value="Other_Epistles" title="Other Epistles" colspan="1" rowspan="8">
-							13<br /><br /><br />
-							5 <br /><br /><br />
-							5 <br /><br /><br />
-							3 <br /><br /><br />
-							5 <br /><br /><br />
-							1 <br /><br /><br />
-							1 <br /><br /><br />
-							1</td>
-					</tr>
-					<tr bgcolor="#003399">
-						<td class="tidx">
-							20</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jas">
-							James</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jas">
-							雅各书</td>
-					</tr>
-					<tr bgcolor="#003399">
-						<td class="tidx">
-							21</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Pe">
-							1_Peter</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Pe">
-							彼得前书</td>
-					</tr>
-					<tr bgcolor="#003399">
-						<td class="tidx">
-							22</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Pe">
-							2_Peter</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Pe">
-							彼得后书</td>
-					</tr>
-					<tr bgcolor="#003399">
-						<td class="tidx">
-							23</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Jn">
-							1_John</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Jn">
-							约翰一书</td>
-					</tr>
-					<tr bgcolor="#003399">
-						<td class="tidx">
-							24</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Jn">
-							2_John</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Jn">
-							约翰二书</td>
-					</tr>
-					<tr bgcolor="#003399">
-						<td class="tidx">
-							25</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_3Jn">
-							3_John</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_3Jn">
-							约翰三书</td>
-					</tr>
-					<tr bgcolor="#003399">
-						<td class="tidx">
-							26</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jud">
-							Jude</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jud">
-							犹大书</td>
-					</tr>
-				<tr bgcolor="#8B0000">
-					<td class="tidx">
-						27</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Rev">
-						Revelation</td>
-					<td class="booknameBtn" onclick="ClickBook(this)" value="_Rev">
-						启示录</td>
-					<td class="tdat">
-						22</td>
-				</tr>
-				<tr>
-					<td class="tidx" colspan="3" onclick="ClickBook(this)" value="ONT" title="WholeBible">
-						WholeBible</td>
-					<td class="tdat">
-						260</td>
-				</tr>
-			</tbody>
-			</table>
-		</div>
-<div id='otHolder' class='booksTableHolder'>
-	<table border="1" class="booksListTable">
-				<tbody>
-					<tr>
-						<td class="tidx">
-							&nbsp;</td>
-						<td align="center" colspan="2" onclick="ClickBook(this)" value="OT">
-							Old Testament</td>
-						<td class="tidx">
-							&nbsp;</td>
-					</tr>
-					<tr bgcolor="#7F7700">
-						<td class="tidx">
-							1</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Gen">
-							Genesis</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Gen">
-							创世纪</td>
-						<td class="tdat booknameBtn" onclick="ClickBook(this)" value="Moses" title="Moses" colspan="1" rowspan="5">
-							50<br /><br /><br />
-							40<br /><br /><br />
-							27<br /><br /><br />
-							36<br /><br /><br />
-							34</td>
-					</tr>
-					<tr bgcolor="#7F7700">
-						<td class="tidx">
-							2</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Exo">
-							Exodus</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Exo">
-							出埃及记</td>
-					</tr>
-					<tr bgcolor="#7F7700">
-						<td class="tidx">
-							3</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Lev">
-							Leviticus</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Lev">
-							利未记</td>
-					</tr>
-					<tr bgcolor="#7F7700">
-						<td class="tidx">
-							4</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Num">
-							Numbers</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Num">
-							民数记</td>
-					</tr>
-					<tr bgcolor="#7F7700">
-						<td class="tidx">
-							5</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Deu">
-							Deuteronomy</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Deu">
-							申命记</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							6</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jos">
-							Joshua</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jos">
-							约书亚记</td>
-						<td class="tdat booknameBtn" onclick="ClickBook(this)" value="History" title="History" colspan="1" rowspan="12">
-							24<br /><br /><br />
-							21<br /><br /><br />
-							4 <br /><br /><br />
-							31<br /><br /><br />
-							24<br /><br /><br />
-							22<br /><br /><br />
-							25<br /><br /><br />
-							29<br /><br /><br />
-							36<br /><br /><br />
-							10<br /><br /><br />
-							13<br /><br /><br />
-							10</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							7</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jug">
-							Judges</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jug">
-							士师记</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							8</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Rut">
-							Ruth</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Rut">
-							路得记</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							9</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Sa">
-							1_Samuel</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Sa">
-							撒母耳记上</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							10</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Sa">
-							2_Samuel</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Sa">
-							撒母耳记下</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							11</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ki">
-							1_Kings</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ki">
-							列王记上</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							12</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ki">
-							2_Kings</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ki">
-							列王记下</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							13</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ch">
-							1_Chronicles</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_1Ch">
-							历代志上</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							14</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ch">
-							2_Chronicles</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_2Ch">
-							历代志下</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							15</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Ezr">
-							Ezra</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Ezr">
-							以斯拉记</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							16</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Neh">
-							Nehemiah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Neh">
-							尼希米记</td>
-					</tr>
-					<tr bgcolor="#2F4F4F">
-						<td class="tidx">
-							17</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Est">
-							Esther</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Est">
-							以斯帖记</td>
-					</tr>
-					<tr bgcolor="#102131">
-						<td class="tidx">
-							18</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Job">
-							Job</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Job">
-							约伯记</td>
-						<td class="tdat booknameBtn" onclick="ClickBook(this)" value="Literature" title="Literature" colspan="1" rowspan="5">
-							42 <br /><br /><br />
-							150<br /><br /><br />
-							31 <br /><br /><br />
-							12 <br /><br /><br />
-							8</td>
-					</tr>
-					<tr bgcolor="#102131">
-						<td class="tidx">
-							19</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Psm">
-							Psalm</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Psm">
-							诗篇</td>
-					</tr>
-					<tr bgcolor="#102131">
-						<td class="tidx">
-							20</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Pro">
-							Proverbs</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Pro">
-							箴言</td>
-					</tr>
-					<tr bgcolor="#102131">
-						<td class="tidx">
-							21</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Ecc">
-							Ecclesiastes</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Ecc">
-							传道书</td>
-					</tr>
-					<tr bgcolor="#102131">
-						<td class="tidx">
-							22</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Son">
-							Song of Solomon</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Son">
-							雅歌</td>
-					</tr>
-					<tr bgcolor="#654321">
-						<td class="tidx">
-							23</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Isa">
-							Isaiah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Isa">
-							以赛亚书</td>
-						<td class="tdat booknameBtn" onclick="ClickBook(this)" value="Major_Prophets" title="MajorProphets" olspan="1" rowspan="5">
-							66<br /><br /><br />
-							52<br /><br /><br />
-							5 <br /><br /><br />
-							48<br /><br /><br />
-							12</td>
-					</tr>
-					<tr bgcolor="#654321">
-						<td class="tidx">
-							24</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jer">
-							Jeremiah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jer">
-							耶利米书</td>
-					</tr>
-					<tr bgcolor="#654321">
-						<td class="tidx">
-							25</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Lam">
-							Lamentations</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Lam">
-							耶利米哀歌</td>
-					</tr>
-					<tr bgcolor="#654321">
-						<td class="tidx">
-							26</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Eze">
-							Ezekiel</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Eze">
-							以西结书</td>
-					</tr>
-					<tr bgcolor="#654321">
-						<td class="tidx">
-							27</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Dan">
-							Daniel</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Dan">
-							但以理书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							28</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Hos">
-							Hosea</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Hos">
-							何西阿书</td>
-						<td class="tdat booknameBtn" onclick="ClickBook(this)" value="Minor_Prophets" title="MinorProphets" colspan="1" rowspan="12">
-							14<br /><br /><br />
-							3 <br /><br /><br />
-							9 <br /><br /><br />
-							1 <br /><br /><br />
-							4 <br /><br /><br />
-							7 <br /><br /><br />
-							3 <br /><br /><br />
-							3 <br /><br /><br />
-							3 <br /><br /><br />
-							2 <br /><br /><br />
-							14<br /><br /><br />
-							4 </td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							29</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Joe">
-							Joel</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Joe">
-							约珥书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							30</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Amo">
-							Amos</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Amo">
-							阿摩司书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							31</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Oba">
-							Obadiah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Oba">
-							俄巴底亚书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							32</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jon">
-							Jonah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Jon">
-							约拿书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							33</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Mic">
-							Micah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Mic">
-							弥迦书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							34</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Nah">
-							Nahum</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Nah">
-							那鸿书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							35</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Hab">
-							Habakkuk</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Hab">
-							哈巴谷书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							36</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Zep">
-							Zephaniah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Zep">
-							西番雅书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							37</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Hag">
-							Haggai</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Hag">
-							哈该书</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							38</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Zec">
-							Zechariah</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Zec">
-							撒迦利亚</td>
-					</tr>
-					<tr bgcolor="#88654E">
-						<td class="tidx">
-							39</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Mal">
-							Malachi</td>
-						<td class="booknameBtn" onclick="ClickBook(this)" value="_Mal">
-							玛拉基书</td>
-					</tr>
-					<tr>
-						<td class="tidx" colspan="3">
-							&nbsp;</td>
-						<td class="tdat">
-							929</td>
-					</tr>
-				</tbody>
-			</table>
-</div>
 </div>
 <span id='bookSelMenuBtnsHolder'>
-<div id='TabOT' class='bookSelMenuBtn'> O.T.旧约 </div> 
-<div id='TabNT' class='bookSelMenuBtn'> N.T.新约 </div> 
-
+ <div id='TabOT' class='bookSelMenuBtn'> O.T.旧约 </div> 
+ <div id='TabNT' class='bookSelMenuBtn'> N.T.新约 </div> 
 </span>
+
 </div>
+
 <script language="javascript">
 
 $(document).ready(function(){
