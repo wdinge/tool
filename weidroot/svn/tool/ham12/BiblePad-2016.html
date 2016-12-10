@@ -441,10 +441,16 @@ $(document).ready(function(){
     
 
         $("#selBookId").click(function(e){
-            e.stopPropagation();
-            $("#BibleBookSelMenu").slideToggle();
+            //e.stopPropagation();
+            //show bookid where it is selected. refer ClickBook()
+            var val=$(this).attr("value");
+            val = $("#selBookId").attr("value");
+            console.log(val);
+            //scrollIntoView
+            $("td[value='"+val+"']")[0].scrollIntoView();
+            //$("#BibleBookSelMenu").slideToggle();
             
-            console.log("toggle BibleBookSelMenu");
+            //console.log("toggle BibleBookSelMenu");
         });
              
         //$("[id^=selBookId]").click(function(e){
@@ -610,7 +616,7 @@ function SetFontSize(){
 
 </HEAD>
     <BODY xxxonload="body_onload();">
-    
+
 <div id="ntHolder" class="booksTableHolder">
       <table border="1" class="booksListTable">       
       <tbody>
@@ -1498,15 +1504,7 @@ td.tdat {
 
 
 
-<div id="BibleBookSelMenu" tabindex="1">
-<div>
-</div>
-<span id='bookSelMenuBtnsHolder'>
- <div id='TabOT' class='bookSelMenuBtn'> O.T.旧约 </div> 
- <div id='TabNT' class='bookSelMenuBtn'> N.T.新约 </div> 
-</span>
 
-</div>
 
 <script language="javascript">
 
@@ -1531,8 +1529,8 @@ $(document).ready(function(){
   //           var SelfBtnToggle=$("#BibleBookSelMenu").attr("SelfBtnToggle");
   //           var is_hidden  =$("#BibleBookSelMenu").is(":hidden");
   //           console.log("~~~ BibleBookSelMenu: show: SelfBtnToggle="+SelfBtnToggle+",is_hidden="+is_hidden);
-  // });
-  $("#BibleBookSelMenu").hide();
+  // });l
+  //$("#BibleBookSelMenu").hide();
   
 
 
@@ -1543,7 +1541,7 @@ $(document).ready(function(){
 	return false;
   });
   
-  $("#TabOT").css('background-color','#cccccd');
+  //$("#TabOT").css('background-color','#cccccd');
   
   //$("#BibleBookSelMenu").height( $(window).height()-339);
   //$(".booksTableHolder").each(function(){
@@ -1564,7 +1562,7 @@ $(document).ready(function(){
     //alert(tabId);
     $("#"+tabId).toggle();
 
-    $("#vibibtxt").hide();
+    
   });
   
   
@@ -1596,6 +1594,7 @@ function ClickBook(me){
     if(title) bkt=title;
     $("#selBookId").attr("value",bkid).text(bkt);
     //setCookie("selBookId",bkid,90);
+    console.log("bkid="+bkid);
     var sBKeyId=bkid+"1_1";
     if(LoadBookByFormat_BCV__WhenSelBook(sBKeyId, true)){
     }
