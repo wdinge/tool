@@ -1,0 +1,377 @@
+<html>
+<head>
+
+
+    <TITLE>7</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <SCRIPT language="javascript" src="7kPy/Py00.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="7kPy/Py01.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_00.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_01.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_02.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_03.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_04.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_05.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_06.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_07.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_08.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_09.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_10.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_11.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_12.unicode.js">
+    </SCRIPT>
+    
+
+
+    <script type="text/javascript">
+
+    function GetAll()
+    {
+        var i=0;
+        var TotChineseChar=0;
+        var s = "";
+        for (key in Y) {
+            i+=1;
+            s+= i + " : " + key + "=" + Y[key] + "<br>\n";
+            TotChineseChar+= Y[key].length;
+        }
+        return s;
+    }
+    function GetTot()
+    {
+        var TotChineseChar=0;
+        var s = "";
+        for (key in Y) {
+            TotChineseChar+= Y[key].length;
+        }
+        return "TotChinese="+TotChineseChar;
+    }
+    function MaxLen()
+    {
+        var iMax=0;
+        var Str="";
+        for (key in Y) {
+            if (iMax < Y[key].length ) {
+                iMax = Y[key].length;
+                Str = key+"="+ Y[key];
+            }
+        }
+        return "MaxLen="+iMax +"," + Str;
+    }
+
+    function displayDate()
+    {   
+        var pinyin="shi4a";
+        var testChineses=Y[pinyin];
+        if ( Y[pinyin] == undefined ) {
+            alert("");
+        }
+       
+        document.getElementById("demo").innerHTML =GetTot()+"<br>"+MaxLen()+"<br>"+GetAll() ;
+
+    }
+    function Push_back_Pinyin(sInputId, evnetCode)
+    {   
+      me=document.getElementById(sInputId);
+      me.value+=evnetCode;
+        var MAX_SHOW_LEN=10;
+        var CODES_FIRST_ONLY  = "bcdfhjklmpqrstwxyz"; //these are only used at first in pinyin.
+        var pinyin = me.value;//.replace(' ', ''); //replace(/^\s+|\s+$/g, ''); 
+        
+        
+        var lastChar = pinyin.charAt( pinyin.length-1 );
+        
+        var firstChar = pinyin.charAt( 0 );
+        var CODES_NEVER_FIRST = " iuv"; //these are never used at first in pinyin.
+        var CODES_FOLLOWED = "ia ib ic id ie if ij ik"; //select followed words
+        var iPos = CODES_NEVER_FIRST.search( firstChar );
+        if( 0==iPos ) {
+            if (undefined == me.m_iStartIndx ) me.m_iStartIndx=0;//init my m_iStartIndx
+            me.m_iStartIndx += MAX_SHOW_LEN;
+            if( me.m_iStartIndx > me.m_ChineseChars.length-1 ) me.m_iStartIndx=0;  //remove last repeated.
+            var cs=me.m_ChineseChars.substring(me.m_iStartIndx,me.m_iStartIndx+MAX_SHOW_LEN);
+            document.getElementById("demo").innerHTML = "<br>"+cs+me.m_FlagMore+"<br>"+CODES_FOLLOWED;
+            me.value="";
+            return;
+        }
+        if( iPos > 0 ) {
+            if( 2 == pinyin.length ){               
+               iPos = CODES_FOLLOWED.search(pinyin);
+               //alert(iPos);
+               if( iPos >=0  ) {
+                  var c = me.m_ChineseChars.charAt(iPos/3);
+                  //alert(c);//selected.
+                  addAtCaretPos(c);
+                  var cfws = CommonlyFollowedWords(c);
+                  document.getElementById("demo").innerHTML="qqq";
+                  if( undefined != cfws ) {
+                     me.m_ChineseChars = cfws;
+                     document.getElementById("demo").innerHTML = "<br>"+cfws+me.m_FlagMore+"<br>"+CODES_FOLLOWED;
+                  }                
+               }
+               me.value = "";
+               return;
+            }
+            else if( pinyin.length>2 ){
+               me.value = "";
+               return;
+            }
+            return;
+        }
+        
+        
+        //change the tone.
+        var last2Char = pinyin.charAt(pinyin.length-2);
+        if( pinyin.length>=2 ){
+            if ( lastChar == last2Char ) {//repeat last char, increment tone.
+               if (undefined == me.m_tone ) me.m_tone=1;//init my tone (0,1,2,3,4)
+               me.m_tone+=1;       
+               me.value = me.value.substring(0, pinyin.length-1);  //remove last repeated.
+               pinyin = me.value;        
+            }
+            else{//select a chinese char.  
+               var iPos = CODES_FIRST_ONLY.search( lastChar );             
+               //alert(iPos);
+               if( iPos >=0 ) {
+                  var Selected = me.m_iStartIndx + iPos;
+                  var c = me.m_ChineseChars.charAt( Selected );//get the selected chinese char.
+                  //alert(c);
+                  addAtCaretPos(c);
+                  me.value= "";//begin to get most commonly followed words. First Time .
+                  var cfws = CommonlyFollowedWords(c);
+                  document.getElementById("demo").innerHTML="<br>";
+                  if( undefined != cfws ) {
+                     me.m_iStartIndx = 0;
+                     var FlagMore = "";
+                     if(cfws.length > MAX_SHOW_LEN) FlagMore="+"+(cfws.length - MAX_SHOW_LEN);
+                     var CWS = cfws.substring(0,MAX_SHOW_LEN);
+                     me.m_ChineseChars = cfws;
+                     document.getElementById("demo").innerHTML += cfws+FlagMore+"<br>"+CODES_FOLLOWED;
+                  }
+                  return;
+               }
+               else{             
+               }
+            }
+            
+        }
+        else {
+            if ( lastChar != ' ' ) {  me.m_tone=1; }//space should not change the tone.
+        }
+        if( me.m_tone > 4 ) me.m_tone = 1; 
+        
+        me.value = me.value.replace(/\s+/g, ''); //remove all spaces.
+        //pinyin = me.value + me.m_tone; 
+        //me.m_ChineseChars = Y[pinyin];
+        
+        var ChineseChars="";
+        for (var i=0; i<=4; i++ ) {
+            var iTone = me.m_tone + i; 
+            if( iTone > 4 ) iTone=0;
+            pinyin = me.value + iTone;
+            ChineseChars = Y[pinyin];
+            if( undefined == ChineseChars) {
+               //alert(ChineseChars +" " + pinyin);
+               continue;
+            }
+            else { 
+               break;
+            }
+        }
+        if( undefined == ChineseChars && pinyin.length>=2 ) {
+            //me.value="";
+            //alert();
+            return;
+        }else{
+            me.m_ChineseChars = ChineseChars;
+        }
+        
+        
+        //change the start position.
+        
+        //var FlagMore="+";        
+        if( ' ' == lastChar ) {
+            if (undefined == me.m_iStartIndx ) me.m_iStartIndx=0;//init my m_iStartIndx
+            me.m_iStartIndx += MAX_SHOW_LEN;
+            if( me.m_iStartIndx > me.m_ChineseChars.length-1 ) me.m_iStartIndx=0;  //remove last repeated.
+        }      
+        else me.m_iStartIndx = 0;
+        
+        var iStop = me.m_iStartIndx + MAX_SHOW_LEN;
+        if( iStop > me.m_ChineseChars.length-1 ) me.m_FlagMore=""; 
+        else me.m_FlagMore= "+" + (me.m_ChineseChars.length - iStop); 
+        
+        
+        //final display.
+        ChineseChars = me.m_ChineseChars.substring(me.m_iStartIndx, iStop);
+        document.getElementById("demo").innerHTML = me.m_tone+"<br>"+ChineseChars+me.m_FlagMore+"<br> b c d f h j k l m p q r s t w x y z";
+
+    }
+    
+    
+   function addAtCaretPos( strText)
+        {
+            objTextArea = document.getElementById("edit_area");
+            // add the given text in caret position of given textarea
+            if ( document.selection ) { // window IE7>
+                objTextArea.focus();
+                
+                if(undefined == objTextArea.m_CaretPos) objTextArea.m_CaretPos=0;
+                setCaretPosition("edit_area", objTextArea.m_CaretPos);
+                // apply text:
+                
+                
+                document.selection.createRange().text = strText;//objTextArea.OldText;
+                
+                
+                // apply to textarea:
+                objTextArea.caretPos = document.selection.createRange().duplicate();
+                //objTextArea.scrollTop = objTextArea.scrollHeight;
+                
+                objTextArea.m_CaretPos+=1;
+                
+                
+            } 
+            else // ffox: use value instead of innerHTML.
+            {
+                // Textarea is a form element - the inner html is used as the default contents of the text area, 
+                // but it is not the dynamic value of the text area. 
+                // The innerHTML of a text area does not change when the user edits its contents. 
+                // That IE displays the changed value when referencing .innerHTML is wrong.
+                // To access it's value, use the .value property - not .innerHTML
+
+                if( 0 == strText.length )
+                {
+                    return;
+                }
+                var slen = objTextArea.value.length;
+                var i =  objTextArea.selectionStart;
+                var s1 = objTextArea.value.substr( 0, i);
+                var s2 = objTextArea.value.substr( i, slen);
+                objTextArea.value = s1 + strText + s2;
+                i++;
+                objTextArea.setSelectionRange(i,i);
+
+                if(slen == objTextArea.value.length)
+                {
+                    alert("error insert");
+                }  
+
+                objTextArea.scrollTop = objTextArea.scrollHeight; 
+                objTextArea.focus();          
+            }
+            window.status = "Character Count:"+objTextArea.value.length;
+            //document.getElementById("pinyininput").focus();
+        }
+        
+        
+        
+        function setCaretPosition(elemId, caretPos) { 
+          var elem = document.getElementById(elemId); 
+       
+          if(elem != null) { 
+              if(elem.createTextRange) { 
+                  var range = elem.createTextRange(); 
+                  range.move('character', caretPos); 
+                  range.select(); 
+              } 
+              else { 
+                  if(elem.selectionStart) { 
+                      elem.focus(); 
+                      elem.setSelectionRange(caretPos, caretPos); 
+                  } 
+                  else 
+                      elem.focus(); 
+              } 
+          } 
+      } 
+      
+      function doGetCaretPosition (ctrl) {
+         var CaretPos = 0;	// IE Support
+         if (document.selection) {
+            ctrl.focus ();
+            var Sel = document.selection.createRange ();
+            Sel.moveStart ('character', -ctrl.value.length);
+            ctrl.m_CaretPos = Sel.text.length;
+            
+            //alert(CaretPos);
+         }
+         // Firefox support
+         else if (ctrl.selectionStart || ctrl.selectionStart == '0')
+            CaretPos = ctrl.selectionStart;
+         return (CaretPos);
+      }
+
+      function TextareaKeyDwn(evt){
+         //document.getElementById("pinyininput").focus();
+         var keyCod = getEventCode("");
+         //alert(keyCod);
+         Push_back_Pinyin("pinyininput",keyCod );
+         return false;
+      }
+      function TextareaKeyUp(elm){
+         document.getElementById("edit_area").focus();
+         
+         return false;
+      }
+      function getEventCode (elm)
+        {  
+            //alert();
+            var myEvent=null;
+            if(window.event){
+                myEvent = window.event;
+                //DBG.TRACE("window");
+            }
+            else
+            {
+                myEvent = e;//ffox
+                //DBG.TRACE("ffox");
+            }
+            
+            //                 FireFox        || Window IE
+            var keyPressed;
+            if( myEvent.which ){
+                keyPressed = myEvent.which;//        || evt.keyCode;
+            }
+            else if( myEvent.keyCode ){
+                keyPressed = myEvent.keyCode;
+            }
+            else{
+                 alert("This brower does not support the event");
+            }
+
+            //alert(keyPressed+"="+ );
+            var c = String.fromCharCode(keyPressed).toLowerCase();
+            return c;
+            return keyPressed;
+        }
+    </script>
+</head>
+<body>
+<textarea id="edit_area" name="edit_area" onkeydown="return TextareaKeyDwn(event);" onkeyup="return TextareaKeyUp(event);"  onblur="" onclick="doGetCaretPosition(this);" rows="4" cols="8" wrap="virtual" class="edit">
+</textarea>
+<h1>7k chinese words in Bible</h1>
+<input id="pinyininput" name="pinyininput" onkeyup="PinyinInput(this)"/>
+<a id="demo">
+.
+</a>
+
+<button type="button" onclick="displayDate()">Display</button>
+
+</body>
+</html>
+

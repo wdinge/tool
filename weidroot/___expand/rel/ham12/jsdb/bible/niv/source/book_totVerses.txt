@@ -1,0 +1,68 @@
+totBooks=66 , totverses=31106
+#	book	totVerses
+1	Genesis	1533
+2	Exodus	1212
+3	Leviticus	859
+4	Numbers	1297
+5	Deuteronomy	959
+6	Joshua	657
+7	Judges	618
+8	Ruth	85
+9	1st Samuel	810
+10	2nd Samuel	695
+11	1st Kings	816
+12	2nd Kings	719
+13	1st Chronicles	947
+14	2nd Chronicles	824
+15	Ezra	280
+16	Nehemiah	409
+17	Esther	167
+18	Job	1070
+19	Psalms	2459
+20	Proverbs	914
+21	Ecclesiastes	222
+22	Song of Solomon	117
+23	Isaiah	1291
+24	Jeremiah	1363
+25	Lamentations	154
+26	Ezekiel	1280
+27	Daniel	358
+28	Hosea	197
+29	Joel	73
+30	Amos	144
+31	Obadiah	21
+32	Jonah	48
+33	Micah	105
+34	Nahum	47
+35	Habakkuk	56
+36	Zephaniah	53
+37	Haggai	38
+38	Zechariah	211
+39	Malachi	55
+40	Matthew	1068
+41	Mark	673
+42	Luke	1149
+43	John	878
+44	Acts	1003
+45	Romans	432
+46	1st Corinthians	437
+47	2nd Corinthians	257
+48	Galatians	149
+49	Ephesians	155
+50	Philippians	104
+51	Colossians	95
+52	1st Thessalonians	89
+53	2nd Thessalonians	47
+54	1st Timothy	113
+55	2nd Timothy	83
+56	Titus	46
+57	Philemon	25
+58	Hebrews	303
+59	James	108
+60	1st Peter	105
+61	2nd Peter	61
+62	1st John	105
+63	2nd John	13
+64	3rd John	14
+65	Jude	25
+66	Revelation	405

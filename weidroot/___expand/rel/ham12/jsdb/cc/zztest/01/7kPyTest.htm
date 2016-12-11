@@ -1,0 +1,39 @@
+<html>
+<head>
+
+
+		<TITLE>7000 Simplified Chinese Pinyin Input Tool(&#31616;&#20307;&#27721;&#23383;&#25340;&#38899;&#36755;&#20837;&#27861;)</TITLE>
+		<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<SCRIPT language="javascript" src="7kPy/Py00.unicode.js"></SCRIPT>
+      <SCRIPT language="javascript" src="7kPy/Py01.unicode.js"></SCRIPT>
+      <SCRIPT language="javascript" src="7kPy.js"></SCRIPT>
+
+      
+<script type="text/javascript">
+
+function GetAll()
+{
+   var s = "";
+	for(key in Y)
+	{
+		
+      s+= key + "=" + Y[key] + "<br>\n";
+	}
+   return s;
+}
+function displayDate()
+{
+document.getElementById("demo").innerHTML=GetAll();
+}
+</script>
+</head>
+<body>
+
+<h1>My First Web Page</h1>
+<p id="demo">This is a paragraph.</p>
+
+<button type="button" onclick="displayDate()">Display Date</button>
+
+</body>
+</html> 
+

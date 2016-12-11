@@ -1,0 +1,109 @@
+<html>
+<head>
+
+
+    <TITLE>7</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <SCRIPT language="javascript" src="7kPy/Py00.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="7kPy/Py01.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_00.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_01.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_02.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_03.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_04.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_05.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_06.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_07.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_08.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_09.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_10.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_11.unicode.js">
+    </SCRIPT>
+    <SCRIPT language="javascript" src="xl/X_12.unicode.js">
+    </SCRIPT>
+    
+
+
+    <script type="text/javascript">
+
+    function GetAll()
+    {
+        var i=0;
+        var TotChineseChar=0;
+        var s = "";
+        for (key in X) {
+            i+=1;
+            var unicode = 0;
+            unicode +=parseInt(key,10);
+            unicode +=parseInt("4E00",16);
+            s+= i + " : " + unicode + "(&#"+unicode+";)" + "=" + X[key] + "<br>\n";
+            TotChineseChar+= X[key].lengt;
+        }
+        return s;
+    }
+    function GetTot()
+    {
+        var TotChineseChar=0;
+        var s = "";
+        for (key in X) {
+            TotChineseChar+= X[key].length;
+        }
+        return "TotChinese="+TotChineseChar;
+    }
+    function MaxLen()
+    {
+        var iMax=0;
+        var Str="";
+        for (key in X) {
+            if (iMax < X[key].length ) {
+                iMax = X[key].length;
+                Str = key+"="+ X[key];
+            }
+        }
+        return "MaxLen="+iMax +"," + Str;
+    }
+
+    function displayDate()
+    {   
+        var pinyin="shi4a";
+        var testChineses=X[pinyin];
+        if ( X[pinyin] == undefined ) {
+            //alert("");
+        }
+       
+        document.getElementById("demo").innerHTML =GetTot()+"<br>"+MaxLen()+"<br>"+GetAll() ;
+
+    }
+    
+    function PinyinInput(me)
+    {   
+        
+    }
+    </script>
+</head>
+<body>
+
+<h1>7k chinese words in Bible</h1>
+<input id="pinyininput" name="pinyininput" onkeyup="PinyinInput(this)"/>
+<a id="demo">
+.
+</a>
+
+<button type="button" onclick="displayDate()">Display</button>
+
+</body>
+</html>
+

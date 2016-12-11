@@ -1,0 +1,49 @@
+<html>
+<head>
+                <title>zid2jgw</title>
+                <script type="text/javascript" src="zid2jid.js"></script>
+
+                <!-- Users -->
+                </head>
+ <style type="text/css">
+img { 
+
+height:30px;
+width: 30px;
+}
+div { 
+float: left;
+}
+</style>   
+
+                
+<script type="text/javascript">
+function showall(){
+ var str="";
+ var k=0;
+ for( key in Z ) {
+   k+=1;
+   var cod = key.substr(1);
+   str+=k+"<a>&#"+ cod +";</a>";
+   imglist = Z[key].split(",");
+   for (var i=0;i<imglist.length-1;i++) {
+     str+="<img src='../../../odb/tbi/img/jgif/" + imglist[i] + ".gif'/>"+imglist[i] ;
+   }
+   str+="<br>"
+ };
+ document.getElementById("show").innerHTML="+++\
+ safsdfs \
+ asdsfd\
+ +++ \
+ ."
+
+}                                          
+</script>
+ 
+
+
+<body bgcolor="#eeaaee">
+<button onclick="showall()" >showall</button>	
+<div id="show">-</div>
+</body>
+</html>
