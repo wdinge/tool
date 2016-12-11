@@ -444,13 +444,7 @@ $(document).ready(function(){
             //e.stopPropagation();
             //show bookid where it is selected. refer ClickBook()
             var val=$(this).attr("value");
-            val = $("#selBookId").attr("value");
-            console.log(val);
-            //scrollIntoView
             $("td[value='"+val+"']")[0].scrollIntoView();
-            //$("#BibleBookSelMenu").slideToggle();
-            
-            //console.log("toggle BibleBookSelMenu");
         });
              
         //$("[id^=selBookId]").click(function(e){
@@ -459,7 +453,6 @@ $(document).ready(function(){
             var clsname=$(e.target).attr("class");
             if(!!clsname && clsname.indexOf("bookSelMenuBtn") <0 ){
                 console.log("selBookIdHide");
-                $("#BibleBookSelMenu").hide(3000);
              }
         });//.css("background-color","red");
               
@@ -546,7 +539,7 @@ function selHistoryRun(serchVal){
     case "bible_KJV":
     case "bible_CUVs":
     case "bible_BBE":
-	case "bible_CUVpy":
+	  case "bible_CUVpy":
     case "bible_HGR":
         selectBibleVersion(serchVal);
         return;
@@ -1416,25 +1409,7 @@ $(document).ready(function(){
     
     
 <style> 
-#BibleBookSelMenu{
- position:fixed;
- right:0px;
- bottom:160px;
- 
- width:  420px;
- height:500px;
 
-
- background-color:#777778;
- //font-size:0px;
- padding:0 0 0 0px;
- margin:0 0 0 0px;
-    
- font-size: 20px;
-
- overflow:noscroll;
-opacity: 1;
-}
 
 .booksTableHolder{
  #position:absolute;
@@ -1509,44 +1484,16 @@ td.tdat {
 <script language="javascript">
 
 $(document).ready(function(){
-
-  
-
-    //  $.each(['show', 'hide', 'blur'], function (i, ev) {
-    //    var el = $.fn[ev];
-    //    $.fn[ev] = function () {
-    //      this.trigger(ev);
-    //      return el.apply(this, arguments);
-    //    };
-    //  });
-      
-  // $("#BibleBookSelMenu").on('blur', function(){
-  //           var SelfBtnToggle=$("#BibleBookSelMenu").attr("SelfBtnToggle");
-  //           var is_hidden  =$("#BibleBookSelMenu").is(":hidden");
-  //           console.log("~~~ BibleBookSelMenu: blur: SelfBtnToggle="+SelfBtnToggle+",is_hidden="+is_hidden);
-  //           $(this).hide();
-  // }).on('show',function(){
-  //           var SelfBtnToggle=$("#BibleBookSelMenu").attr("SelfBtnToggle");
-  //           var is_hidden  =$("#BibleBookSelMenu").is(":hidden");
-  //           console.log("~~~ BibleBookSelMenu: show: SelfBtnToggle="+SelfBtnToggle+",is_hidden="+is_hidden);
-  // });l
-  //$("#BibleBookSelMenu").hide();
   
 
 
   
-   $('.booksTableHolder, #BibleBookSelMenu, #vbibtxt').on( 'scroll',  function(e){
+   $('.booksTableHolder, #vbibtxt').on( 'scroll',  function(e){
 	e.stopPropagation();
     console.log('Event Fired!!!' );
 	return false;
   });
-  
-  //$("#TabOT").css('background-color','#cccccd');
-  
-  //$("#BibleBookSelMenu").height( $(window).height()-339);
-  //$(".booksTableHolder").each(function(){
-  //  $(this).height( $("#BibleBookSelMenu").height()-$("#bookSelMenuBtnsHolder").height());
-  //});
+
   
   
   
@@ -1599,7 +1546,7 @@ function ClickBook(me){
     if(LoadBookByFormat_BCV__WhenSelBook(sBKeyId, true)){
     }
     
-    $("#BibleBookSelMenu").hide(3000);
+   
     return;
 };   
 </script>
