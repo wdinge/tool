@@ -425,8 +425,18 @@ tr.raw1 {
     }
 $(document).ready(function(){
 //body_onload();
-    //$("#verse_note_editor_save").hide();
-    //$("#uictrl").toggle();
+if(typeof(Storage)){
+  if(localStorage.BibleVersion){
+
+  }
+  else{
+
+  }
+  $("#debugInfo").append("<p>support html5 Storage</p>");
+}else{
+  $("#debugInfo").append("<p>Not support html5 Storage!</p>");
+}
+$("#debugInfo").append("<p>BibleVersion:"+MyCookies.Get("selMainBible")+"</p>");
     
     $("body").click(function(){
         console.log("body");
@@ -493,7 +503,7 @@ $(document).ready(function(){
         $("#selHistory").change(function(){
             var serchVal = $(this).val();
             $("#selHistory").val("");
-			selHistoryRun(serchVal);
+			      selHistoryRun(serchVal);
         });
 
         $("#btnSearch").click(function(){//Start GO...
@@ -1269,6 +1279,7 @@ function SetFontSize(){
     </div>
 
 
+    <p id="debugInfo">debugInfo</p>
     <p id="timespan"></p>
 
     <div id="uictrl">
