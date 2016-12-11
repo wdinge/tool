@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<HTML manifest="BiblePad-2015.appcache">
+<HTML manifest___xxx="BiblePad-2015.appcache">
 <HEAD>
     <TITLE>bbp16</TITLE>
     <META http-equiv="Content-Type" content="text/html;" charset="UTF-8">
@@ -436,7 +436,7 @@ if(typeof(Storage)){
 }else{
   $("#debugInfo").append("<p>Not support html5 Storage!</p>");
 }
-$("#debugInfo").append("<p>BibleVersion:"+MyCookies.Get("selMainBible")+"</p>");
+$("#debugInfo").append("<p>BibleVersion:"+MyCookies.Get("selMainBible","CUVs")+"</p>");
     
     $("body").click(function(){
         console.log("body");
