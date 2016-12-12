@@ -4,7 +4,7 @@ CACHE MANIFEST
 ./jq/jquery.js
 ./jq/MyCookies.js
 ./jsdk/bible/BookLoader.js
-../../../___expand/rel/ham12/jsdb/bible/niv/js/*
+
 
 
 
@@ -13,6 +13,18 @@ CACHE MANIFEST
 ./jsdk/bible/_inc_bible_NamesOfPersons.js
 ./jsdk/bible/_inc_bible_NamesOfPlaces.js
 ../../../___expand/rel/ham12/jsdb/cc/z2g/jianfan/Traditional2Simplified.js
+
+
+
+ ../../../___expand/rel/ham12/jsdb/bible/niv/js/*
+ ../../../___expand/rel/ham12/jsdb/bible/kjv/*   
+ ../../../___expand/rel/ham12/jsdb/bible/stu/*   
+ ../../../___expand/rel/ham12/jsdb/bible/hgr/*   
+ ../../../___expand/rel/ham12/jsdb/bible/bbe/*   
+ ../../../___expand/rel/ham12/jsdb/bible/pinyin/CUV_chars/splitter/2015/*
+ ../../../___expand/rel/ham12/jsdb/bible/cuvs/*
+
+
 
 ./BookChapterVerseMax.js
 ./BookChapterVerseUti.js
