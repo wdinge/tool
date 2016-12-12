@@ -32,7 +32,7 @@
      BBE.Set  ('../../../___expand/rel/ham12/jsdb/bible/bbe/','');
      CUVpy.Set('../../../___expand/rel/ham12/jsdb/bible/pinyin/CUV_chars/splitter/2015/','');
      CUVs.Set ('../../../___expand/rel/ham12/jsdb/bible/bbc/','');
-     CUVs.WriteJs_CUVs();
+     //CUVs.WriteJs_CUVs();
      
     </script>
 
@@ -436,7 +436,7 @@ if(typeof(Storage)){
 }else{
   $("#debugInfo").append("<p>Not support html5 Storage!</p>");
 }
-$("#debugInfo").append("<p>BibleVersion:"+MyCookies.Get("selMainBible","CUVs")+"</p>");
+$("#debugInfo").append("<p>BibleVersion:"+MyCookies.Get("selMainBible")+"</p>");
     
     $("body").click(function(){
         console.log("body");
@@ -619,6 +619,7 @@ function SetFontSize(){
 
 </HEAD>
     <BODY xxxonload="body_onload();">
+<p id="debugInfo">#debugInfo</p>
 
 <div id="ntHolder" class="booksTableHolder">
       <table border="1" class="booksListTable">       
@@ -1279,7 +1280,7 @@ function SetFontSize(){
     </div>
 
 
-    <p id="debugInfo">debugInfo</p>
+
     <p id="timespan"></p>
 
     <div id="uictrl">

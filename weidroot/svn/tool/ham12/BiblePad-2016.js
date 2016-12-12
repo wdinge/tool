@@ -12,8 +12,8 @@ function body_onload() {
 	
 	
 	
-	MyCookies.Init({selMainBible:"CUVs",sBKeyId:"_Gen1_1",fontsize:"40",BookMark:'',email:''});
-	MyCookies.ExpireDays(77);
+	//MyCookies.Init({selMainBible:"CUVs",sBKeyId:"_Gen1_1",fontsize:"40",BookMark:'',email:''});
+
 	jQuery(window).bind('beforeunload', function(e) {
 		var i=MyCookies.Save();
 		alert("ss");//not work
@@ -27,7 +27,7 @@ function body_onload() {
 	var fnt=MyCookies.Get("fontsize");
     $("#selHistory > option[value='FontSet']").text("*Font "+parseInt(fnt)+"px");
 	
-	var selMainBible=MyCookies.Get("selMainBible", "CUVs");  
+	var selMainBible=MyCookies.Get("selMainBible");  
 	dynaLoadVersion(selMainBible);
     var bookID="bible_"+selMainBible;
     $("#selHistory > option[value='"+bookID+"']").text("Bible:"+selMainBible+"(loaded)");
@@ -681,7 +681,7 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
         //make it selectable for input. tranparent ovelap
         var txtid = BookChapterVerseUti.contextId(sky);
         var txt=$("#"+txtid).text();    
-        var bible=MyCookies.Get("selMainBible","CUVs");
+        var bible=MyCookies.Get("selMainBible");
         $("#"+txtid).html(Strn2Pickabl(txt, bible));
 		
 		var sbookmark="RemoveBookMark";
@@ -863,7 +863,7 @@ function CatchInvalidLoginDlg(ret,bLoginNow){
 
 
 function GetCurBible() {
-    var BibleVersion = MyCookies.Get("selMainBible","CUVs");
+    var BibleVersion = MyCookies.Get("selMainBible");
 	return dynaLoadVersion(BibleVersion);
 }
 
@@ -906,7 +906,7 @@ function GetBookFrCurBible(BookAbrv) {
     
     //prepare caps.
     var sBookname = gBookChapterVerse.getBookFullName(BookAbrv);//"wholistic bible ";
-    sBookname = "Version " + MyCookies.Get("selMainBible","CUVs") + " : " + sBookname;
+    sBookname = "Version " + MyCookies.Get("selMainBible") + " : " + sBookname;
     var cap="<p>"+sBookname+"</p><p>total verses:"+i+"</p>";
     if( sMinArr.length > 0 ){
         cap += "Min vers:"+sMinArr;
@@ -955,7 +955,7 @@ function GetSearch(str, BookAbrv) {
 
     }
     var sbook=gBookChapterVerse.getBookFullName(BookAbrv);
-    var scap="<p>" + MyCookies.Get("selMainBible","CUVs")+" : " + sbook + "</p>";
+    var scap="<p>" + MyCookies.Get("selMainBible")+" : " + sbook + "</p>";
     var captical="<capital>"+scap+"<p>search : "+str+"</p><p>total verses found: "+i+"</p></capital>";
     s = "<table border=1>"+captical+s+"</table>";
     
@@ -981,7 +981,7 @@ function GetSearch_old(str, BookAbrv) {
         }
     }
     var sbook=gBookChapterVerse.getBookFullName(BookAbrv);
-    var scap="<p>" + MyCookies.Get("selMainBible","CUVs")+" : " + sbook + "</p>";
+    var scap="<p>" + MyCookies.Get("selMainBible")+" : " + sbook + "</p>";
     var captical="<capital>"+scap+"<p>search : "+str+"</p><p>found total : "+i+"</p></capital>";
     s = "<table border=1>"+captical+s+"</table>";
     
@@ -1069,7 +1069,7 @@ function SearchChineseBibleThrouPinyin(strPinyin, BookAbrv){
     
     
     var sbookname = gBookChapterVerse.getBookFullName(BookAbrv);
-    var scap="<p>" + MyCookies.Get("selMainBible","CUVs") +" : " +sbookname + "</p>";
+    var scap="<p>" + MyCookies.Get("selMainBible") +" : " +sbookname + "</p>";
     
     var uniqFundWordsList="";
     for(var j in sUniqueWordsArr){

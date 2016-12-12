@@ -20,9 +20,14 @@ Get: function (cname, defaultValue=null) {
 	var str=localStorage.getItem(cname);
 	//alert("localStorage Get:"+cname+"="+str);
 	if(!str){
-		if (!this.cookie){alert("not init yet:"+cname); return defaultValue;};
+		if ( !this.cookie ){
+			alert("not init yet"); return "";
+		};
+		if ( !this.cookie[cname] ){
+			alert("not init value for:"+cname); return defaultValue;
+		};
 		//alert("Get default cookie:"+cname+"="+this.cookie[cname]);
-		return this.cookie[cname];
+		return defaultValue;//overide initial.
 	};
 	return str;
 },
