@@ -28,7 +28,7 @@ function body_onload() {
     $("#selHistory > option[value='FontSet']").text("*Font "+parseInt(fnt)+"px");
 	
 	var selMainBible=MyCookies.Get("selMainBible");  
-	dynaLoadVersion(selMainBible);
+	//dynaLoadVersion(selMainBible);
     var bookID="bible_"+selMainBible;
     $("#selHistory > option[value='"+bookID+"']").text("Bible:"+selMainBible+"(loaded)");
 	
@@ -725,13 +725,11 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 		atxt="<a>"+txt+"</a>";
         break;
     case "CUVs"://  translate chinese into chinese.
-		//CUVs.Load();
         construedstr = CUVs.DynamicLoadVerse(sky);//I[sky] ;
 		var txt = Strn2Pickabl(construedstr,vbible);
 		atxt="<a>"+txt+"</a>";
         break;
     case "CUVt"://translate chinese into jiaguwen.
-		//dynaLoadVersion("CUVs");
         var ss=CUVs.DynamicLoadVerse(sky);
         construedstr = z2g_convert2opposite(ss) ;
 		var txt = Strn2Pickabl(construedstr,vbible);
