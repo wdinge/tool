@@ -31,7 +31,7 @@
      HGR.Set  ('../../../___expand/rel/ham12/jsdb/bible/hgr/','');
      BBE.Set  ('../../../___expand/rel/ham12/jsdb/bible/bbe/','');
      CUVpy.Set('../../../___expand/rel/ham12/jsdb/bible/pinyin/CUV_chars/splitter/2015/','');
-     CUVs.Set ('../../../___expand/rel/ham12/jsdb/bible/bbc/','');
+     CUVs.Set ('../../../___expand/rel/ham12/jsdb/bible/cuvs/','');
      //CUVs.WriteJs_CUVs();
      
     </script>
@@ -436,7 +436,6 @@ if(typeof(Storage)){
 }else{
   $("#debugInfo").append("<p>Not support html5 Storage!</p>");
 }
-$("#debugInfo").append("<p>BibleVersion:"+MyCookies.Get("selMainBible")+"</p>");
     
     $("body").click(function(){
         console.log("body");
@@ -1986,6 +1985,8 @@ $(document).ready(function(){
    MyCookies.Init({selMainBible:"NIV",sBKeyId:"_Gen1_1",fontsize:"40",BookMark:'',email:''});
    body_onload();
    $("#dbginfo").hide();
+   $("#debugInfo").append("<p>BibleVersion:"+MyCookies.Get("selMainBible")+"</p>");
+
 });
 </script>
 

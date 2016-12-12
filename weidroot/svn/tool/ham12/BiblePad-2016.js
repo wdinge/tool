@@ -250,7 +250,7 @@ function LoadBookByFormat_CsV(sSearch, sBookId){//ChapterNum space VersNum
 function dynaLoadVersion(BVersion){
 	switch(BVersion){
 		case "CUVs":
-			//CUVs.Load();
+            CUVs.DynamicLoadVerse("all");
 			return I;
 		case "NIV":
 			NIV.DynamicLoadVerse("all");
@@ -726,13 +726,14 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
         break;
     case "CUVs"://  translate chinese into chinese.
 		//CUVs.Load();
-        construedstr = I[sky] ;
+        construedstr = CUVs.DynamicLoadVerse(sky);//I[sky] ;
 		var txt = Strn2Pickabl(construedstr,vbible);
 		atxt="<a>"+txt+"</a>";
         break;
     case "CUVt"://translate chinese into jiaguwen.
 		//dynaLoadVersion("CUVs");
-        construedstr = z2g_convert2opposite(I[sky]) ;
+        var ss=CUVs.DynamicLoadVerse(sky);
+        construedstr = z2g_convert2opposite(ss) ;
 		var txt = Strn2Pickabl(construedstr,vbible);
 		atxt="<a>"+txt+"</a>";
 

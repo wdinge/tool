@@ -4,24 +4,25 @@ var BookLoader=function(BookObj){
 	this.BBB=BookObj;//call by references	
 	this.Book2StartFileIndex = {};
 	this.Prefix="Niv_";
-	this.LoadAll=false;
+	this.bLoadAll=false;
 };
 BookLoader.prototype.Set=function(dir){
 	this.dir=dir;
 }
 BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 	if("all"===BookCapterVersID){
-		if(!this.LoadAll){
+		if(!this.bLoadAll){
 			this.LoadFiles(0, this.Book2StartFileIndex.END);	
-			this.LoadAll=true;		
+			this.bLoadAll=true;		
 		}		
 		return "";
 	}
 
 	if( !! this.BBB[BookCapterVersID] ) {
 		return this.BBB[BookCapterVersID];
-		};
+	};
 		
+	//if not exist, load the book and try again.
 	var book=BookCapterVersID.substr(0,4);
 	var StartFileIndx = this.Book2StartFileIndex[book];
 	var books=Object.keys(this.Book2StartFileIndex);
@@ -34,7 +35,7 @@ BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 	if( ! this.BBB[BookCapterVersID] ) {
 		alert("failed dynamically load bookChapterVers:"+BookCapterVersID);
 		return "err:"+BookCapterVersID;
-		};
+	};
 	return this.BBB[BookCapterVersID];
 };
 BookLoader.prototype.LoadFiles=function(start, end){
@@ -59,197 +60,85 @@ BookLoader.prototype.LoadFiles=function(start, end){
 		//alert("finished: inc_bibleNiv_run");
 		console.log("finished: inc_bibleNiv_run");
 }	
-BookLoader.prototype.WriteJs_CUVs=function(){
-	sdir = this.dir;
-    var CUV_JsFiles=this.Book2StartFileIndex;
-	for(key in CUV_JsFiles) {
-        var jsfile = sdir + CUV_JsFiles[key] + ".unicode.js";
-        var s="<";
-        s = s+ "script "+" language=\'javascript\' src=\'" + jsfile + "\'";
-        s = s + "></";
-        s = s + "script";
-        s = s + ">";
-        
-        document.write(s);
-		//$("head").append(s);
-		//console.log(":"+key+","+s);
-    }
-	console.log("finished: inc_bibleChinese_write");
-}	
-    
-    
-    
-    
-    
-    
 
-//////////////////	
-var CUV_JsFiles = new Object();
-CUV_JsFiles.bbi_000_0=  "bbi_000.0";
-CUV_JsFiles.bbi_000_1=  "bbi_000.1";
-CUV_JsFiles.bbi_000_2=  "bbi_000.2";
-CUV_JsFiles.bbi_000_3=  "bbi_000.3";
-CUV_JsFiles.bbi_0004a=  "bbi_000.4a";
-CUV_JsFiles.bbi_0004b=  "bbi_000.4b";
-CUV_JsFiles.bbi_0005a=  "bbi_000.5a";
-CUV_JsFiles.bbi_0005b=  "bbi_000.5b";
-CUV_JsFiles.bbi_000_6=  "bbi_000.6";
-CUV_JsFiles.bbi_001_1=  "bbi_001.1";
-CUV_JsFiles.bbi_001_2=  "bbi_001.2";
-CUV_JsFiles.bbi_001_3=  "bbi_001.3";
-CUV_JsFiles.bbi_001_4=  "bbi_001.4";
-CUV_JsFiles.bbi_001_5=  "bbi_001.5";
-CUV_JsFiles.bbi_002_1=  "bbi_002.1";
-CUV_JsFiles.bbi_002_2=  "bbi_002.2";
-CUV_JsFiles.bbi_002_3=  "bbi_002.3";
-CUV_JsFiles.bbi_003_1=  "bbi_003.1";
-CUV_JsFiles.bbi_003_2=  "bbi_003.2";
-CUV_JsFiles.bbi_003_3a= "bbi_003.3a";
-CUV_JsFiles.bbi_003_3b= "bbi_003.3b";
-CUV_JsFiles.bbi_003_4=  "bbi_003.4";
-CUV_JsFiles.bbi_003_5=  "bbi_003.5";
-CUV_JsFiles.bbi_004_0=  "bbi_004.0";
-CUV_JsFiles.bbi_004_1=  "bbi_004.1";
-CUV_JsFiles.bbi_004_2=  "bbi_004.2";
-CUV_JsFiles.bbi_004_3=  "bbi_004.3";
-CUV_JsFiles.bbi_004_4=  "bbi_004.4";
-CUV_JsFiles.bbi_005_1=  "bbi_005.1";
-CUV_JsFiles.bbi_005_2=  "bbi_005.2";
-CUV_JsFiles.bbi_005_3=  "bbi_005.3";
-CUV_JsFiles.bbi_006_1=  "bbi_006.1";
-CUV_JsFiles.bbi_006_2=  "bbi_006.2";
-CUV_JsFiles.bbi_006_3=  "bbi_006.3";
-CUV_JsFiles.bbi_007__=  "bbi_007"  ;
-CUV_JsFiles.bbi_008_1=  "bbi_008.1";
-CUV_JsFiles.bbi_008_2=  "bbi_008.2";
-CUV_JsFiles.bbi_008_3=  "bbi_008.3";
-CUV_JsFiles.bbi_008_4=  "bbi_008.4";
-CUV_JsFiles.bbi_009_1=  "bbi_009.1";
-CUV_JsFiles.bbi_009_2=  "bbi_009.2";
-CUV_JsFiles.bbi_009_3=  "bbi_009.3";
-CUV_JsFiles.bbi_010_1=  "bbi_010.1";
-CUV_JsFiles.bbi_010_2=  "bbi_010.2";
-CUV_JsFiles.bbi_010_3=  "bbi_010.3";
-CUV_JsFiles.bbi_010_4=  "bbi_010.4";
-CUV_JsFiles.bbi_011_0=  "bbi_011.0";
-CUV_JsFiles.bbi_011_1=  "bbi_011.1";
-CUV_JsFiles.bbi_011_2=  "bbi_011.2";
-CUV_JsFiles.bbi_011_3=  "bbi_011.3";
-CUV_JsFiles.bbi_012_1=  "bbi_012.1";
-CUV_JsFiles.bbi_012_2=  "bbi_012.2";
-CUV_JsFiles.bbi_012_3=  "bbi_012.3";
-CUV_JsFiles.bbi_012_4=  "bbi_012.4";
-CUV_JsFiles.bbi_013_1=  "bbi_013.1";
-CUV_JsFiles.bbi_013_2=  "bbi_013.2";
-CUV_JsFiles.bbi_013_3=  "bbi_013.3";
-CUV_JsFiles.bbi_013_4=  "bbi_013.4";
-CUV_JsFiles.bbi_014__=  "bbi_014"  ;
-CUV_JsFiles.bbi_015_1=  "bbi_015.1";
-CUV_JsFiles.bbi_015_2=  "bbi_015.2";
-CUV_JsFiles.bbi_016__=  "bbi_016"  ;
-CUV_JsFiles.bbi_017_1=  "bbi_017.1";
-CUV_JsFiles.bbi_017_2=  "bbi_017.2";
-CUV_JsFiles.bbi_017_3=  "bbi_017.3";
-CUV_JsFiles.bbi_017_4=  "bbi_017.4";
-CUV_JsFiles.bbi_018_1=  "bbi_018.1";
-CUV_JsFiles.bbi_018_2a= "bbi_018.2a";
-CUV_JsFiles.bbi_018_2b= "bbi_018.2b";
-CUV_JsFiles.bbi_018_3=  "bbi_018.3";
-CUV_JsFiles.bbi_018_4=  "bbi_018.4";
-CUV_JsFiles.bbi_018_5=  "bbi_018.5";
-CUV_JsFiles.bbi_018_6=  "bbi_018.6";
-CUV_JsFiles.bbi_018_7=  "bbi_018.7";
-CUV_JsFiles.bbi_018_8=  "bbi_018.8";
-CUV_JsFiles.bbi_019_1=  "bbi_019.1";
-CUV_JsFiles.bbi_019_2=  "bbi_019.2";
-CUV_JsFiles.bbi_019_3=  "bbi_019.3";
-CUV_JsFiles.bbi_020__=  "bbi_020"  ;
-CUV_JsFiles.bbi_021__=  "bbi_021"  ;
-CUV_JsFiles.bbi_022_1=  "bbi_022.1";
-CUV_JsFiles.bbi_022_2=  "bbi_022.2";
-CUV_JsFiles.bbi_0223a=  "bbi_022.3a";
-CUV_JsFiles.bbi_0223b=  "bbi_022.3b";
-CUV_JsFiles.bbi_022_4=  "bbi_022.4";
-CUV_JsFiles.bbi_022_5=  "bbi_022.5";
-CUV_JsFiles.bbi_023_0=  "bbi_023.0";
-CUV_JsFiles.bbi_023_1=  "bbi_023.1";
-CUV_JsFiles.bbi_023_2a= "bbi_023.2a";
-CUV_JsFiles.bbi_023_2b= "bbi_023.2b";
-CUV_JsFiles.bbi_023_3=  "bbi_023.3";
-CUV_JsFiles.bbi_023_4=  "bbi_023.4";
-CUV_JsFiles.bbi_023_5=  "bbi_023.5";
-CUV_JsFiles.bbi_023_6=  "bbi_023.6";
-CUV_JsFiles.bbi_024__=  "bbi_024"  ;
-CUV_JsFiles.bbi_025_1=  "bbi_025.1";
-CUV_JsFiles.bbi_025_2=  "bbi_025.2";
-CUV_JsFiles.bbi_025_3=  "bbi_025.3";
-CUV_JsFiles.bbi_025_4a= "bbi_025.4a";
-CUV_JsFiles.bbi_025_4b= "bbi_025.4b";
-CUV_JsFiles.bbi_025_5=  "bbi_025.5";
-CUV_JsFiles.bbi_026_1=  "bbi_026.1";
-CUV_JsFiles.bbi_026_2=  "bbi_026.2";
-CUV_JsFiles.bbi_027__=  "bbi_027"  ;
-CUV_JsFiles.bbi_028__=  "bbi_028"  ;
-CUV_JsFiles.bbi_029__=  "bbi_029"  ;
-CUV_JsFiles.bbi_030__=  "bbi_030"  ;
-CUV_JsFiles.bbi_031__=  "bbi_031"  ;
-CUV_JsFiles.bbi_032__=  "bbi_032"  ;
-CUV_JsFiles.bbi_033__=  "bbi_033"  ;
-CUV_JsFiles.bbi_034__=  "bbi_034"  ;
-CUV_JsFiles.bbi_035__=  "bbi_035"  ;
-CUV_JsFiles.bbi_036__=  "bbi_036"  ;
-CUV_JsFiles.bbi_037__=  "bbi_037"  ;
-CUV_JsFiles.bbi_038__=  "bbi_038"  ;
-CUV_JsFiles.bbi_039_1=  "bbi_039.1";
-CUV_JsFiles.bbi_039_2=  "bbi_039.2";
-CUV_JsFiles.bbi_039_3=  "bbi_039.3";
-CUV_JsFiles.bbi_039_4=  "bbi_039.4";
-CUV_JsFiles.bbi_039_5=  "bbi_039.5";
-CUV_JsFiles.bbi_040_1=  "bbi_040.1";
-CUV_JsFiles.bbi_040_2=  "bbi_040.2";
-CUV_JsFiles.bbi_040_3=  "bbi_040.3";
-CUV_JsFiles.bbi_041_1=  "bbi_041.1";
-CUV_JsFiles.bbi_041_2=  "bbi_041.2";
-CUV_JsFiles.bbi_041_3=  "bbi_041.3";
-CUV_JsFiles.bbi_041_4=  "bbi_041.4";
-CUV_JsFiles.bbi_041_5=  "bbi_041.5";
-CUV_JsFiles.bbi_042_1=  "bbi_042.1";
-CUV_JsFiles.bbi_042_2=  "bbi_042.2";
-CUV_JsFiles.bbi_042_3=  "bbi_042.3";
-CUV_JsFiles.bbi_043_1=  "bbi_043.1";
-CUV_JsFiles.bbi_043_2=  "bbi_043.2";
-CUV_JsFiles.bbi_043_3=  "bbi_043.3";
-CUV_JsFiles.bbi_043_4=  "bbi_043.4";
-CUV_JsFiles.bbi_044_1=  "bbi_044.1";
-CUV_JsFiles.bbi_044_2=  "bbi_044.2";
-CUV_JsFiles.bbi_045_1=  "bbi_045.1";
-CUV_JsFiles.bbi_045_2=  "bbi_045.2";
-CUV_JsFiles.bbi_046__=  "bbi_046"  ;
-CUV_JsFiles.bbi_047__=  "bbi_047"  ;
-CUV_JsFiles.bbi_048__=  "bbi_048"  ;
-CUV_JsFiles.bbi_049__=  "bbi_049"  ;
-CUV_JsFiles.bbi_050__=  "bbi_050"  ;
-CUV_JsFiles.bbi_051__=  "bbi_051"  ;
-CUV_JsFiles.bbi_052__=  "bbi_052"  ;
-CUV_JsFiles.bbi_053__=  "bbi_053"  ;
-CUV_JsFiles.bbi_054__=  "bbi_054"  ;
-CUV_JsFiles.bbi_055__=  "bbi_055"  ;
-CUV_JsFiles.bbi_056__=  "bbi_056"  ;
-CUV_JsFiles.bbi_057__=  "bbi_057"  ;
-CUV_JsFiles.bbi_058__=  "bbi_058"  ;
-CUV_JsFiles.bbi_059__=  "bbi_059"  ;
-CUV_JsFiles.bbi_060__=  "bbi_060"  ;
-CUV_JsFiles.bbi_061__=  "bbi_061"  ;
-CUV_JsFiles.bbi_062__=  "bbi_062"  ;
-CUV_JsFiles.bbi_063__=  "bbi_063"  ;
-CUV_JsFiles.bbi_064__=  "bbi_064"  ;
-CUV_JsFiles.bbi_065_1=  "bbi_065.1";
-CUV_JsFiles.bbi_065_2=  "bbi_065.2";
-//CUV_JsFiles.bbi_065_2=  "bbi_065.2";    
+    
+    
+    
+    
+  
     
 var I={};  //CUVs
 var CUVs=new BookLoader(I);  
-CUVs.Book2StartFileIndex=CUV_JsFiles;  
+CUVs.Prefix="cuv_"; 
+CUVs.Book2StartFileIndex={
+_Gen:0   ,//0 
+_Exo:9   ,//1 
+_Lev:14  ,//2 
+_Num:17  ,//3 
+_Deu:23  ,//4 
+_Jos:28  ,//5 
+_Jug:31  ,//6 
+_Rut:34  ,//7 
+_1Sa:35  ,//8 
+_2Sa:39  ,//9 
+_1Ki:42  ,//10
+_2Ki:46  ,//11
+_1Ch:50  ,//12
+_2Ch:54  ,//13
+_Ezr:58  ,//14
+_Neh:59  ,//15
+_Est:61  ,//16
+_Job:62  ,//17
+_Psm:66  ,//18
+_Pro:75  ,//19
+_Ecc:78  ,//20
+_Son:79  ,//21
+_Isa:80  ,//22
+_Jer:86  ,//23
+_Lam:94  ,//24
+_Eze:95  ,//25
+_Dan:101 ,//26
+_Hos:103 ,//27
+_Joe:104 ,//28
+_Amo:105 ,//29
+_Oba:106 ,//30
+_Jon:107 ,//31
+_Mic:108 ,//32
+_Nah:109 ,//33
+_Hab:110 ,//34
+_Zep:111 ,//35
+_Hag:112 ,//36
+_Zec:113 ,//37
+_Mal:114 ,//38
+_Mat:115 ,//39
+_Mak:120 ,//40
+_Luk:123 ,//41
+_Jhn:128 ,//42
+_Act:131 ,//43
+_Rom:135 ,//44
+_1Co:137 ,//45
+_2Co:139 ,//46
+_Gal:140 ,//47
+_Eph:141 ,//48
+_Phl:142 ,//49
+_Col:143 ,//50
+_1Ts:144 ,//51
+_2Ts:145 ,//52
+_1Ti:146 ,//53
+_2Ti:147 ,//54
+_Tit:148 ,//55
+_Phm:149 ,//56
+_Heb:150 ,//57
+_Jas:151 ,//58
+_1Pe:152 ,//59
+_2Pe:153 ,//60
+_1Jn:154 ,//61
+_2Jn:155 ,//62
+_3Jn:156 ,//63
+_Jud:157 ,//64
+_Rev:158 ,//65
+END:159 //inclusive
+};  
 
     
     
