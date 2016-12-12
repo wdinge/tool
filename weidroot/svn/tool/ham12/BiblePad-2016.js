@@ -28,6 +28,7 @@ function body_onload() {
     $("#selHistory > option[value='FontSet']").text("*Font "+parseInt(fnt)+"px");
 	
 	var selMainBible=MyCookies.Get("selMainBible");  
+    MasterBibleBookLoader.SetBibleVersion(selMainBible);
 	//dynaLoadVersion(selMainBible);
     var bookID="bible_"+selMainBible;
     $("#selHistory > option[value='"+bookID+"']").text("Bible:"+selMainBible+"(loaded)");
@@ -42,6 +43,7 @@ function body_onload() {
     
     var sBKeyId=MyCookies.Get("sBKeyId");
     console.log("body_onload:"+sBKeyId);
+    MasterBibleBookLoader.LoadBookChapVers(sBKeyId);
     
     var sbookid="_Gen";
     var bokname=BookJsONT[sbookid][1];
@@ -412,7 +414,7 @@ function GetBookFrCurBible_HistoryMarkersTable( skeyid ){
 	var oBibleBookChapterVerse=new BibleBookChapterVerse();
 	var skeyidsArr = getHistoryOfKeyIDs();
 	//skeyidsArr.sort();
-	var currBible=GetCurBible();
+	var currBible=MasterBibleBookLoader.BibleObj;//GetCurBible();
 	for( var i=0; i<skeyidsArr.length; i++ ){
 		var key=skeyidsArr[i];
 		var txt=currBible[key];
@@ -630,7 +632,7 @@ function Strn2Pickabl( txt, typeBible ){
 function construeItem_OnClick() {//on td 0 clicked, change the translation. 
     var sky = $(this).attr("verskey");
     var vbible = $(this).attr("value");  
-	//dynaLoadVersion(vbible);
+
 	var csid       = BookChapterVerseUti.construedId(sky);
 	var contrastId = BookChapterVerseUti.contrastId(sky);
 	var construteLableID=sky+"_lableID"; //????
@@ -704,6 +706,9 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 		atxt+="</div>";
 		window.open(surl,"_blank")
         return;
+
+
+
     case "NIV":
         construedstr = NIV.DynamicLoadVerse(sky);//N[sky] ;
 		var txt = Strn2Pickabl(construedstr,vbible);
@@ -813,7 +818,7 @@ function next_verse(csid, sky, iNext){
 			$("#"+csid).slideToggle('3000');//hide menu.
 			scrollIntoView2KeyId(nextID);				
 		}else{
-			var oBible=GetCurBible();
+			var oBible=MasterBibleBookLoader.BibleObj;//GetCurBible();
 			if( !oBible[nextID] ){
 				alert("Not exist");
 				return;
@@ -862,12 +867,14 @@ function CatchInvalidLoginDlg(ret,bLoginNow){
 
 
 function GetCurBible() {
-    var BibleVersion = MyCookies.Get("selMainBible");
+    return MasterBibleBookLoader.BibleObj;
+    var BibleVersion = MyCookies.Get("selMainBible"); // NIV
 	return dynaLoadVersion(BibleVersion);
 }
 
-function GetBookFrCurBible(BookAbrv) {
-    var oBible=GetCurBible(); 
+function GetBookFrCurBible(BookAbrv) { // _Gen
+    MasterBibleBookLoader.LoadBookChapVers(BookAbrv+"1_1");
+    var oBible=MasterBibleBookLoader.BibleObj;//GetCurBible(); 
     var oBibleBookChapterVerse=new BibleBookChapterVerse();
     oBibleBookChapterVerse.SetBookId(BookAbrv);
     
@@ -931,7 +938,7 @@ function GetBookFrCurBible(BookAbrv) {
 
 function GetSearch(str, BookAbrv) {
     if ( str.length==0) return ("");
-    var BIBVER=GetCurBible(); 
+    var BIBVER=MasterBibleBookLoader.BibleObj;//GetCurBible(); 
     var oBibleBookChapterVerse=new BibleBookChapterVerse();
     oBibleBookChapterVerse.SetBookId(BookAbrv);
     
@@ -963,7 +970,7 @@ function GetSearch(str, BookAbrv) {
 
 function GetSearch_old(str, BookAbrv) {
     if ( str.length==0) return ("");
-    var BIBVER=GetCurBible(); 
+    var BIBVER=MasterBibleBookLoader.BibleObj;//GetCurBible(); 
     
     var s="";
     var i=0;
