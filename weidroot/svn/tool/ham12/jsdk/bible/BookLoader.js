@@ -5,6 +5,7 @@ var BookLoader=function(BookObj){
 	this.Book2StartFileIndex = {};
 	this.Prefix="Niv_";
 	this.bLoadAll=false;
+	this.loadedBooksArr=[];
 };
 BookLoader.prototype.Set=function(dir){
 	this.dir=dir;
@@ -19,11 +20,19 @@ BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 	}
 
 	if( !! this.BBB[BookCapterVersID] ) {
-		return this.BBB[BookCapterVersID];
+		//return this.BBB[BookCapterVersID];
 	};
 		
 	//if not exist, load the book and try again.
 	var book=BookCapterVersID.substr(0,4);
+
+	//if book already loaded. return.
+	if( this.loadedBooksArr.indexOf(book)>=0 ){
+		return this.BBB[BookCapterVersID];
+	}
+
+	this.loadedBooksArr.push(book);
+
 	var StartFileIndx = this.Book2StartFileIndex[book];
 	var books=Object.keys(this.Book2StartFileIndex);
 	var indxBook = books.indexOf(book);
