@@ -249,39 +249,7 @@ function LoadBookByFormat_CsV(sSearch, sBookId){//ChapterNum space VersNum
     }
     return false;
 }
-function dynaLoadVersion(BVersion){
-	switch(BVersion){
-		case "CUVs":
-            CUVs.DynamicLoadVerse("all");
-			return I;
-		case "NIV":
-			NIV.DynamicLoadVerse("all");
-			return N;
-		case "KJV":
-			KJV.DynamicLoadVerse("all");
-			return K;
-        case "STU":
-			STU.DynamicLoadVerse("all");
-			return S;
-        case "HGR":
-			HGR.DynamicLoadVerse("all");
-			return H;
-		case "BBE":
-			BBE.DynamicLoadVerse("all");
-			return B;
-		case "CUVpy":
-			CUVpy.DynamicLoadVerse("all");
-			return P;			
-		case "CUVt":
-		case "TBI":
-			//CUVs.Load();
-			//Z2G.Load(); 
-			return null;
-		default:
-		break;
-	}
-    return I;
-}
+
 function findAbsolutePosition(obj) {
     var curleft = curtop = 0;
     if (obj.offsetParent) {
@@ -866,11 +834,7 @@ function CatchInvalidLoginDlg(ret,bLoginNow){
 }
 
 
-function GetCurBible() {
-    return MasterBibleBookLoader.BibleObj;
-    var BibleVersion = MyCookies.Get("selMainBible"); // NIV
-	return dynaLoadVersion(BibleVersion);
-}
+
 
 function GetBookFrCurBible(BookAbrv) { // _Gen
     MasterBibleBookLoader.LoadBookChapVers(BookAbrv+"1_1");
@@ -1027,8 +991,9 @@ function SearchChineseBibleThrouPinyin(strPinyin, BookAbrv){
     strPinyin = arrSearch.join(" ");
     var searchLen = arrSearch.length;
     var pinyinMatches= new Object();
-	dynaLoadVersion("CUVpy");
-	dynaLoadVersion("Z2G");
+    CUVpy.DynamicLoadVerse("all");
+	//dynaLoadVersion("CUVpy");
+	//dynaLoadVersion("Z2G");
     for ( key in P) {
         var iIndicator = oBibleBookChapterVerse.FilterKey(key);
         if(0===iIndicator) continue;
