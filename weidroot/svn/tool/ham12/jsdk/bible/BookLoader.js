@@ -4,14 +4,14 @@ var BookCollections={
   Moses:        ["_Gen","_Exo","_Lev","_Num","_Deu"],
   History:      ["_Jos","_Jug","_Rut","_1Sa","_2Sa","_1Ki","_2Ki","_1Ch","_2Ch","_Ezr","_Neh","_Est"],
   Literature:   ["_Job","_Psm","_Pro","_Ecc","_Son"],
-  MajorProphets:["_Isa","_Jer","_Lam","_Eze","_Dan"],
-  MinorProphets:["_Hos","_Joe","_Amo","_Oba","_Jon","_Mic","_Nah","_Hab","_Zep","_Hag","_Zec","_Mal"],
+  Major_Prophets:["_Isa","_Jer","_Lam","_Eze","_Dan"],
+  Minor_Prophets:["_Hos","_Joe","_Amo","_Oba","_Jon","_Mic","_Nah","_Hab","_Zep","_Hag","_Zec","_Mal"],
 
-  Gospels:   ["_Mat","_Mak","_Luk","_Jhn"],
-  Luke:      ["_Luk","_Act"],
-  Pauls:     ["_Rom","_1Co","_2Co","_Gal","_Eph","_Phl","_Col","_1Ts","_2Ts","_1Ti","_2Ti","_Tit","_Phm"],
-  Epistles:  ["_Heb","_Jas","_1Pe","_2Pe","_1Jn","_2Jn","_3Jn","_Jud"],
-  John:      ["_Jhn","_Rev"]
+  Gospels:   	["_Mat","_Mak","_Luk","_Jhn"],
+  Luke:      	["_Luk","_Act"],
+  Pauls:     	["_Rom","_1Co","_2Co","_Gal","_Eph","_Phl","_Col","_1Ts","_2Ts","_1Ti","_2Ti","_Tit","_Phm"],
+  Other_Epistles:["_Heb","_Jas","_1Pe","_2Pe","_1Jn","_2Jn","_3Jn","_Jud"],
+  John:      	["_Jhn","_Rev"]
 };
 
 
@@ -46,7 +46,7 @@ BookLoader.prototype.LoadBooks=function(sname){
 		this.LoadFiles(0, this.Book2StartFileIndex._Mat);
 		return;
 	} else if("NT"===sname){
-		this.LoadFiles(this.Book2StartFileIndex._Mat, his.Book2StartFileIndex.END);
+		this.LoadFiles(this.Book2StartFileIndex._Mat, this.Book2StartFileIndex.END);
 		return;
 	}
 
@@ -515,40 +515,40 @@ DynaGetBibleBookChapVerTxt:function( sBibleVersion, sky ){
 	var pBibleObj=null;
 	switch(sBibleVersion){
 	case "NIV":
-        this.ChapVerStr = NIV.DynamicLoadVerse(sky);//N[sky] ;
+        this.ChapVerStr = NIV.LoadBooks(sky);//N[sky] ;
         pBibleObj=NIV.BBB;
         break;		
     case "KJV":		
-        this.ChapVerStr = KJV.DynamicLoadVerse(sky);//K[sky] ;
+        this.ChapVerStr = KJV.LoadBooks(sky);//K[sky] ;
         pBibleObj=KJV.BBB;
         break;
     case "STU":		
-        this.ChapVerStr = STU.DynamicLoadVerse(sky);//K[sky] ;
+        this.ChapVerStr = STU.LoadBooks(sky);//K[sky] ;
         pBibleObj=STU.BBB;
         break;
     case "BBE":
-        this.ChapVerStr = BBE.DynamicLoadVerse(sky);//B[sky] ;
+        this.ChapVerStr = BBE.LoadBooks(sky);//B[sky] ;
         pBibleObj=BBE.BBB;
         break;
     case "CUVs"://  translate chinese into chinese.
-        this.ChapVerStr = CUVs.DynamicLoadVerse(sky);//I[sky] ;
+        this.ChapVerStr = CUVs.LoadBooks(sky);//I[sky] ;
         pBibleObj= CUVs.BBB;
         break;
     case "CUVt"://translate chinese into jiaguwen.
-        this.ChapVerStr =CUVs.DynamicLoadVerse(sky);
+        this.ChapVerStr =CUVs.LoadBooks(sky);
         BibleObj=CUVs.BBB;
         break;//
     case "CUVpy"://.
-        this.ChapVerStr = CUVpy.DynamicLoadVerse(sky);//P[sky] ;
+        this.ChapVerStr = CUVpy.LoadBooks(sky);//P[sky] ;
        	pBibleObj= CUVs.BBB;
         break;//
     case "TBI"://translate chinese into jiaguwen.
-    	this.ChapVerStr= CUVs.DynamicLoadVerse(sky);
+    	this.ChapVerStr= CUVs.LoadBooks(sky);
     	pBibleObj=CUVs.BBB;
         break; 
 
     case "HGR"://Hebrew or Greek.
-        this.ChapVerStr = HGR.DynamicLoadVerse(sky);//K[sky] ;
+        this.ChapVerStr = HGR.LoadBooks(sky);//K[sky] ;
         pBibleObj=NIV.BBB;
         break;
     case "HGS"://link

@@ -1551,6 +1551,8 @@ function ClickBook(me){
     //
     console.log("bkid="+bkid);
     var sBKeyId=bkid+"1_1";
+
+    MasterBibleBookLoader.LoadBookChapVers(bkid);
     LoadBookByFormat_BCV__WhenSelBook(sBKeyId, true);
     
    
