@@ -1529,15 +1529,14 @@ $(document).ready(function(){
 
 
 function ClickBook(me){
-    //console.log("");
+    //
 
     var bkid=$(me).attr("value");
     
     ////fill in number of chapters.
     ChapterVerseNumModel.Init(bkid);
     ChapterVerseNumModel.ClickChapterBtn();
-    //$("#selChapterNum").text("Chapter");
-    //var NumChaper=TotChapterOfBook[bkid];
+
 
     $(".booksListTable td").css("border","");
     $(me).css("border","2px solid #ffff00");
@@ -1546,11 +1545,10 @@ function ClickBook(me){
     var title=$(me).attr("title");
     if(title) bkt=title;
     $("#selBookId").attr("value",bkid).text(bkt);
-    //setCookie("selBookId",bkid,90);
+    //
     console.log("bkid="+bkid);
     var sBKeyId=bkid+"1_1";
-    if(LoadBookByFormat_BCV__WhenSelBook(sBKeyId, true)){
-    }
+    LoadBookByFormat_BCV__WhenSelBook(sBKeyId, true);
     
    
     return;

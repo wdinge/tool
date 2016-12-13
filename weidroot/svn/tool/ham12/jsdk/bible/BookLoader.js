@@ -1,38 +1,52 @@
 
 
+var BookCollections={
+  Moses:        ["_Gen","_Exo","_Lev","_Num","_Deu"],
+  History:      ["_Jos","_Jug","_Rut","_1Sa","_2Sa","_1Ki","_2Ki","_1Ch","_2Ch","_Ezr","_Neh","_Est"],
+  Literature:   ["_Job","_Psm","_Pro","_Ecc","_Son"],
+  MajorProphets:["_Isa","_Jer","_Lam","_Eze","_Dan"],
+  MinorProphets:["_Hos","_Joe","_Amo","_Oba","_Jon","_Mic","_Nah","_Hab","_Zep","_Hag","_Zec","_Mal"],
+
+  Gospels:   ["_Mat","_Mak","_Luk","_Jhn"],
+  Luke:      ["_Luk","_Act"],
+  Pauls:     ["_Rom","_1Co","_2Co","_Gal","_Eph","_Phl","_Col","_1Ts","_2Ts","_1Ti","_2Ti","_Tit","_Phm"],
+  Epistles:  ["_Heb","_Jas","_1Pe","_2Pe","_1Jn","_2Jn","_3Jn","_Jud"],
+  John:      ["_Jhn","_Rev"]
+};
+
+
+
+
 var BookLoader=function(BookObj){
 	this.BBB=BookObj;//call by references	
 	this.Book2StartFileIndex = {};
 	this.Prefix="Niv_";
-	this.bLoadAll=false;
-	this.loadedBooksArr=[];
+	this.LoadedFileIndxArr=[]; //prevent repeat load
+	this.bLoadedAll=false;
 };
 BookLoader.prototype.Set=function(dir){
 	this.dir=dir;
 }
+BookLoader.prototype.LoadBookCollection=function(KeyCollectionArr){
+	var _pThis=this;
+	$.each(KeyCollectionArr,function(i, key){
+		_pThis.LoadBookByBookChapVerId(key);
+	});
+};
+
 BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
-	if("all"===BookCapterVersID){
-		if(!this.bLoadAll){
-			this.LoadFiles(0, this.Book2StartFileIndex.END);	
-			this.bLoadAll=true;		
-		}		
-		return "";
-	}
+	//
+	this.LoadBookByBookChapVerId(BookCapterVersID);
 
-	if( !! this.BBB[BookCapterVersID] ) {
-		//return this.BBB[BookCapterVersID];
+	if( ! this.BBB[BookCapterVersID] ) {
+		alert("failed dynamically load bookChapterVers:"+BookCapterVersID);
+		return "err:"+BookCapterVersID;
 	};
-		
-	//if not exist, load the book and try again.
+	return this.BBB[BookCapterVersID];
+};
+BookLoader.prototype.LoadBookByBookChapVerId=function(BookCapterVersID){
+	// _Gen1_1
 	var book=BookCapterVersID.substr(0,4);
-
-	//if book already loaded. return.
-	if( this.loadedBooksArr.indexOf(book)>=0 ){
-		return this.BBB[BookCapterVersID];
-	}
-
-	this.loadedBooksArr.push(book);
-
 	var StartFileIndx = this.Book2StartFileIndex[book];
 	var books=Object.keys(this.Book2StartFileIndex);
 	var indxBook = books.indexOf(book);
@@ -40,17 +54,23 @@ BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 	var bookNext = books[indxBookNext];
 	var EndFileIndx = this.Book2StartFileIndex[bookNext];
 	this.LoadFiles(StartFileIndx,EndFileIndx);
-	
-	if( ! this.BBB[BookCapterVersID] ) {
-		alert("failed dynamically load bookChapterVers:"+BookCapterVersID);
-		return "err:"+BookCapterVersID;
-	};
-	return this.BBB[BookCapterVersID];
+};
+BookLoader.prototype.LoadAll=function(){
+   if( !this.bLoadedAll ){
+        this.LoadFiles(0, this.Book2StartFileIndex.END);        
+        this.bLoadedAll=true;             
+    }   
 };
 BookLoader.prototype.LoadFiles=function(start, end){
 		var sdir=this.dir;
 		console.log("LoadFiles dir:"+sdir+":"+start+ ","+ end);
 		for( var i=start; i<=end; i++) {
+
+			if(this.LoadedFileIndxArr.indexOf(i)>=0){
+				continue;//already loaded.
+			}
+			this.LoadedFileIndxArr.push(i);
+
 			sid = "00" + i;
 			sid = sid.substr(sid.length-3,6);
 			var jsfile = sdir + this.Prefix + sid + ".js";
@@ -69,12 +89,9 @@ BookLoader.prototype.LoadFiles=function(start, end){
 		//alert("finished: inc_bibleNiv_run");
 		console.log("finished: inc_bibleNiv_run");
 }	
+	
+    
 
-    
-    
-    
-    
-  
     
 var I={};  //CUVs
 var CUVs=new BookLoader(I);  
@@ -146,7 +163,7 @@ _2Jn:155 ,//62
 _3Jn:156 ,//63
 _Jud:157 ,//64
 _Rev:158 ,//65
-END:159 //inclusive
+END:159, //inclusive
 };  
 
     

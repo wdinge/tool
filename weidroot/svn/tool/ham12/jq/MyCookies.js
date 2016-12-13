@@ -24,8 +24,8 @@ Get: function (cname, defaultValue=null) {
 			alert("not init yet"); 
 			return "";
 		};
-		if ( !this.cookie[cname] ){
-			alert("not init value for:"+cname); 
+		if ( typeof this.cookie[cname] == "undefined"  ){
+			alert("no init value for:"+cname); 
 			return "";
 		};
 		if( !defaultValue ){
