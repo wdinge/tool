@@ -49,25 +49,31 @@ BookLoader.prototype.LoadBooks=function(sname){
 		this.LoadFiles(this.Book2StartFileIndex._Mat, his.Book2StartFileIndex.END);
 		return;
 	}
+
 	var CollectsArr=BookCollections[sname];
 	if(CollectsArr) {
 		this.LoadBookCollection(CollectsArr);
 		return;
 	}
-	this.LoadBookByBookChapVerId(sname);
+
+	var BookId=sname.substr(0,4);
+	if( typeof this.Book2StartFileIndex[BookId] === 'undefined'){
+		alert("failed to load Bible book for: "+sname);
+		return;
+	};
+	this.LoadBookByBookId(BookId);
 };
 BookLoader.prototype.LoadBookCollection=function(KeyCollectionArr){
 	var _pThis=this;
 	$.each(KeyCollectionArr,function(i, key){
-		_pThis.LoadBookByBookChapVerId(key);
+		_pThis.LoadBookByBookId(key);
 	});
 };
-BookLoader.prototype.LoadBookByBookChapVerId=function(BookCapterVersID){
+BookLoader.prototype.LoadBookByBookId=function(BookId){
 	// _Gen1_1
-	var book=BookCapterVersID.substr(0,4);
-	var StartFileIndx = this.Book2StartFileIndex[book];
+	var StartFileIndx = this.Book2StartFileIndex[BookId];
 	var books=Object.keys(this.Book2StartFileIndex);
-	var indxBook = books.indexOf(book);
+	var indxBook = books.indexOf(BookId);
 	var indxBookNext = indxBook+1;
 	var bookNext = books[indxBookNext];
 	var EndFileIndx = this.Book2StartFileIndex[bookNext];
