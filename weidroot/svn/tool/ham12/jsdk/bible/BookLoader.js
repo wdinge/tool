@@ -27,22 +27,40 @@ var BookLoader=function(BookObj){
 BookLoader.prototype.Set=function(dir){
 	this.dir=dir;
 }
-BookLoader.prototype.LoadBookCollection=function(KeyCollectionArr){
-	var _pThis=this;
-	$.each(KeyCollectionArr,function(i, key){
-		_pThis.LoadBookByBookChapVerId(key);
-	});
-};
 
 BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 	//
-	this.LoadBookByBookChapVerId(BookCapterVersID);
+	this.LoadBooks(BookCapterVersID);
 
 	if( ! this.BBB[BookCapterVersID] ) {
 		alert("failed dynamically load bookChapterVers:"+BookCapterVersID);
 		return "err:"+BookCapterVersID;
 	};
 	return this.BBB[BookCapterVersID];
+};
+BookLoader.prototype.LoadBooks=function(sname){
+	if("all"===sname){
+		this.LoadFiles(0, this.Book2StartFileIndex.END); 
+		return;
+	} else if("OT"===sname){
+		this.LoadFiles(0, this.Book2StartFileIndex._Mat);
+		return;
+	} else if("NT"===sname){
+		this.LoadFiles(this.Book2StartFileIndex._Mat, his.Book2StartFileIndex.END);
+		return;
+	}
+	var CollectsArr=BookCollections[sname];
+	if(CollectsArr) {
+		this.LoadBookCollection(CollectsArr);
+		return;
+	}
+	this.LoadBookByBookChapVerId(sname);
+};
+BookLoader.prototype.LoadBookCollection=function(KeyCollectionArr){
+	var _pThis=this;
+	$.each(KeyCollectionArr,function(i, key){
+		_pThis.LoadBookByBookChapVerId(key);
+	});
 };
 BookLoader.prototype.LoadBookByBookChapVerId=function(BookCapterVersID){
 	// _Gen1_1
@@ -486,6 +504,63 @@ _Rev:169  ,//  65
 END:171 //inclusive
 };
 
+var BibleBookLoader={
+DynaGetBibleBookChapVerTxt:function( sBibleVersion, sky ){
+	var pBibleObj=null;
+	switch(sBibleVersion){
+	case "NIV":
+        this.ChapVerStr = NIV.DynamicLoadVerse(sky);//N[sky] ;
+        pBibleObj=NIV.BBB;
+        break;		
+    case "KJV":		
+        this.ChapVerStr = KJV.DynamicLoadVerse(sky);//K[sky] ;
+        pBibleObj=KJV.BBB;
+        break;
+    case "STU":		
+        this.ChapVerStr = STU.DynamicLoadVerse(sky);//K[sky] ;
+        pBibleObj=STU.BBB;
+        break;
+    case "BBE":
+        this.ChapVerStr = BBE.DynamicLoadVerse(sky);//B[sky] ;
+        pBibleObj=BBE.BBB;
+        break;
+    case "CUVs"://  translate chinese into chinese.
+        this.ChapVerStr = CUVs.DynamicLoadVerse(sky);//I[sky] ;
+        pBibleObj= CUVs.BBB;
+        break;
+    case "CUVt"://translate chinese into jiaguwen.
+        this.ChapVerStr =CUVs.DynamicLoadVerse(sky);
+        BibleObj=CUVs.BBB;
+        break;//
+    case "CUVpy"://.
+        this.ChapVerStr = CUVpy.DynamicLoadVerse(sky);//P[sky] ;
+       	pBibleObj= CUVs.BBB;
+        break;//
+    case "TBI"://translate chinese into jiaguwen.
+    	this.ChapVerStr= CUVs.DynamicLoadVerse(sky);
+    	pBibleObj=CUVs.BBB;
+        break; 
+
+    case "HGR"://Hebrew or Greek.
+        this.ChapVerStr = HGR.DynamicLoadVerse(sky);//K[sky] ;
+        pBibleObj=NIV.BBB;
+        break;
+    case "HGS"://link
+	default:
+		alert("error bible version :"+sBibleVersion);
+		return;
+    };//switch
+    var ret={pBibleObj:null, Txt:''}
+    ret.pBibleObj=pBibleObj;
+
+    if(null===pBibleObj){
+    	alert("fatal err bible load.");
+    	return ret;
+    }
+    ret.Txt=pBibleObj[sky]
+    return ret;
+},
+};
 
 //MasterBible
 var MasterBibleBookLoader={
@@ -495,48 +570,9 @@ SetBibleVersion:function(BibleVersion){
 	this.ChapVerStr="";
 },
 LoadBookChapVers:function( sky ){
-	switch(this.BibleVersion){
-	case "NIV":
-        this.ChapVerStr = NIV.DynamicLoadVerse(sky);//N[sky] ;
-        this.BibleObj=NIV.BBB;
-        break;		
-    case "KJV":		
-        this.ChapVerStr = KJV.DynamicLoadVerse(sky);//K[sky] ;
-        this.BibleObj=KJV.BBB;
-        break;
-    case "STU":		
-        this.ChapVerStr = STU.DynamicLoadVerse(sky);//K[sky] ;
-        this.BibleObj=STU.BBB;
-        break;
-    case "BBE":
-        this.ChapVerStr = BBE.DynamicLoadVerse(sky);//B[sky] ;
-        this.BibleObj=BBE.BBB;
-        break;
-    case "CUVs"://  translate chinese into chinese.
-        this.ChapVerStr = CUVs.DynamicLoadVerse(sky);//I[sky] ;
-        this.BibleObj= CUVs.BBB;
-        break;
-    case "CUVt"://translate chinese into jiaguwen.
-        this.ChapVerStr =CUVs.DynamicLoadVerse(sky);
-        this.BibleObj=CUVs.BBB;
-        break;//
-    case "CUVpy"://.
-        this.ChapVerStr = CUVpy.DynamicLoadVerse(sky);//P[sky] ;
-        this.BibleObj= CUVs.BBB;
-        break;//
-    case "TBI"://translate chinese into jiaguwen.
-    	this.ChapVerStr= CUVs.DynamicLoadVerse(sky);
-    	this.BibleObj=CUVs.BBB;
-        break; 
-
-    case "HGR"://Hebrew or Greek.
-        this.ChapVerStr = HGR.DynamicLoadVerse(sky);//K[sky] ;
-        this.BibleObj=NIV.BBB;
-        break;
-    case "HGS"://link
-	default:
-		alert("error bible version :"+this.BibleVersion);
-		return;
-    };//switch
+	var ret = BibleBookLoader.DynaGetBibleBookChapVerTxt(this.BibleVersion, sky);
+	this.BibleObj=ret.pBibleObj;
+	this.ChapVerStr=ret.Txt;
+	return ret.Txt;
 },
 };
