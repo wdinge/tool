@@ -21,11 +21,16 @@ Get: function (cname, defaultValue=null) {
 	//alert("localStorage Get:"+cname+"="+str);
 	if(!str){
 		if ( !this.cookie ){
-			alert("not init yet"); return "";
+			alert("not init yet"); 
+			return "";
 		};
 		if ( !this.cookie[cname] ){
-			alert("not init value for:"+cname); return defaultValue;
+			alert("not init value for:"+cname); 
+			return "";
 		};
+		if( !defaultValue ){
+			return this.cookie[cname];
+		}
 		//alert("Get default cookie:"+cname+"="+this.cookie[cname]);
 		return defaultValue;//overide initial.
 	};
