@@ -509,7 +509,7 @@ LoadBookChapVers:function( sky ){
         break;
     case "HGS"://link
 	default:
-		alert("error bible version :"+vbible);
+		alert("error bible version :"+this.BibleVersion);
 		return;
     };//switch
 },
