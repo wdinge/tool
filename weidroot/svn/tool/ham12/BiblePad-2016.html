@@ -1538,8 +1538,11 @@ function ClickBook(me){
     ChapterVerseNumModel.ClickChapterBtn();
 
 
-    $(".booksListTable td").css("border","");
+    //.booksListTable td 
+    $(".booknameBtn").css("border","");
     $(me).css("border","2px solid #ffff00");
+
+    $(me).parent().find(".tidx:eq(0)").css("border","3px solid #f0f000");
 
     var bkt=$(me).text();
     var title=$(me).attr("title");
