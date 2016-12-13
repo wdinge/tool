@@ -952,11 +952,11 @@ function GetSearch(str, BookAbrv) {
         if(0===iIndicator) continue;
         if(2===iIndicator) break;
         
-        var chinesebible = BIBVER[key];
-        if (chinesebible.search(str)>=0) {
-            chinesebible = chinesebible.replace(reg, str2);
+        var vers = BIBVER[key];
+        if (vers.search(str)>=0) {
+            vers = vers.replace(reg, str2);
             i+=1;
-            s += GetTR1(1,oBibleBookChapterVerse.isKeySaying, key, chinesebible);//search wild
+            s += GetTR1(1,oBibleBookChapterVerse.isKeySaying, key, vers);//search wild
         }
 
     }

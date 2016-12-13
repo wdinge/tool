@@ -574,23 +574,13 @@ function selHistoryRun(serchVal){
 
 function selectBibleVersion(selval){
     var bibleVerson= selval.substr(6);
-	var txt= $("#selHistory > option[value='"+selval+"']").text();
-	var ipos=txt.indexOf("loaded");
-	if(ipos<0){
-		if(!confirm(selval+ " needs long time to load. \n\nContinue?")) return;
-	}
-	
-	var startDate = new Date();
-    dynaLoadVersion(bibleVerson);
-	var ms = (new Date()) - startDate;
 
-    $("#selHistory > option[value='"+selval+"']").text(selval+"(loaded)");
-	if(!confirm(selval+" is loaded in "+ms.toString()+"ms.\n\nSet it as default book?")){
-		return;
-	}
-    MyCookies.Set("selMainBible",bibleVerson);
+	   if(!confirm("Set the master Bible as "+bibleVerson+"?\n\n(Need Refresh)")){
+		    return;
+	   }
+     MyCookies.Set("selMainBible",bibleVerson);
 
-    StartToGo(true); //
+    //StartToGo(true); //
 }
 
 function SetFontSize(){
