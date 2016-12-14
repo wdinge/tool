@@ -198,31 +198,7 @@ function LoadBookByFormat_BCV(sSearch, bForceReload){//BookId, ChapterNum, Verse
     }
     return false;
 }
-function LoadBookByFormat_BCV__WhenSelBook(sSearch, bForceReload){//BookId, ChapterNum, VerseNum.
-    $("#vbibtxt").html( GetBookFrCurBible( sSearch ) ) ;
- 
-    if( gBookChapterVerse.ParseAsFormat_BookidChapter_Ver( sSearch ) ){
-            var sKeySerchVers = gBookChapterVerse.m_sKeyId;
-            gsKeySerchVers=     sKeySerchVers;  
-            //alert(gsKeySerchVers);
-            AddIntoHistory(sKeySerchVers);
-            if( !bForceReload ){
-                if(true === scrollIntoView2KeyId(sKeySerchVers)){
-                    return true;
-                }
-            }
-            $("#vbibtxt").html( GetBookFrCurBible( gBookChapterVerse.m_sBookId ) ) ;
-            updateFontSize();
-           //AddIntoHistory(sKeySerchVers);
-            $("#selHistory").val("");                                         
-            //minimizeMainMenuControl();
-            scrollIntoView2KeyId(sKeySerchVers);//not work onload.
-            //alert(gsKeySerchVers);
-            setTimeout("scrollIntoView2KeyId('"+gsKeySerchVers+"')",100);
-            return true;
-    }
-    return false;
-}
+
 function LoadBookByFormat_CsV(sSearch, sBookId){//ChapterNum space VersNum
     if( gBookChapterVerse.IsNumbersOfChaperVersus(sSearch) ){
                         if( false===gBookChapterVerse.isBookId(sBookId) ){
