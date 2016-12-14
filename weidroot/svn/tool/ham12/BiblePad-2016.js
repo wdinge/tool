@@ -675,31 +675,28 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 		window.open(surl,"_blank")
         return;
 
+    case "HGS":
+        var mat=sky.match(/([_][\w]{3})([\d]+)[_]([\d]+)/);
+        var bkidx=BookID2IdxCode[ mat[1] ];
+        var chap=mat[2];
+        while (chap.length<3) chap="0"+chap;
+        var file=bkidx[0] + mat[1] + "_" + chap + ".htm#"+mat[3];
+        
+        
+        var url="../../../___expand/rel/hgsbible/hgb/"+file;
+        window.open(url,"_blank")
+        return;
+
 
 
         //BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
-    case "NIV":
-        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
-		var txt = Strn2Pickabl(ret.Txt, vbible);
-		atxt="<a>"+txt+"</a>";
-        break;		
+    case "NIV":	
     case "KJV":		
-        //construedstr = KJV.DynamicLoadVerse(sky);//K[sky] ;
-        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
-		var txt = Strn2Pickabl(ret.Txt,vbible);
-		atxt="<a>"+txt+"</a>";
-        break;
     case "STU":		
-        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
-        var txt = Strn2Pickabl(ret.Txt,vbible);
-		atxt="<a>"+txt+"</a>";
-        break;
     case "BBE":
-        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
-        var txt = Strn2Pickabl(ret.Txt,vbible);
-		atxt="<a>"+txt+"</a>";
-        break;
     case "CUVs"://  translate chinese into chinese.
+    case "CUVpy"://.
+    case "HGR"://Hebrew or Greek.
         var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
         var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
@@ -712,13 +709,7 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 		atxt="<a>"+txt+"</a>";
 
         break;//
-    case "CUVpy"://.
-        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
-		var txt = Strn2Pickabl(ret.Txt,vbible);
-		atxt="<a>"+txt+"</a>";
-        //scolor="#555444";
-        //em.style.backgroundColor="#ff11aa";
-        break;//
+ 
     case "TBI"://translate chinese into jiaguwen.
         var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt("CUVs",sky);
         construedstr = z2g_translate2jiaguwen(ret.Txt)  ;
@@ -726,30 +717,6 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
         //scolor="#333333";//TBI EDB10C;
         //em.style.backgroundColor="#aaff11";
         break; 
-
-    case "HGR"://Hebrew or Greek.
-        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
-        var txt = Strn2Pickabl(ret.Txt,vbible);
-		atxt="<a>"+txt+"</a>";
-        break;
-
-
-
-    case "HGS"://translate chinese into jiaguwen.
-        //construedstr = HGR.DynamicLoadVerse(sky);//K[sky] ;
-		//var txt = Strn2Pickabl(construedstr,vbible);
-		//atxt="<a>"+txt+"</a>";
-        var mat=sky.match(/([_][\w]{3})([\d]+)[_]([\d]+)/);
-        var bkidx=BookID2IdxCode[ mat[1] ];
-        var chap=mat[2];
-        while (chap.length<3) chap="0"+chap;
-        var file=bkidx[0] + mat[1] + "_" + chap + ".htm#"+mat[3];
-        
-        
-        var url="../../../___expand/rel/hgsbible/hgb/"+file;
-        window.open(url,"_blank")
-        console.log(sky, construedstr, vbible)
-        return;
 
 	default:
 		alert("error version type:"+vbible);
