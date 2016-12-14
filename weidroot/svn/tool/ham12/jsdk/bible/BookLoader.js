@@ -1,6 +1,10 @@
 
 
 var BookCollections={
+	all:["all books of bible"],
+	OT:["Old Testment"],
+	NT:["New Testment"],
+
   Moses:        ["_Gen","_Exo","_Lev","_Num","_Deu"],
   History:      ["_Jos","_Jug","_Rut","_1Sa","_2Sa","_1Ki","_2Ki","_1Ch","_2Ch","_Ezr","_Neh","_Est"],
   Literature:   ["_Job","_Psm","_Pro","_Ecc","_Son"],
@@ -39,20 +43,21 @@ BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 	return this.BBB[BookCapterVersID];
 };
 BookLoader.prototype.LoadBooks=function(sname){
-	if("all"===sname){
-		this.LoadFiles(0, this.Book2StartFileIndex.END); 
-		return;
-	} else if("OT"===sname){
-		this.LoadFiles(0, this.Book2StartFileIndex._Mat);
-		return;
-	} else if("NT"===sname){
-		this.LoadFiles(this.Book2StartFileIndex._Mat, this.Book2StartFileIndex.END);
-		return;
-	}
-
 	var CollectsArr=BookCollections[sname];
 	if(CollectsArr) {
-		this.LoadBookCollection(CollectsArr);
+		if("all"===sname){
+			this.LoadFiles(0, this.Book2StartFileIndex.END); 
+			return;
+		} else if("OT"===sname){
+			this.LoadFiles(0, this.Book2StartFileIndex._Mat);
+			return;
+		} else if("NT"===sname){
+			this.LoadFiles(this.Book2StartFileIndex._Mat, this.Book2StartFileIndex.END);
+			return;
+		}
+		else{
+			this.LoadBookCollection(CollectsArr);			
+		}
 		return;
 	}
 
