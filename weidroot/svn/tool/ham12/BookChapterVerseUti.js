@@ -140,7 +140,7 @@ _Rev:22  ,
 
 
 
-ONT:            1189,
+OTNT:            1189,
 OT:             929,
 Moses:          187,
 History:        249,
@@ -156,7 +156,7 @@ Other_Epistles: 34,
 };
 
 var BookJsFlavor={
-ONT:             ['#510000','wholistic Bible', '圣经全书'],
+OTNT:             ['#510000','wholistic Bible', '圣经全书'],
 OT:              ['#001040','O.T.',            '旧约全书'],
 Moses:           ['#002E63','Moses',           '摩西五经'],
 History:         ['#002E63','History',         '历史'],
@@ -538,7 +538,7 @@ BibleBookChapterVerse.prototype.SetBookId=function (sbookid) {
     this.iBooksRangeReadingInstructor=0;
     this.sBookId=sbookid;
     switch (sbookid){
-        case "ONT"://OT and NT
+        case "OTNT"://OT and NT
         case ""://whole book
             this.sKeyIdFlagStart="_Gen1_1";
             this.sKeyIdFlagStop="";
@@ -650,7 +650,7 @@ BibleBookChapterVerse.prototype.FilterKey=function (key) {
             }
             return 0;
         break;
-        case 1://gospel, NT, OT, Moses, ONT etc. continued multi books.
+        case 1://gospel, NT, OT, Moses, OTNT etc. continued multi books.
             if(this.sKeyIdFlagStart===key){
                 this.iBooksRangeReadingInstructor=1;//available loop.
             }
