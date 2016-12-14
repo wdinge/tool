@@ -65,7 +65,8 @@ _1Jn:[10,29,24,21,21],
 _2Jn:[13],
 _3Jn:[15],
 _Jud:[25],
-_Rev:[20,29,22,11,14,17,17,13,21,11,19,17,18,20,8,21,18,24,21,15,27,21]};
+_Rev:[20,29,22,11,14,17,17,13,21,11,19,17,18,20,8,21,18,24,21,15,27,21]
+};//BookChapterVerseMax
     
 
 
@@ -82,18 +83,44 @@ Push_BCV_KeyArr_By_BookId:function(BCV_KeyArr, BookId){
 		});
 },
 Push_BCV_KeyArr_By_BookIdsArr:function(BCV_KeyArr, BookIdsArr){
-		var BCV_Arr=[];
 		$.each(BookIdsArr,function(idx,BookId){
-			this.Push_BCV_KeyArr_By_BookId(BCV_KeyArr,BookId);
+			BookChapterVerseMaxUti.Push_BCV_KeyArr_By_BookId(BCV_KeyArr,BookId);
 		});
-		return BCV_Arr;
 },
-Get_BCV_KeyArr_By_OTNT:function(sOTNT){
-		var BCV_Arr=[];
-		$.each(BookIdsArr,function(idx,BookId){
-			this.Get_BCV_KeyArr_By_BookId(BookId);
-		});
-		return BCV_Arr;
+Push_BCV_KeyArr_For_OT:function(BCV_KeyArr){
+	var BookIdsArr=Object.keys(BookChapterVerseMax);
+	for (i=0;i<39;i++){
+		var BookId=BookIdsArr[i];
+		this.Push_BCV_KeyArr_By_BookId(BCV_KeyArr,BookId);
+	}
+},
+Push_BCV_KeyArr_For_NT:function(BCV_KeyArr){
+	var BookIdsArr=Object.keys(BookChapterVerseMax);
+	for (i=39;i<66;i++){
+		var BookId=BookIdsArr[i];
+		this.Push_BCV_KeyArr_By_BookId(BCV_KeyArr,BookId);
+	}
+},
+Push_BCV_KeyArr_For_OTNT:function(BCV_KeyArr){
+	this.Push_BCV_KeyArr_For_OT(BCV_KeyArr);
+	this.Push_BCV_KeyArr_For_NT(BCV_KeyArr);
+},
+Push_BCV_KeyArr:function(BCV_KeyArr, AnyId){
+	if("OT"===AnyId)   {this.Push_BCV_KeyArr_For_OT(BCV_KeyArr); return 1;}   
+	if("NT"===AnyId)   {this.Push_BCV_KeyArr_For_NT(BCV_KeyArr); return 1;}
+	if("OTNT"===AnyId) {this.Push_BCV_KeyArr_For_OTNT(BCV_KeyArr);return 1;}
+	if(AnyId.length<4){
+	    alert("Invalid key:"+AnyId);
+		return 0;
+	}
+	var BookId=AnyId.substr(0,4);
+	if( typeof BookChapterVerseMax[BookId] === "undefined"){
+	}
+	else{
+		this.Push_BCV_KeyArr_By_BookId(BCV_KeyArr,BookId);
+		return 1;
+	}
+	return 0;//failed to load.
 },
 };
 

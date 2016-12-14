@@ -788,7 +788,14 @@ function GetBookFrCurBible(BookAbrv) { // _Gen
     oBibleBookChapterVerse.SetBookId(BookAbrv);
 
     var KeysArr=[];
-    BookChapterVerseMaxUti.Push_BCV_KeyArr_By_BookId(KeysArr, BookAbrv);
+    var ret=BookChapterVerseMaxUti.Push_BCV_KeyArr(KeysArr, BookAbrv);
+    if(!ret){
+        var BookIdsArr=BookCollections[BookAbrv];
+        if(typeof BookIdsArr === "undefine"){
+            return alert("invalid BookAbrav="+BookAbrv);
+        }
+        BookChapterVerseMaxUti.Push_BCV_KeyArr_By_BookIdsArr(KeysArr, BookIdsArr);
+    }
     
     var s="";
     var sMaxKey="", sMaxTxt="" ;
