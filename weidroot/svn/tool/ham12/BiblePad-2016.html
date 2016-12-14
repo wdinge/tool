@@ -612,43 +612,6 @@ function SetFontSize(){
     <BODY xxxonload="body_onload();">
 <p id="debugInfo">#debugInfo:</p>
 
-<div id='othersHolder' class='booksTableHolder'>
-<table border="1" class="booksListTable"  bgcolor="#00000"><caption bgcolor="#00000">tools</caption>
-        <tbody>
-          <tr>
-            <td class="tidx">
-              1</td>
-            <td align="center" colspan="1" onclick="ClickBook(this)" value="OTNT">
-              Whole Bible</td>
-            <td align="center" colspan="1" onclick="ClickBook(this)" value="OTNT">
-              圣经</td>
-            <td class="tidx">
-              &nbsp;</td>
-          </tr>
-          <tr bgcolor="#00000">
-            <td class="tidx">
-              2</td>
-            <td class="booknameBtn" onclick="ClickBook(this)" value="HisSayings">
-              Jesus Words</td>
-            <td class="booknameBtn" onclick="ClickBook(this)" value="HisSayings">
-              耶稣话语</td>
-            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="Moses" title="Moses" colspan="1" rowspan="1">
-            </td>
-          </tr>
-          <tr bgcolor="#00000">
-            <td class="tidx">
-              3</td>
-            <td class="booknameBtn" onclick__="ClickBook(this)" value="_Exo">
-              -</td>
-            <td class="booknameBtn" onclick__="ClickBook(this)" value="_Exo">
-              -</td>
-              <td></td>
-          </tr>
-
-
-          </tbody>
-          </table>
-          </div>
 
 
 <p>.</p><p>.</p><p>.</p>
@@ -1085,7 +1048,7 @@ function SetFontSize(){
             Acts</td>
           <td class="booknameBtn" onclick="ClickBook(this)" value="_Act">
             使徒行传</td>
-          <td class="tdat booknameBtn" onclick="ClickBook(this)" value="HisSayings" title="HisSayings">
+          <td class="tdat booknameBtn" onclick___="ClickBook(this)" value="-" title="-">
             28</td>
         </tr>
         <tr bgcolor="#002E63">
@@ -1311,7 +1274,44 @@ function SetFontSize(){
       </table>
     </div>
     <hr>
+<p>+</p><p>+</p><p>+</p>
+<div id='othersHolder' class='booksTableHolder'>
+<table border="1" class="booksListTable"  bgcolor="#00000"><caption bgcolor="#00000">tools</caption>
+        <tbody>
+          <tr>
+            <td class="tidx">
+              1</td>
+            <td align="center" colspan="1" onclick="ClickBook(this)" value="OTNT">
+              Whole Bible</td>
+            <td align="center" colspan="1" onclick="ClickBook(this)" value="OTNT">
+              圣经</td>
+            <td class="tidx">
+              &nbsp;</td>
+          </tr>
+          <tr bgcolor="#00000">
+            <td class="tidx">
+              2</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="HisSayings">
+              Jesus Words</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="HisSayings">
+              耶稣话语</td>
+            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="Moses" title="Moses" colspan="1" rowspan="1">
+            </td>
+          </tr>
+          <tr bgcolor="#00000">
+            <td class="tidx">
+              3</td>
+            <td class="booknameBtn" onclick__="ClickBook(this)" value="_Exo">
+              -</td>
+            <td class="booknameBtn" onclick__="ClickBook(this)" value="_Exo">
+              -</td>
+              <td></td>
+          </tr>
 
+
+          </tbody>
+          </table>
+          </div>
 
     
     <p id="timespan"></p>
@@ -1568,7 +1568,7 @@ function ClickBook(me){
 
     var bkid=$(me).attr("value");
     if("OTNT"===bkid && false==MasterBibleBookLoader.objBible.bLoadedAll ){
-        if(!confirm("Load the whole Bible will be slow. \n\nContinue?")){
+        if(!confirm("Load the whole Bible will take extra memory and time. \n\nContinue?")){
           return;
         }
     }
