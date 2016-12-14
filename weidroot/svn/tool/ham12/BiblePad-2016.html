@@ -1567,7 +1567,11 @@ function ClickBook(me){
     //
 
     var bkid=$(me).attr("value");
-    
+    if("OTNT"===bkid){
+        if(!confirm("Load the whole Bible will be slow. \n\nContinue?")){
+          return;
+        }
+    }
     ////fill in number of chapters.
     ChapterVerseNumModel.Init(bkid);
     ChapterVerseNumModel.ClickChapterBtn();
@@ -1590,7 +1594,11 @@ function ClickBook(me){
 
     MasterBibleBookLoader.LoadBookChapVers(bkid);
 
- 
+    if("OTNT"===bkid){
+        if(!confirm("Display the whole Bible?")){
+          return;
+        }
+    }
 
     $("#vbibtxt").html( GetBookFrCurBible( bkid ) )[0].scrollIntoView() ;
     updateFontSize();

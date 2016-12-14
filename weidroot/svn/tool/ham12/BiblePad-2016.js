@@ -353,7 +353,7 @@ function GetBookFrCurBible_HistoryMarkersTable( skeyid ){
 	var oBibleBookChapterVerse=new BibleBookChapterVerse();
 	var skeyidsArr = getHistoryOfKeyIDs();
 	//skeyidsArr.sort();
-	var currBible=MasterBibleBookLoader.BibleObj;//GetCurBible();
+	var currBible=MasterBibleBookLoader.pVerses;//GetCurBible();
 	for( var i=0; i<skeyidsArr.length; i++ ){
 		var key=skeyidsArr[i];
 		var txt=currBible[key];
@@ -731,7 +731,7 @@ function next_verse(csid, sky, iNext){
 			$("#"+csid).slideToggle('3000');//hide menu.
 			scrollIntoView2KeyId(nextID);				
 		}else{
-			var oBible=MasterBibleBookLoader.BibleObj;//GetCurBible();
+			var oBible=MasterBibleBookLoader.pVerses;//GetCurBible();
 			if( !oBible[nextID] ){
 				alert("Not exist");
 				return;
@@ -783,7 +783,7 @@ function CatchInvalidLoginDlg(ret,bLoginNow){
 
 function GetBookFrCurBible(BookAbrv) { // _Gen
     //MasterBibleBookLoader.LoadBookChapVers(BookAbrv+"1_1");
-    var oBible=MasterBibleBookLoader.BibleObj;//GetCurBible(); 
+    var oBible=MasterBibleBookLoader.pVerses;//GetCurBible(); 
     var oBibleBookChapterVerse=new BibleBookChapterVerse();
     oBibleBookChapterVerse.SetBookId(BookAbrv);
     
@@ -847,7 +847,7 @@ function GetBookFrCurBible(BookAbrv) { // _Gen
 
 function GetSearch(str, BookAbrv) {
     if ( str.length==0) return ("");
-    var BIBVER=MasterBibleBookLoader.BibleObj;//GetCurBible(); 
+    var BIBVER=MasterBibleBookLoader.pVerses;//GetCurBible(); 
     var oBibleBookChapterVerse=new BibleBookChapterVerse();
     oBibleBookChapterVerse.SetBookId(BookAbrv);
     
@@ -879,7 +879,7 @@ function GetSearch(str, BookAbrv) {
 
 function GetSearch_old(str, BookAbrv) {
     if ( str.length==0) return ("");
-    var BIBVER=MasterBibleBookLoader.BibleObj;//GetCurBible(); 
+    var BIBVER=MasterBibleBookLoader.pVerses;//GetCurBible(); 
     
     var s="";
     var i=0;

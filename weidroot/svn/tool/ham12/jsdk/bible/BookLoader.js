@@ -522,55 +522,54 @@ DynaGetBibleBookChapVerTxt:function( sBibleVersion, sky ){
 	var pBibleObj=null;
 	switch(sBibleVersion){
 	case "NIV":
-        this.ChapVerStr = NIV.LoadBooks(sky);//N[sky] ;
-        pBibleObj=NIV.BBB;
+        //this.ChapVerStr = NIV.LoadBooks(sky);//N[sky] ;
+        pBibleObj		= NIV;
         break;		
     case "KJV":		
-        this.ChapVerStr = KJV.LoadBooks(sky);//K[sky] ;
-        pBibleObj=KJV.BBB;
+        //this.ChapVerStr = KJV.LoadBooks(sky);//K[sky] ;
+        pBibleObj		= KJV;
         break;
     case "STU":		
-        this.ChapVerStr = STU.LoadBooks(sky);//K[sky] ;
-        pBibleObj       = STU.BBB;
+        //this.ChapVerStr = STU.LoadBooks(sky);//K[sky] ;
+        pBibleObj       = STU;
         break;
     case "BBE":
-        this.ChapVerStr = BBE.LoadBooks(sky);//B[sky] ;
-        pBibleObj       = BBE.BBB;
+        //this.ChapVerStr = BBE.LoadBooks(sky);//B[sky] ;
+        pBibleObj       = BBE;
         break;
     case "CUVs"://  translate chinese into chinese.
-        this.ChapVerStr = CUVs.LoadBooks(sky);//I[sky] ;
-        pBibleObj       = CUVs.BBB;
+        //this.ChapVerStr = CUVs.LoadBooks(sky);//I[sky] ;
+        pBibleObj       = CUVs;
         break;
     case "CUVt"://translate chinese into jiaguwen.
-        this.ChapVerStr = CUVs.LoadBooks(sky);
-        BibleObj        = CUVs.BBB;
+        //this.ChapVerStr = CUVs.LoadBooks(sky);
+        pVerses         = CUVs;
         break;//
     case "CUVpy"://.
-        this.ChapVerStr = CUVpy.LoadBooks(sky);//P[sky] ;
-       	pBibleObj       = CUVpy.BBB;
+        //this.ChapVerStr = CUVpy.LoadBooks(sky);//P[sky] ;
+       	pBibleObj       = CUVpy;
         break;//
     case "TBI"://translate chinese into jiaguwen.
-    	this.ChapVerStr= CUVs.LoadBooks(sky);
-    	pBibleObj      = CUVs.BBB;
+    	//this.ChapVerStr= CUVs.LoadBooks(sky);
+    	pBibleObj      = CUVs;
         break; 
 
     case "HGR"://Hebrew or Greek.
-        this.ChapVerStr = HGR.LoadBooks(sky);//K[sky] ;
-        pBibleObj       = HGR.BBB;
+        //this.ChapVerStr = HGR.LoadBooks(sky);//K[sky] ;
+        pBibleObj       = HGR;
         break;
     case "HGS"://link
 	default:
 		alert("error bible version :"+sBibleVersion);
 		return;
     };//switch
-    var ret={pBibleObj:null, Txt:''}
-    ret.pBibleObj=pBibleObj;
-
     if(null===pBibleObj){
     	alert("fatal err bible load.");
-    	return ret;
+    	return {};
     }
-    ret.Txt=pBibleObj[sky]
+
+    pBibleObj.LoadBooks(sky);
+    var ret={pBibleObj:pBibleObj, pVerses:pBibleObj.BBB, Txt:pBibleObj.BBB[sky] };
     return ret;
 },
 };
@@ -579,13 +578,15 @@ DynaGetBibleBookChapVerTxt:function( sBibleVersion, sky ){
 var MasterBibleBookLoader={
 SetBibleVersion:function(BibleVersion){
 	this.BibleVersion=BibleVersion;
-	this.BibleObj=null;
+	this.pVerses=null;
 	this.ChapVerStr="";
+	this.objBible=null;
 },
 LoadBookChapVers:function( sky ){
 	var ret = BibleBookLoader.DynaGetBibleBookChapVerTxt(this.BibleVersion, sky);
-	this.BibleObj=ret.pBibleObj;
+	this.pVerses=ret.pVerses;
 	this.ChapVerStr=ret.Txt;
+	this.objBible=ret.pBibleObj;
 	return ret.Txt;
 },
 };
