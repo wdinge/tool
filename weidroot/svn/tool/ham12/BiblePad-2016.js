@@ -677,57 +677,64 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 
 
 
+        //BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
     case "NIV":
-        construedstr = NIV.DynamicLoadVerse(sky);//N[sky] ;
-		var txt = Strn2Pickabl(construedstr,vbible);
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
+		var txt = Strn2Pickabl(ret.Txt, vbible);
 		atxt="<a>"+txt+"</a>";
         break;		
     case "KJV":		
-        construedstr = KJV.DynamicLoadVerse(sky);//K[sky] ;
-		var txt = Strn2Pickabl(construedstr,vbible);
+        //construedstr = KJV.DynamicLoadVerse(sky);//K[sky] ;
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
+		var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
         break;
     case "STU":		
-        construedstr = STU.DynamicLoadVerse(sky);//K[sky] ;
-		var txt = Strn2Pickabl(construedstr,vbible);
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
+        var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
         break;
     case "BBE":
-        construedstr = BBE.DynamicLoadVerse(sky);//B[sky] ;
-		var txt = Strn2Pickabl(construedstr,vbible);
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
+        var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
         break;
     case "CUVs"://  translate chinese into chinese.
-        construedstr = CUVs.DynamicLoadVerse(sky);//I[sky] ;
-		var txt = Strn2Pickabl(construedstr,vbible);
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
+        var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
         break;
+
     case "CUVt"://translate chinese into jiaguwen.
-        var ss=CUVs.DynamicLoadVerse(sky);
-        construedstr = z2g_convert2opposite(ss) ;
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt("CUVs",sky);
+        construedstr = z2g_convert2opposite(ret.Txt) ;
 		var txt = Strn2Pickabl(construedstr,vbible);
 		atxt="<a>"+txt+"</a>";
 
         break;//
     case "CUVpy"://.
-        construedstr = CUVpy.DynamicLoadVerse(sky);//P[sky] ;
-		var txt = Strn2Pickabl(construedstr,vbible);
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
+		var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
         //scolor="#555444";
         //em.style.backgroundColor="#ff11aa";
         break;//
     case "TBI"://translate chinese into jiaguwen.
-        construedstr = z2g_translate2jiaguwen(I[sky])  ;
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt("CUVs",sky);
+        construedstr = z2g_translate2jiaguwen(ret.Txt)  ;
 		atxt="<a>"+construedstr+"</a>";
         //scolor="#333333";//TBI EDB10C;
         //em.style.backgroundColor="#aaff11";
         break; 
 
     case "HGR"://Hebrew or Greek.
-        construedstr = HGR.DynamicLoadVerse(sky);//K[sky] ;
-		var txt = Strn2Pickabl(construedstr,vbible);
+        var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
+        var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
         break;
+
+
+
     case "HGS"://translate chinese into jiaguwen.
         //construedstr = HGR.DynamicLoadVerse(sky);//K[sky] ;
 		//var txt = Strn2Pickabl(construedstr,vbible);
@@ -837,7 +844,7 @@ function CatchInvalidLoginDlg(ret,bLoginNow){
 
 
 function GetBookFrCurBible(BookAbrv) { // _Gen
-    MasterBibleBookLoader.LoadBookChapVers(BookAbrv+"1_1");
+    //MasterBibleBookLoader.LoadBookChapVers(BookAbrv+"1_1");
     var oBible=MasterBibleBookLoader.BibleObj;//GetCurBible(); 
     var oBibleBookChapterVerse=new BibleBookChapterVerse();
     oBibleBookChapterVerse.SetBookId(BookAbrv);

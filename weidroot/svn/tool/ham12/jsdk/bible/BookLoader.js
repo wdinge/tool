@@ -531,32 +531,32 @@ DynaGetBibleBookChapVerTxt:function( sBibleVersion, sky ){
         break;
     case "STU":		
         this.ChapVerStr = STU.LoadBooks(sky);//K[sky] ;
-        pBibleObj=STU.BBB;
+        pBibleObj       = STU.BBB;
         break;
     case "BBE":
         this.ChapVerStr = BBE.LoadBooks(sky);//B[sky] ;
-        pBibleObj=BBE.BBB;
+        pBibleObj       = BBE.BBB;
         break;
     case "CUVs"://  translate chinese into chinese.
         this.ChapVerStr = CUVs.LoadBooks(sky);//I[sky] ;
-        pBibleObj= CUVs.BBB;
+        pBibleObj       = CUVs.BBB;
         break;
     case "CUVt"://translate chinese into jiaguwen.
-        this.ChapVerStr =CUVs.LoadBooks(sky);
-        BibleObj=CUVs.BBB;
+        this.ChapVerStr = CUVs.LoadBooks(sky);
+        BibleObj        = CUVs.BBB;
         break;//
     case "CUVpy"://.
         this.ChapVerStr = CUVpy.LoadBooks(sky);//P[sky] ;
-       	pBibleObj= CUVs.BBB;
+       	pBibleObj       = CUVpy.BBB;
         break;//
     case "TBI"://translate chinese into jiaguwen.
     	this.ChapVerStr= CUVs.LoadBooks(sky);
-    	pBibleObj=CUVs.BBB;
+    	pBibleObj      = CUVs.BBB;
         break; 
 
     case "HGR"://Hebrew or Greek.
         this.ChapVerStr = HGR.LoadBooks(sky);//K[sky] ;
-        pBibleObj=NIV.BBB;
+        pBibleObj       = HGR.BBB;
         break;
     case "HGS"://link
 	default:
