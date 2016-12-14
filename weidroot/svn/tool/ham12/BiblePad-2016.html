@@ -1472,12 +1472,7 @@ $(document).ready(function(){
 }
 
 
-#bookSelMenuBtnsHolder{
-	position:absolute;
-	bottom:0px;
-	right:0px;
-	width:100%;
-}
+
 
 .booksListTable {
  width:100%;
@@ -1595,7 +1590,32 @@ function ClickBook(me){
 
     MasterBibleBookLoader.LoadBookChapVers(bkid);
 
-    LoadBookByFormat_BCV__WhenSelBook(sBKeyId, true);
+ 
+    if( gBookChapterVerse.ParseAsFormat_BookidChapter_Ver( bkid ) ){
+            var sKeySerchVers = gBookChapterVerse.m_sKeyId;
+            gsKeySerchVers=     sKeySerchVers;  
+            //alert(gsKeySerchVers);
+            AddIntoHistory(sKeySerchVers);
+            if( !bForceReload ){
+                if(true === scrollIntoView2KeyId(sKeySerchVers)){
+                    return true;
+                }
+            }
+            $("#vbibtxt").html( GetBookFrCurBible( gBookChapterVerse.m_sBookId ) ) ;
+            updateFontSize();
+           //AddIntoHistory(sKeySerchVers);
+            $("#selHistory").val("");                                         
+            //minimizeMainMenuControl();
+            scrollIntoView2KeyId(sKeySerchVers);//not work onload.
+            //alert(gsKeySerchVers);
+            setTimeout("scrollIntoView2KeyId('"+gsKeySerchVers+"')",100);
+            return true;
+    }
+    else{
+        $("#vbibtxt").html( GetBookFrCurBible( bkid ) )[0].scrollIntoView() ;
+        updateFontSize();
+        minimizeMainMenuControl();
+    }
     
    
     return;

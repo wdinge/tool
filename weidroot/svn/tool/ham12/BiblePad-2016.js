@@ -115,13 +115,6 @@ function StartToGo( bForceReload){
     
     //load bible whole
     if(0===sSearch.length){
-        if(0===sBookId.length){
-           if(confirm("Show Whole Bible?")===false) return;
-        }
-        $("#vbibtxt").html( GetBookFrCurBible( sBookId ) );
-        $("#selHistory").val("");
-        updateFontSize();
-        minimizeMainMenuControl();
         return;
     }
     //load book by keyId format.
@@ -206,6 +199,8 @@ function LoadBookByFormat_BCV(sSearch, bForceReload){//BookId, ChapterNum, Verse
     return false;
 }
 function LoadBookByFormat_BCV__WhenSelBook(sSearch, bForceReload){//BookId, ChapterNum, VerseNum.
+    $("#vbibtxt").html( GetBookFrCurBible( sSearch ) ) ;
+ 
     if( gBookChapterVerse.ParseAsFormat_BookidChapter_Ver( sSearch ) ){
             var sKeySerchVers = gBookChapterVerse.m_sKeyId;
             gsKeySerchVers=     sKeySerchVers;  
