@@ -1539,10 +1539,11 @@ function ClickBook(me){
 
 
     //.booksListTable td 
-    $(".booknameBtn").css("border","");
+    //$(".booknameBtn").css("border","");//remove all selected.
+
     $(me).css("border","2px solid #ffff00");
 
-    $(me).parent().find(".tidx:eq(0)").css("border","3px solid #f0f000");
+    //$(me).parent().find(".tidx:eq(0)").css("border","3px solid #f0f000");
 
     var bkt=$(me).text();
     var title=$(me).attr("title");
