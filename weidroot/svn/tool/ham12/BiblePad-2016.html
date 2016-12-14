@@ -983,7 +983,9 @@ function SetFontSize(){
               玛拉基书</td>
           </tr>
           <tr>
-            <td class="tidx" colspan="3"  onclick="ClickBook(this)" value="OT">
+           <td class="tidx">
+            </td>
+            <td class="tidx" colspan="2"  onclick="ClickBook(this)" value="OT" align="center">
               Old Testment</td>
             <td class="tdat">
               929</td>
@@ -1265,7 +1267,9 @@ function SetFontSize(){
             22</td>
         </tr>
         <tr>
-          <td class="tidx" colspan="3" onclick="ClickBook(this)" value="NT" title="New Testment">
+         <td class="tidx">
+            </td>
+          <td class="tidx" colspan="2" onclick="ClickBook(this)" value="NT" title="New Testment" align="center">
             New Testment</td>
           <td class="tdat">
             260</td>
@@ -1594,8 +1598,8 @@ function ClickBook(me){
 
     MasterBibleBookLoader.LoadBookChapVers(bkid);
 
-    if("OTNT"===bkid){
-        if(!confirm("Display the whole Bible?")){
+    if("OTNT"===bkid || "OT"===bkid || "NT"===bkid){
+        if(!confirm("Display the whole Bible "+bkid+" ?")){
           return;
         }
     }
