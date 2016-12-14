@@ -1494,11 +1494,11 @@ $(document).ready(function(){
 
 
   
-   $('.booksTableHolder, #vbibtxt').on( 'scroll',  function(e){
-	e.stopPropagation();
-    console.log('Event Fired!!!' );
-	return false;
-  });
+//   $('.booksTableHolder, #vbibtxt').on( 'scroll',  function(e){
+// e.stopPropagation();
+//    console.log('Event Fired!!!' );
+// return false;
+//  });
 
   
   
@@ -1509,7 +1509,7 @@ $(document).ready(function(){
     btnId=$(this).attr("id");
     //alert(btnId);
     
-    $(".booksTableHolder").hide();
+    //$(".booksTableHolder").hide();
     var btn2tab={"TabOT":"otHolder","TabNT":"ntHolder","TabFlavor":"flavorHolder",};
     var tabId=btn2tab[btnId];
     //alert(tabId);
