@@ -786,6 +786,9 @@ function GetBookFrCurBible(BookAbrv) { // _Gen
     var oBible=MasterBibleBookLoader.pVerses;//GetCurBible(); 
     var oBibleBookChapterVerse=new BibleBookChapterVerse();
     oBibleBookChapterVerse.SetBookId(BookAbrv);
+
+    var KeysArr=[];
+    BookChapterVerseMaxUti.Push_BCV_KeyArr_By_BookId(KeysArr, BookAbrv);
     
     var s="";
     var sMaxKey="", sMaxTxt="" ;
@@ -794,7 +797,8 @@ function GetBookFrCurBible(BookAbrv) { // _Gen
     var iShowBookId = oBibleBookChapterVerse.m_iShowBookAbr;//BookAbrv.length ? 0:1;//0:wholeBible
     var i=0;
     console.log("GetBookFrCurBible:"+BookAbrv);
-    for (var key in oBible) {
+    for (var k=0;k<KeysArr.length;k++) {
+        var key=KeysArr[k];
         //if ( key.indexOf(BookAbrv) < 0 ) continue;
         var iIndicator = oBibleBookChapterVerse.FilterKey(key);
         if(0===iIndicator) continue;
@@ -802,6 +806,9 @@ function GetBookFrCurBible(BookAbrv) { // _Gen
         
         i++;
         var VersText=oBible[key];
+        if( typeof VersText === "undefined" ){
+            VersText="(js:undefined)";
+        }
         
         var ilen=VersText.length;
         if(ilen>sMaxTxt.length){

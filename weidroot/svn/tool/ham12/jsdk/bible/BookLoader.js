@@ -33,7 +33,6 @@ var BookLoader=function(BookObj){
 BookLoader.prototype.Set=function(dir){
 	this.dir=dir;
 }
-
 BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 	//
 	this.LoadBooks(BookCapterVersID);
@@ -568,7 +567,7 @@ DynaGetBibleBookChapVerTxt:function( sBibleVersion, sky ){
     var ret={pBibleObj:pBibleObj, pVerses:pBibleObj.BBB, Txt:pBibleObj.BBB[sky] };
     return ret;
 },
-};
+};/////
 
 //MasterBible
 var MasterBibleBookLoader={

@@ -70,4 +70,30 @@ _Rev:[20,29,22,11,14,17,17,13,21,11,19,17,18,20,8,21,18,24,21,15,27,21]};
 
 
 
+var BookChapterVerseMaxUti={
+Push_BCV_KeyArr_By_BookId:function(BCV_KeyArr, BookId){
+		var iChap=0;
+		$.each(BookChapterVerseMax[BookId],function(idx,VersMax){
+			iChap++;
+			for(var iVers=1;iVers<=VersMax;iVers++){
+				var BookChapVers=BookId+iChap+"_"+iVers;
+				BCV_KeyArr.push(BookChapVers);
+			};
+		});
+},
+Push_BCV_KeyArr_By_BookIdsArr:function(BCV_KeyArr, BookIdsArr){
+		var BCV_Arr=[];
+		$.each(BookIdsArr,function(idx,BookId){
+			this.Push_BCV_KeyArr_By_BookId(BCV_KeyArr,BookId);
+		});
+		return BCV_Arr;
+},
+Get_BCV_KeyArr_By_OTNT:function(sOTNT){
+		var BCV_Arr=[];
+		$.each(BookIdsArr,function(idx,BookId){
+			this.Get_BCV_KeyArr_By_BookId(BookId);
+		});
+		return BCV_Arr;
+},
+};
 
