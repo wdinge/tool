@@ -1,7 +1,7 @@
 
 
 var BookCollections={
-	all:["all books of bible"],
+	OTNT:["all books of bible"],
 	OT:["Old Testment"],
 	NT:["New Testment"],
 
@@ -45,7 +45,7 @@ BookLoader.prototype.DynamicLoadVerse=function(BookCapterVersID){
 BookLoader.prototype.LoadBooks=function(sname){
 	var CollectsArr=BookCollections[sname];
 	if(CollectsArr) {
-		if("all"===sname){
+		if("OTNT"===sname){
 			this.LoadFiles(0, this.Book2StartFileIndex.END); 
 			return;
 		} else if("OT"===sname){
