@@ -1567,7 +1567,7 @@ function ClickBook(me){
     //
 
     var bkid=$(me).attr("value");
-    if("OTNT"===bkid){
+    if("OTNT"===bkid && false==MasterBibleBookLoader.objBible.bLoadedAll ){
         if(!confirm("Load the whole Bible will be slow. \n\nContinue?")){
           return;
         }

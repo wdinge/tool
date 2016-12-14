@@ -48,7 +48,9 @@ BookLoader.prototype.LoadBooks=function(sname){
 	var CollectsArr=BookCollections[sname];
 	if(CollectsArr) {
 		if("OTNT"===sname){
+			if(true===this.bLoadedAll) return;
 			this.LoadFiles(0, this.Book2StartFileIndex.END); 
+			this.bLoadedAll=true;
 			return;
 		} else if("OT"===sname){
 			this.LoadFiles(0, this.Book2StartFileIndex._Mat);
@@ -85,12 +87,6 @@ BookLoader.prototype.LoadBookByBookId=function(BookId){
 	var bookNext = books[indxBookNext];
 	var EndFileIndx = this.Book2StartFileIndex[bookNext];
 	this.LoadFiles(StartFileIndx,EndFileIndx);
-};
-BookLoader.prototype.LoadAll=function(){
-   if( !this.bLoadedAll ){
-        this.LoadFiles(0, this.Book2StartFileIndex.END);        
-        this.bLoadedAll=true;             
-    }   
 };
 BookLoader.prototype.LoadFiles=function(start, end){
 		var sdir=this.dir;
