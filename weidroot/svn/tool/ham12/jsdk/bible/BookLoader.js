@@ -15,7 +15,9 @@ var BookCollections={
   Luke:      	["_Luk","_Act"],
   Pauls:     	["_Rom","_1Co","_2Co","_Gal","_Eph","_Phl","_Col","_1Ts","_2Ts","_1Ti","_2Ti","_Tit","_Phm"],
   Other_Epistles:["_Heb","_Jas","_1Pe","_2Pe","_1Jn","_2Jn","_3Jn","_Jud"],
-  John:      	["_Jhn","_Rev"]
+  John:      	["_Jhn","_Rev"],
+  HisSayings:   ["_Mat","_Mak","_Luk","_Jhn","_Act"],
+  JesusWords:   ["_Mat","_Mak","_Luk","_Jhn","_Act"],
 };
 
 

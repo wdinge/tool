@@ -612,6 +612,46 @@ function SetFontSize(){
     <BODY xxxonload="body_onload();">
 <p id="debugInfo">#debugInfo:</p>
 
+<div id='othersHolder' class='booksTableHolder'>
+<table border="1" class="booksListTable"  bgcolor="#00000"><caption bgcolor="#00000">tools</caption>
+        <tbody>
+          <tr>
+            <td class="tidx">
+              1</td>
+            <td align="center" colspan="1" onclick="ClickBook(this)" value="OTNT">
+              Whole Bible</td>
+            <td align="center" colspan="1" onclick="ClickBook(this)" value="OTNT">
+              圣经</td>
+            <td class="tidx">
+              &nbsp;</td>
+          </tr>
+          <tr bgcolor="#00000">
+            <td class="tidx">
+              2</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="JesusWords">
+              Jesus Words</td>
+            <td class="booknameBtn" onclick="ClickBook(this)" value="JesusWords">
+              耶稣话语</td>
+            <td class="tdat booknameBtn" onclick="ClickBook(this)" value="Moses" title="Moses" colspan="1" rowspan="1">
+            </td>
+          </tr>
+          <tr bgcolor="#00000">
+            <td class="tidx">
+              3</td>
+            <td class="booknameBtn" onclick__="ClickBook(this)" value="_Exo">
+              -</td>
+            <td class="booknameBtn" onclick__="ClickBook(this)" value="_Exo">
+              -</td>
+              <td></td>
+          </tr>
+
+
+          </tbody>
+          </table>
+          </div>
+
+
+<p>.</p><p>.</p><p>.</p>
 <div id='otHolder' class='booksTableHolder'>
   <table border="1" class="booksListTable">
         <tbody>
@@ -1554,6 +1594,7 @@ function ClickBook(me){
     var sBKeyId=bkid+"1_1";
 
     MasterBibleBookLoader.LoadBookChapVers(bkid);
+    
     LoadBookByFormat_BCV__WhenSelBook(sBKeyId, true);
     
    
