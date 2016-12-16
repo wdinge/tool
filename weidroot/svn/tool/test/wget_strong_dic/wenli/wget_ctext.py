@@ -2,6 +2,7 @@
 
 
 import os, os.path
+import glob
 import sys, string
 from types import *
 import re
@@ -143,7 +144,8 @@ wget_files(OutputFiles,1, 66)
 #pattern sample
 #<p><span style="color:#ff0000;" id="1:1"><sup>1</sup></span>...</p>
 #<p><span style="color:#ff0000;" id="1:2"><sup>2</sup></span>...</p>
-  
+BibleBook={}
+
 def rewrite_file(file, srcdir, subdir):
     srcfile=srcdir+"/"+file
     print srcfile
@@ -160,11 +162,6 @@ def rewrite_file(file, srcdir, subdir):
     bWrte=0;
     for line in open(srcfile).readlines():
         #line=line.strip()
-
-        if line.strip()[:15] == "<p><span style=": #"<p><span style= "
-            #print line
-            None
-
         #matchObj = re.match( r'\<p\>\<span style\=\"color:\#ff0000\;\" id\=\"([0-9])\:1\"\>\<sup\>1\<\/sup\>\<\/span\>(*)\<\/p\>', line)
         matchObj = re.match( r'(.*)([0-9]+):([0-9]+)', line)
         matchObj = re.match( r'(.*)id=[\"]([0-9]+):([0-9]+)\"\>\<sup\>(.*)\<\/sup\>\<\/span\>(.*)\<\/p\>',line)
@@ -175,25 +172,79 @@ def rewrite_file(file, srcdir, subdir):
             print "versNum", matchObj.group(3)
             print matchObj.group(4)
             print matchObj.group(5)
-            jstrn=bookid+matchObj.group(2)+"_"+matchObj.group(3)+"='"+matchObj.group(5)+"';<br/>"
+            bookChpVers=bookid+matchObj.group(2)+"_"+matchObj.group(3)
+            jstrn=bookChpVers+"='"+matchObj.group(5)+"';<br/>"
             print jstrn
             sbody += jstrn
+            BibleBook[bookChpVers]=matchObj.group(5)
     return sbody
 
     
 
-sbody=""
-for file in OutputFiles:
-    sbody+=rewrite_file(file, DirTmp, DirTar)
+def rewrite_into_sigle_file():
+    sbody=""
+    for file in OutputFiles:
+        sbody+=rewrite_file(file, DirTmp, DirTar)
+    pf2=open("wl.htm","w")
+    pf2.write(MyHtm0)
+    pf2.write(sbody)
+    pf2.write(MyHtm9)
+    pf2.close()
 
-    
 
 
-pf2=open("wl.htm","w")
-pf2.write(MyHtm0)
-pf2.write(sbody)
-pf2.write(MyHtm9)
-pf2.close()
+#manully copy into utf8 file. wl.utf8.htm
+rewrite_into_sigle_file()
+
+
+
+
+
+
+class follow_existing_jsfile_to_write:
+    BibleBook={}
+    def load_single_file_into_dict(self,filename):
+        for line in open(filename).readlines():
+            mat=re.match(r'([\_][A-Z0-9][a-z]{2}[0-9]+[\_][0-9]+)[\=](.*)',line)
+            if mat:
+                bookchpverID=mat.group(1)
+                self.BibleBook[bookchpverID]=mat.group(2)
+
+        print self.BibleBook
+
+
+    def get_key_of_file(self,file):
+        body=""
+        for line in open(file).readlines():
+            #print line
+            mat=re.match(r'[A-W][\.]([\_][A-Z0-9][a-z]{2}[0-9]+[\_][0-9]+)[\=](.*)',line)
+            if mat:
+                print "mat", mat.group()
+                bookchpverID=mat.group(1)
+                print "bookchpverID:",bookchpverID
+                if self.BibleBook.has_key(bookchpverID):
+                    print "wl:",self.BibleBook[bookchpverID]
+                else:
+                    self.BibleBook[bookchpverID]="(null)"
+                body+="W."+bookchpverID+"="+self.BibleBook[bookchpverID]+"\n"
+        return body
+
+    def follow_existing_jsfile(self,srcdir,targetDir):
+        for pathfile in glob.glob(srcdir):
+        #for file in os.listdir(dir):
+            print pathfile
+            basefile=os.path.basename(pathfile)
+            sbody=self.get_key_of_file(pathfile)
+            file2=targetDir+"/"+basefile
+            pf2=open(file2,"w")
+            pf2.write(sbody)
+            pf2.close()
+
+
+
+fw=follow_existing_jsfile_to_write()
+fw.load_single_file_into_dict("wl.utf8.htm")
+fw.follow_existing_jsfile("../../../../../___expand/rel/ham12/jsdb/bible/cuvs/*.js", DirTar)    
 exit(0)
 
 
