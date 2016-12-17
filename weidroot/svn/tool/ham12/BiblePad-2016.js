@@ -662,9 +662,9 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 
         //BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
     case "NIV":	
-    case "KJV":		
-    case "STU":		
+    case "KJV":			
     case "BBE":
+    case "STU":  
     case "WLVs":
     case "CUVs"://  translate chinese into chinese.
     case "CUVpy"://.
