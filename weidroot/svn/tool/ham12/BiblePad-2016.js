@@ -535,7 +535,7 @@ function pickZi( _this ){
     //insertTextAtCursor(word);
 }
 function Strn2Pickabl( txt, typeBible ){    
-    if( typeBible==="CUVs" || typeBible==="CUVt" ){
+    if( typeBible==="CUVs" || typeBible==="CUVt" || typeBible==="WLVs" ){
         delimiter = "";        
         var oNamesFinder = new NamesFinder();
         oNamesFinder.setNamesMark({txt:txt, person:true, place:true});
@@ -665,6 +665,7 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
     case "KJV":		
     case "STU":		
     case "BBE":
+    case "WLVs":
     case "CUVs"://  translate chinese into chinese.
     case "CUVpy"://.
     case "HGR"://Hebrew or Greek.
