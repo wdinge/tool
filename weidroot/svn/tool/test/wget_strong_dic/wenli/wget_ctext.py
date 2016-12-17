@@ -205,7 +205,7 @@ class follow_existing_jsfile_to_write:
     BibleBook={}
     def load_single_file_into_dict(self,filename):
         for line in open(filename).readlines():
-            mat=re.match(r'([\_][A-Z0-9][a-z]{2}[0-9]+[\_][0-9]+)[\=](.*)',line)
+            mat=re.match(r'([\_][A-Z0-9][a-zA-Z]{2}[0-9]+[\_][0-9]+)[\=](.*)',line)
             if mat:
                 bookchpverID=mat.group(1)
                 self.BibleBook[bookchpverID]=mat.group(2)
@@ -217,7 +217,7 @@ class follow_existing_jsfile_to_write:
         body=""
         for line in open(file).readlines():
             #print line
-            mat=re.match(r'[A-W][\.]([\_][A-Z0-9][a-z]{2}[0-9]+[\_][0-9]+)[\=](.*)',line)
+            mat=re.match(r'[A-W][\.]([\_][A-Z0-9][a-zA-Z]{2}[0-9]+[\_][0-9]+)[\=](.*)',line)
             if mat:
                 print "mat", mat.group()
                 bookchpverID=mat.group(1)
