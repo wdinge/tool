@@ -664,15 +664,29 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
     case "NIV":	
     case "KJV":			
     case "BBE":
-    case "STU":  
-    case "WLVs":
-    case "CUVs"://  translate chinese into chinese.
+    case "STU"://chinese  
+    case "WLVs"://chinese
+    case "CUVs"://chinese
     case "CUVpy"://.
     case "HGR"://Hebrew or Greek.
         var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt(vbible,sky);
         var txt = Strn2Pickabl(ret.Txt,vbible);
 		atxt="<a>"+txt+"</a>";
-        break;
+        switch(vbible){
+            case "STU"://chinese  
+            case "WLVs"://chinese
+            case "CUVs"://chinese
+
+                var sTradit = z2g_convert2opposite  (ret.Txt) ;
+                var sTBI    = z2g_translate2jiaguwen(ret.Txt) ;
+                var sPinyin = z2g_convert2opposite  (ret.Txt) ;
+                atxt+="<button onclick='chinese2T(this)'>Trd</button><div class='init_hide'>"+sTradit+"</div>";
+                atxt+="<button onclick='chinese2T(this)'>TBI</button><div class='init_hide'>"+sTBI   +"</div>";
+                atxt+="<button onclick='chinese2T(this)'>Py </button><div class='init_hide'>"+sPinyin+"</div>";
+            break;
+        }
+        break;   
+
 
     case "CUVt"://translate chinese into jiaguwen.
         var ret=BibleBookLoader.DynaGetBibleBookChapVerTxt("CUVs",sky);
@@ -697,7 +711,7 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
     
 
 	
-	var adiv="<div style='background-color:"+scolor+";display:none;' id='"+constrastVersionPackID+"' class='contrast'>" + alabel + atxt + "</div>";
+	var adiv="<div style='background-color:"+scolor+";display:none;' id='"+constrastVersionPackID+"' class='contrast'>" + alabel + atxt + "<br></div>";
 	$("#"+contrastId).remove("#"+constrastVersionPackID);
 	$("#"+contrastId).append($(adiv));
 	
@@ -725,6 +739,10 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 	//VerseMyNotesRead2(contrastId);
 	return;
 }
+function chinese2T(_me){
+    $(_me).next().slideToggle('3000');
+    console.log("x");
+};
 function next_verse(csid, sky, iNext){
 		var nextID = gBookChapterVerse.GetSiblineBCV(iNext);
 		var obj=$("#"+nextID );
