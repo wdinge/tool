@@ -119,7 +119,7 @@ BookLoader.prototype.LoadFiles=function(start, end){
     
 
     
-CUVs_Book2StartFileIndex={
+var CUVs_Book2StartFileIndex={
 _Gen:0   ,//0 
 _Exo:9   ,//1 
 _Lev:14  ,//2 
@@ -197,8 +197,8 @@ CUVs.Book2StartFileIndex=CUVs_Book2StartFileIndex;
  
 var W={};  //WenLi version
 var WLVs=new BookLoader(W);  
-CUVs.Prefix="cuv_"; 
-CUVs.Book2StartFileIndex=CUVs_Book2StartFileIndex;     
+WLVs.Prefix="cuv_"; 
+WLVs.Book2StartFileIndex=CUVs_Book2StartFileIndex;     
     
 //////////////////	
 var N={};  //NIV
@@ -540,7 +540,7 @@ DynaGetBibleBookChapVerTxt:function( sBibleVersion, sky ){
         //this.ChapVerStr = CUVs.LoadBooks(sky);//I[sky] ;
         pBibleObj       = CUVs;
         break;
-     case "WLVs"://  translate chinese into chinese.
+     case "WLVs"://  translate chinese WenLiVersion
         //this.ChapVerStr = CUVs.LoadBooks(sky);//I[sky] ;
         pBibleObj       = WLVs;
         break;
