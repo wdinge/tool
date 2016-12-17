@@ -679,7 +679,7 @@ function construeItem_OnClick() {//on td 0 clicked, change the translation.
 
                 var sTradit = z2g_convert2opposite  (ret.Txt) ;
                 var sTBI    = z2g_translate2jiaguwen(ret.Txt) ;
-                var sPinyin = z2g_convert2opposite  (ret.Txt) ;
+                var sPinyin = Pinyin7kziUti.GetPinyinOfZiStrn (ret.Txt) ;
                 atxt+="<button onclick='chinese2T(this)'>Trd</button><div class='init_hide'>"+sTradit+"</div>";
                 atxt+="<button onclick='chinese2T(this)'>TBI</button><div class='init_hide'>"+sTBI   +"</div>";
                 atxt+="<button onclick='chinese2T(this)'>Py </button><div class='init_hide'>"+sPinyin+"</div>";
