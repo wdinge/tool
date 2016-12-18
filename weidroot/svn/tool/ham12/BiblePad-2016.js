@@ -106,7 +106,7 @@ function StartToGo( bForceReload){
     var sSearch = $("#edit_area").val();
     var sBibleName = MyCookies.Get("selMainBible");//$("#selMainBible").val(); 
 
-    if("OTNT"==sBookId) sBookId="";
+    //if("OTNT"==sBookId) sBookId="";
     
     if(sSearch.indexOf("~")>=0){
         sSearch="";
@@ -884,23 +884,37 @@ function GetSearch(str, BookAbrv) {
     var oBibleBookChapterVerse=new BibleBookChapterVerse();
     oBibleBookChapterVerse.SetBookId(BookAbrv);
     
-    
+    var KeysArr=[];
+    var ret=BookChapterVerseMaxUti.Push_BCV_KeyArr(KeysArr, BookAbrv);
+    if(!ret){
+        var BookIdsArr=BookCollections[BookAbrv];
+        if(typeof BookIdsArr === "undefine"){
+            return alert("invalid BookAbrav="+BookAbrv);
+        }
+        BookChapterVerseMaxUti.Push_BCV_KeyArr_By_BookIdsArr(KeysArr, BookIdsArr);
+    }
+
     var s="";
     var i=0;
     var str2 = "<font color='red'>" + str + "</font>";
     var reg = new RegExp(str, "g")  //"/" + str + "/g";
-    for ( key in BIBVER) {
+    //for ( key in BIBVER) {
+    for (var k=0;k<KeysArr.length;k++) {
+        var key=KeysArr[k];
         var iIndicator = oBibleBookChapterVerse.FilterKey(key);
         if(0===iIndicator) continue;
         if(2===iIndicator) break;
         
         var vers = BIBVER[key];
+        if( typeof vers === "undefined"){
+            console.log("null:"+key);
+            continue;
+        }
         if (vers.search(str)>=0) {
             vers = vers.replace(reg, str2);
             i+=1;
             s += GetTR1(1,oBibleBookChapterVerse.isKeySaying, key, vers);//search wild
         }
-
     }
     var sbook=gBookChapterVerse.getBookFullName(BookAbrv);
     var scap="<p>" + MyCookies.Get("selMainBible")+" : " + sbook + "</p>";
