@@ -468,12 +468,7 @@ $(document).ready(function(){
 
     var fname=getWindowLocationHrefParmsValue("fname");
     MyCookies.Init({fname:fname,fontsize:30});
-    if(""===fname){
-        MyCookies.ExpireDays(77);
-    }
-    else{
-        MyCookies.ExpireDays(0);        
-    }
+
         
     fname=MyCookies.Get("fname");
     

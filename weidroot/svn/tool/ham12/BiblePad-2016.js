@@ -106,7 +106,7 @@ function StartToGo( bForceReload){
     var sSearch = $("#edit_area").val();
     var sBibleName = MyCookies.Get("selMainBible");//$("#selMainBible").val(); 
 
-    //if("OTNT"==sBookId) sBookId="";
+
     
     if(sSearch.indexOf("~")>=0){
         sSearch="";

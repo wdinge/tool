@@ -43,6 +43,7 @@ var surl=" "+window.location;//cast it as string.
 var g_iCloseOnSuccess=surl.indexOf("CloseOnSuccessLogin");
 
 $(document).ready(function(){
+  MyCookies.Init({email:"wdingsoft@gmail.com",passwd:""});
 
   $("#create").click(function(){
     login("create");
@@ -71,18 +72,15 @@ $(document).ready(function(){
       return false;
   });
   
-  var email=MyCookies.get("email","wdingsoft@gmail.com");
   
-  $("#email").val(email);
-  $("#passwd").val(MyCookies.get("passwd","") );
+  $("#email"). val(MyCookies.Get("email")  );
+  $("#passwd").val(MyCookies.Get("passwd") );
 });
 function login(type){
       var inpdata=$("#myform").serialize();
       inpdata+="&type="+type;
       console.log(inpdata);
-      
-    MyCookies.set("email",$("#email").val(), 777);
-    MyCookies.set("passwd",$("#passwd").val(), 777);   
+       
     $.ajax({
                 type: "POST",
                 data: inpdata,
