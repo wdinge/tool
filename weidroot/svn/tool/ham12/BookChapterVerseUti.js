@@ -618,29 +618,7 @@ BibleBookChapterVerse.prototype.SetBookId=function (sbookid) {
 }
 BibleBookChapterVerse.prototype.FilterKey=function (key) {
     //for hisSayings.   
-    var sbookid = key.substr(0,4);
-    switch(sbookid){
-        case "_Mat":
-            this.isKeySaying = SayingsIdArr[0].indexOf(key);
-            break;
-        case "_Mak":
-            this.isKeySaying = SayingsIdArr[1].indexOf(key);
-            break;
-        case "_Luk":
-            this.isKeySaying = SayingsIdArr[2].indexOf(key);
-            break;
-        case "_Jhn":
-            this.isKeySaying = SayingsIdArr[3].indexOf(key);
-            break;
-        case "_Act":
-            this.isKeySaying = SayingsIdArr[4].indexOf(key);
-            //console.log(sbookid+":"+this.isKeySaying);
-            break;
-        default:
-            this.isKeySaying=-1;
-            //console.log(sbookid+"==-1");
-        break;
-    }
+    this.isKeySaying = SayingsIdUti.IsHisSaying(key);
     
     //for books.
     switch(this.iBookSwitchId){
