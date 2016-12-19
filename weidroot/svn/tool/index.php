@@ -66,7 +66,7 @@ $visit=new visitCount();
 <hr/>
 <br>
     <center>
-    <a href="./ham12/BiblePad-2016.htm">BibleOnPad(2016)</a><br><br>
+    <a href="./ham12/BiblePad-2016.html">BibleOnPad(2016)</a><br><br>
 	<a href="./ham12/BiblePad.htm">BiblePad(release)</a><br><br>
 	<a href="./ham12/BiblePad-2015-meta.htm">BibleOnPad(meta)</a><br><br>
 	<hr/>
