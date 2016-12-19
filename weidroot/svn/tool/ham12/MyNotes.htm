@@ -174,8 +174,7 @@ td, th{
     }else{
        alert("cookieEnabled OFF");
     }
-    var fname=getWindowLocationHrefParmsValue("fname");
-    
+   
 
 function getWindowLocationHrefParmsValue(skey){
     var curUrl=""+window.location.href;
@@ -467,17 +466,14 @@ $(document).ready(function(){
     
 
     var fname=getWindowLocationHrefParmsValue("fname");
-    MyCookies.Init({fname:fname,fontsize:30});
-
-        
-    fname=MyCookies.Get("fname");
-    
-    if(""===fname){
-        ReadNew({dlg:false});
-    }
-    else{
+    if(fname && fname.length>0){
         read_diary(fname);
     }
+    else{
+        ReadNew({dlg:false});
+    }
+    MyCookies.Init({fname:fname,fontsize:30});
+    
     Font_Size_Refresh("");
     $("#viceInputContainer").hide();
     
