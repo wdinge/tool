@@ -2010,10 +2010,10 @@ _Act:[
 ]
 };//SayingsIdArr
 
-var SayingsIdUti={
+var HisSayingsUti={
 IsHisSaying:function(BookChpVerId){
 	var bookId=BookChpVerId.substr(0,4);
-	var ChpVer=BookChpVerId.substr(5,10);
+	var ChpVer=BookChpVerId.substr(4);
 	if( SayingsIdArr[bookId] && ChpVer ){
 		return SayingsIdArr[bookId].indexOf(ChpVer);
 	}

@@ -618,7 +618,7 @@ BibleBookChapterVerse.prototype.SetBookId=function (sbookid) {
 }
 BibleBookChapterVerse.prototype.FilterKey=function (key) {
     //for hisSayings.   
-    this.isKeySaying = SayingsIdUti.IsHisSaying(key);
+    this.isKeySaying = HisSayingsUti.IsHisSaying(key);
     
     //for books.
     switch(this.iBookSwitchId){
