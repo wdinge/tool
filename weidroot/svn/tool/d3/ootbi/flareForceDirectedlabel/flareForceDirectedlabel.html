@@ -48,7 +48,8 @@ console.log(jsontreefilename);
 </script>
 <body>
 <div id="debug">
-<img src="../../../../odb/tbi/img/jgif/62843.gif"/><br/>
+<!--___bigdata/___solid/odb/tbi/img/jgif-->
+<img src="../../../../../___bigdata/___solid/odb/tbi/img/jgif/62843.gif"/><br/>
 <select id='op'><option></option>
 <option value='flareForceDirectedlabel_logo.json'>logo</option>
 <option value='flareForceDirectedlabel_picto.json'>picto</option>
@@ -143,14 +144,14 @@ function myImg(nod) {
     if(nod.img==="yy.jpg"){
         return "yy.jpg";
     }
-    var fname="../../../../odb/tbi/img/jgif/"+nod.img;
+    var fname="../../../../../___bigdata/___solid/odb/tbi/img/jgif/"+nod.img;
     if(fname.indexOf(".gif")<0){
         fname+=".gif";
     }
 
     return fname;
 
-    return "../../../../odb/tbi/img/jgif/"+nod.img;
+    return "../../../../../___bigdata/___solid/odb/tbi/img/jgif/"+nod.img;
     return "mbostock.jpg";
 }
 function tick() {
